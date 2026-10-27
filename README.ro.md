@@ -2,7 +2,9 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.0.0 · **Ultima actualizare:** 2026-10-14
+**Versiune:** 1.0.1 · **Ultima actualizare:** 2026-10-27
+
+**Stare:** stabil · **Offline:** complet
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -62,4 +64,5 @@ Licență: MIT — vezi fișierul `LICENSE` din rădăcina depozitului
 
 ## Istoric
 
+- 1.0.1 — 2026-10-27: explicație în limbaj simplu a ponderărilor A / C / Z în fila Măsurare (8 limbi); liniile Stare și Offline în README; adăugat CHANGELOG.md. Punctele din recenzie deja acoperite în 1.0.0 (asistent de calibrare cu sonometru de referință, jurnal de sesiuni exportabil, avertizarea „nu este sonometru calibrat”) au rămas neschimbate.
 - 1.0.0 — 2026-10-14: prima versiune
