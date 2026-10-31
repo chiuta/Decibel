@@ -21,6 +21,7 @@ Schallpegelmesser, Spektrumanalysator und orientierender Hörtest in einer einzi
 3. **Spektrum:** Terz- oder Oktavbänder, lineare FFT (Hann-Fenster), Spitze mit parabolischer Interpolation, Spektrogramm; NR-Kurven nur für kalibrierte Werte.
 4. **Audiogramm:** Reintöne von 250 Hz bis 8 kHz, vereinfachtes Hughson-Westlake-Verfahren. Ohne Kalibrierung der Kopfhörer mit einem Schallpegelmesser ist das Ergebnis nur eine relative Schwelle, nicht dB HL.
 5. **Protokoll:** Die Sitzungen (Datum, Dauer, LAeq, Lmax, Ort) werden lokal gespeichert; Export als CSV, JSON, `.fff.json` und Druck (PDF über den Druckdialog). Die Schaltfläche „Șterge tot“ (Alles löschen) löscht alle lokalen Daten.
+6. **Karte (neu in 2.0):** Gespeicherte Sitzungen werden nach dem unter Messung eingegebenen Ort gruppiert (das Feld schlägt bereits verwendete Orte vor; Groß-/Kleinschreibung und überzählige Leerzeichen werden ignoriert). Jeder Ort zeigt Anzahl der Sitzungen, Gesamtdauer, LAeq (dauergewichteter Energiemittelwert), Spitzenwert (höchster LAFmax) und Hintergrund (niedrigster L90), mit relativem Balken, einer Zusammenfassung des lautesten/leisesten Ortes und der Sitzungsliste. Die Karte lässt sich als CSV exportieren oder als Bericht (PDF) drucken. Unkalibrierte (dBFS) und kalibrierte (dB SPL) Orte bleiben getrennt. Die Karte bleibt persönlich, orientierend und nicht zertifiziert.
 
 ## Was er NICHT leistet, und Grenzen
 

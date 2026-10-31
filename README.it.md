@@ -21,6 +21,7 @@ Fonometro, analizzatore di spettro e test uditivo indicativo, in un unico file H
 3. **Spettro:** bande di 1/3 o 1/1 di ottava, FFT lineare (finestra di Hann), picco con interpolazione parabolica, spettrogramma; curve NR solo per i valori calibrati.
 4. **Audiogramma:** toni puri da 250 Hz a 8 kHz, metodo di Hughson–Westlake semplificato. Senza calibrare le cuffie con un fonometro, il risultato è solo una soglia relativa, non dB HL.
 5. **Registro:** le sessioni (data, durata, LAeq, Lmax, posizione) vengono salvate localmente; esportazione in CSV, JSON, `.fff.json` e stampa (PDF dalla finestra di stampa). Il pulsante «Șterge tot» (Cancella tutto) elimina tutti i dati locali.
+6. **Mappa (novità della 2.0):** le sessioni salvate sono raggruppate per il luogo digitato in Misura (il campo suggerisce i luoghi già usati; maiuscole/minuscole e spazi superflui sono ignorati). Ogni luogo mostra numero di sessioni, durata totale, LAeq (media energetica pesata sulla durata), picco (LAFmax più alto) e fondo (L90 più basso), con una barra relativa, un riepilogo del più rumoroso/più silenzioso e l’elenco delle sessioni. Esporta la mappa in CSV o stampala come rapporto (PDF). I luoghi non calibrati (dBFS) e calibrati (dB SPL) restano separati. La mappa resta personale, indicativa e non certificata.
 
 ## Cosa NON fa, e limiti
 
