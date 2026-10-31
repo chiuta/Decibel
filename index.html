@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="ro" data-fff-hash="60c95138f01795a74f0648dc36bd3f56eaa67a5d1c8756da5779f94270e3fd4c">
+<html lang="ro" data-fff-hash="825c6a3ff0f701d442417be58ce5cacf177a6bfc000c3291844f92cb2d876162">
 <head>
 <meta charset="utf-8">
-<!--fff:kit:start v=1 modules=core,label,bundle-->
+<!--fff:kit:start v=1 modules=core,store,dialog,label,bundle-->
 <meta name="fff-app" content="decibel">
-<meta name="fff-modules" content="core,label,bundle">
+<meta name="fff-modules" content="core,store,dialog,label,bundle">
 <style id="fff-style">/* fff-kit · stil comun (prefix fff-). Nu modifică stilul aplicației gazdă. */
 [data-fff-label]{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 [data-fff-label]:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:3px}
-.fff-dlg{--_bg:var(--fff-bg,#fff);--_fg:var(--fff-fg,#1b1b1f);--_mut:var(--fff-muted,#4a4d57);--_line:var(--fff-line,#c4c7d0);--_btn:var(--fff-btn,#eef0f4);--_pri:var(--fff-accent,#0b57d0);--_prif:var(--fff-accent-fg,#fff);--_bad:#b3261e;--_ok:#146c2e;--_note:#fff1c9;--_notef:#3d2e00;
+#app-version[data-fff-label]{box-sizing:border-box;min-height:24px;min-width:24px}
+#app-version[data-fff-label][data-fff-inl]{display:inline-flex;align-items:center;vertical-align:middle}
+#app-version[data-fff-label][data-fff-fs],#app-version[data-fff-label] [data-fff-fs]{font-size:12px!important}
+.fff-dlg{--_bg:var(--fff-bg,#fff);--_fg:var(--fff-fg,#1b1b1f);--_mut:var(--fff-muted,#4a4d57);--_line:var(--fff-line,#c4c7d0);--_btn:var(--fff-btn,#eef0f4);--_pri:var(--fff-accent,#0b57d0);--_prif:var(--fff-accent-fg,#fff);--_bad:var(--fff-bad,#b3261e);--_ok:var(--fff-ok,#146c2e);--_note:#fff1c9;--_notef:#3d2e00;
   box-sizing:border-box;width:min(42rem,calc(100vw - 2rem));max-width:calc(100vw - 2rem);max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);margin:auto;padding:0;overflow:auto;
   border:1px solid var(--_line);border-radius:12px;background:var(--_bg);color:var(--_fg);font:14px/1.5 var(--fff-font,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif);text-align:left;box-shadow:0 12px 40px rgba(0,0,0,.35)}
-.fff-dlg.fff-dark{--_bg:var(--fff-bg,#1e1f24);--_fg:var(--fff-fg,#ececf1);--_mut:var(--fff-muted,#b7bbc7);--_line:var(--fff-line,#4a4d57);--_btn:var(--fff-btn,#2c2e36);--_pri:var(--fff-accent,#a8c7fa);--_prif:var(--fff-accent-fg,#062e6f);--_bad:#f2b8b5;--_ok:#8fd9a0;--_note:#3b3118;--_notef:#f6e3a6;color-scheme:dark}
-@media (prefers-color-scheme:dark){.fff-dlg:not(.fff-light){--_bg:var(--fff-bg,#1e1f24);--_fg:var(--fff-fg,#ececf1);--_mut:var(--fff-muted,#b7bbc7);--_line:var(--fff-line,#4a4d57);--_btn:var(--fff-btn,#2c2e36);--_pri:var(--fff-accent,#a8c7fa);--_prif:var(--fff-accent-fg,#062e6f);--_bad:#f2b8b5;--_ok:#8fd9a0;--_note:#3b3118;--_notef:#f6e3a6;color-scheme:dark}}
+.fff-dlg.fff-dark{--_bg:var(--fff-bg,#1e1f24);--_fg:var(--fff-fg,#ececf1);--_mut:var(--fff-muted,#b7bbc7);--_line:var(--fff-line,#4a4d57);--_btn:var(--fff-btn,#2c2e36);--_pri:var(--fff-accent,#a8c7fa);--_prif:var(--fff-accent-fg,#062e6f);--_bad:var(--fff-bad,#f2b8b5);--_ok:var(--fff-ok,#8fd9a0);--_note:#3b3118;--_notef:#f6e3a6;color-scheme:dark}
+@media (prefers-color-scheme:dark){.fff-dlg:not(.fff-light){--_bg:var(--fff-bg,#1e1f24);--_fg:var(--fff-fg,#ececf1);--_mut:var(--fff-muted,#b7bbc7);--_line:var(--fff-line,#4a4d57);--_btn:var(--fff-btn,#2c2e36);--_pri:var(--fff-accent,#a8c7fa);--_prif:var(--fff-accent-fg,#062e6f);--_bad:var(--fff-bad,#f2b8b5);--_ok:var(--fff-ok,#8fd9a0);--_note:#3b3118;--_notef:#f6e3a6;color-scheme:dark}}
 .fff-dlg::backdrop{background:rgba(0,0,0,.55)}
 .fff-dlg-sm{width:min(26rem,calc(100vw - 2rem))}
 .fff-dlg *,.fff-dlg *::before,.fff-dlg *::after{box-sizing:border-box}
@@ -58,17 +61,88 @@
 .fff-dlg .fff-det summary{cursor:pointer;font-weight:600;min-height:24px}
 .fff-dlg .fff-pre{margin:6px 0 0;padding:8px 10px;overflow:auto;white-space:pre-wrap;word-break:break-all;border:1px solid var(--_line);border-radius:6px;background:var(--_btn);color:var(--_fg)}
 .fff-dlg .fff-foot{border-top:1px solid var(--_line);margin-top:12px;padding-top:10px}
-.fff-dlg .fff-msg{font-size:1rem;margin-bottom:14px}
+.fff-dlg .fff-msg{font-size:1rem;margin-bottom:14px;white-space:pre-line;overflow-wrap:anywhere}
 .fff-chip{appearance:none;background:none;border:1px dotted currentColor;border-radius:6px;color:inherit;font:inherit;font-size:.85em;cursor:pointer;min-height:24px;min-width:24px;padding:0 8px}
+.fff-chip{font-size:max(12px,.85em)}
 .fff-chip:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+@media (pointer:coarse){.fff-dlg .fff-btn,.fff-dlg .fff-input{min-height:44px}.fff-dlg .fff-btn{min-width:44px}.fff-dlg .fff-det summary{min-height:44px}}
 @media (prefers-reduced-motion:no-preference){.fff-dlg[open]{animation:fff-in .12s ease-out}@keyframes fff-in{from{transform:translateY(6px)}to{transform:none}}}
-@media (prefers-reduced-motion:reduce){.fff-dlg,.fff-dlg *{animation:none!important;transition:none!important}}</style>
-<script id="fff-kit">/* fff-kit 1.1.1 */
+@media (prefers-reduced-motion:reduce){.fff-dlg,.fff-dlg *{animation:none!important;transition:none!important}}
+.fff-dlg .fff-dt{margin:0 0 8px}
+.fff-dlg .fff-ta{resize:vertical;min-height:4.5em}
+.fff-dlg textarea.fff-input{font:inherit}
+.fff-toasts{--_tbg:var(--fff-toast-bg,#2b2d33);--_tfg:var(--fff-toast-fg,#f4f4f7);--_tac:var(--fff-toast-accent,#a8c7fa);
+  position:fixed;inset:auto 0 0 0;margin:0;padding:0 16px 16px;border:0;background:transparent;overflow:visible;z-index:2147483000;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:8px;font:14px/1.45 var(--fff-font,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif);color:var(--_tfg);box-sizing:border-box}
+.fff-toasts *{box-sizing:border-box}
+.fff-toast-reg{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+.fff-toast-reg:empty{display:none}
+.fff-toast{pointer-events:auto;display:flex;align-items:center;gap:10px;max-width:min(34rem,100%);padding:10px 12px 10px 14px;border-radius:10px;background:var(--_tbg);color:var(--_tfg);border:1px solid rgba(255,255,255,.18);border-left:6px solid #a8c7fa;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.fff-toast-success{border-left-color:#81c995}.fff-toast-warning{border-left-color:#fdd663}.fff-toast-error{border-left-color:#f28b82}
+.fff-toast-msg{flex:1 1 auto;min-width:0;overflow-wrap:anywhere;white-space:pre-line}
+.fff-toast .fff-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.fff-toast .fff-btn{appearance:none;min-height:32px;min-width:32px;padding:2px 10px;border:1px solid rgba(255,255,255,.35);border-radius:8px;background:transparent;color:var(--_tac);font:inherit;font-weight:600;cursor:pointer}
+.fff-toast .fff-toast-x{font-size:1.3rem;line-height:1;color:var(--_tfg);padding:0 8px}
+.fff-toast .fff-btn:focus-visible{outline:2px solid var(--_tfg);outline-offset:2px}
+@media (pointer:coarse){.fff-toast .fff-btn{min-height:44px;min-width:44px}}
+@media (prefers-reduced-motion:no-preference){.fff-toast{animation:fff-tin .16s ease-out}@keyframes fff-tin{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:reduce){.fff-toast{animation:none!important}}</style>
+<script id="fff-kit">/* fff-kit 1.2.0 */
 /* ---- fff-kit/core ---- */
-/* fff-kit · core · v1.1.1 — fără rețea, fără dependențe. Definește window.FFF. */
+/* fff-kit · core · v1.2.0 — fără rețea, fără dependențe. Definește window.FFF. */
 (function () {
   'use strict';
-  var KIT_VERSION = '1.1.1';
+  /* anti-clickjacking: GitHub Pages nu trimite X-Frame-Options; dacă pagina e încadrată de o origine străină (sau într-un iframe sandbox),
+     conținutul aplicației e ascuns și apare doar un mesaj minimal tradus cu un link către pagină într-o fereastră nouă. */
+  function frameGuard() {
+    var M = {
+      ro: ['Această pagină nu poate fi încadrată în alt site.', 'Deschide-o într-o fereastră nouă'],
+      en: ['This page cannot be embedded in another site.', 'Open it in a new window'],
+      fr: ['Cette page ne peut pas être intégrée dans un autre site.', 'Ouvrez-la dans une nouvelle fenêtre'],
+      it: ['Questa pagina non può essere incorporata in un altro sito.', 'Aprila in una nuova finestra'],
+      es: ['Esta página no se puede incrustar en otro sitio.', 'Ábrela en una ventana nueva'],
+      pt: ['Esta página não pode ser incorporada noutro site.', 'Abra-a numa nova janela'],
+      hu: ['Ez az oldal nem ágyazható be másik webhelyre.', 'Nyisd meg új ablakban'],
+      de: ['Diese Seite kann nicht in eine andere Website eingebettet werden.', 'In einem neuen Fenster öffnen']
+    };
+    var d = document, de = d.documentElement;
+    var l = (de.getAttribute('lang') || '').slice(0, 2).toLowerCase();
+    if (!M[l]) l = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0, 2).toLowerCase();
+    var m = M[l] || M.en, box = null;
+    function hideKids(b) {
+      for (var i = 0; i < b.children.length; i++) if (b.children[i] !== box) b.children[i].style.setProperty('display', 'none', 'important');
+    }
+    function build() {
+      var b = d.body;
+      if (!b || box) return;
+      box = d.createElement('div');
+      box.setAttribute('data-fff-frameguard', '');
+      box.setAttribute('role', 'alert');
+      box.style.cssText = 'display:block;box-sizing:border-box;margin:0;padding:24px 16px;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1b1b1f;background:#fff;text-align:center';
+      var p = d.createElement('p'); p.textContent = m[0]; p.style.cssText = 'margin:0 0 12px';
+      var a = d.createElement('a');
+      a.href = window.self.location.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = m[1];
+      a.style.cssText = 'color:#0b57d0;text-decoration:underline;font-weight:600';
+      box.appendChild(p); box.appendChild(a);
+      hideKids(b);
+      b.appendChild(box);
+      b.style.setProperty('display', 'block', 'important');
+      de.style.display = '';
+      if (window.MutationObserver) new MutationObserver(function () { hideKids(b); if (box.parentNode !== b) b.appendChild(box); }).observe(b, {childList: true});
+    }
+    if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', build); else build();
+  }
+  try {
+    if (window.top !== window.self) {
+      var __cross = false;
+      try { void window.top.location.href; } catch (e) { __cross = true; }
+      if (__cross) {
+        document.documentElement.style.display = 'none';   // ascuns până când mesajul e gata (nimic din aplicație nu rămâne vizibil)
+        try { window.top.location = window.self.location.href; } catch (e2) {}
+        try { frameGuard(); } catch (e4) {}
+      }
+    }
+  } catch (e3) {}
+  var KIT_VERSION = '1.2.0';
   var F = (window.FFF = window.FFF || {});
   if (F.core && F.core.version) return; // idempotent la dublă încărcare
   var SUP = ['ro', 'en', 'fr', 'it', 'es', 'pt', 'hu', 'de'];
@@ -231,7 +305,7 @@
   }
 
   /* ---------- FFF.store ---------- */
-  var mem = {};
+  var mem = Object.create(null), frozen = false;   // fără prototip: chei ca __proto__/constructor/toString sunt chei obișnuite
   function lsOk() { return !!(LS && origGet); }
   var store = {
     get: function (k, d) {
@@ -241,12 +315,14 @@
       return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : d;
     },
     set: function (k, v) {
+      if (frozen) return false;
       if (lsOk()) {
         try { origSet.call(LS, PFX + k, JSON.stringify(v)); delete mem[k]; return true; } catch (e) { /* memorie */ }
       }
       mem[k] = v; return false;
     },
     remove: function (k) {
+      if (frozen) return;
       if (lsOk()) { try { origRem.call(LS, PFX + k); } catch (e) { /* ignorat */ } }
       delete mem[k];
     },
@@ -264,7 +340,7 @@
     /** Cheile (nume complete din localStorage) care aparțin aplicației: indexate + ale kitului (fff.<slug>.*). */
     indexKeys: function () {
       var out = new Set();
-      var present = {};
+      var present = Object.create(null);
       try { if (LS) for (var i = 0; i < LS.length; i++) present[LS.key(i)] = 1; } catch (e) { /* ignorat */ }
       loadIdx().forEach(function (k) { if (present[k]) out.add(k); });
       Object.keys(present).forEach(function (n) { if (n.indexOf(PFX) === 0 && n !== INDEX_KEY) out.add(n); });
@@ -273,11 +349,33 @@
     /** Citire/scriere brută pentru modulele kitului (ocolește observatorul). */
     raw: {
       get: function (k) { return lsOk() ? origGet.call(LS, k) : null; },
-      set: function (k, v) { if (!lsOk()) throw new Error('no-storage'); origSet.call(LS, k, v); },
-      remove: function (k) { if (lsOk()) origRem.call(LS, k); }
+      set: function (k, v) { if (frozen) return; if (!lsOk()) throw new Error('no-storage'); origSet.call(LS, k, v); },
+      remove: function (k) { if (!frozen && lsOk()) origRem.call(LS, k); }
     },
     prefix: PFX,
     indexKey: INDEX_KEY,
+    /** Blochează orice scriere în stocare până la reîncărcare (restaurare/ștergere): handlerele pagehide/beforeunload ale aplicației
+     *  nu mai pot suprascrie datele tocmai scrise. Înlocuiește Storage.prototype.setItem/removeItem/clear cu no-op, oprește put/add/delete/clear
+     *  din IndexedDB și blochează scrierile FFF.store. NU poate opri atribuirea directă localStorage.cheie = valoare. Ireversibil (până la reload). */
+    freeze: function () {
+      if (frozen) return;
+      frozen = true;
+      var noop = function () {};
+      if (P) ['setItem', 'removeItem', 'clear'].forEach(function (n) {
+        try { Object.defineProperty(P, n, {value: noop, writable: true, configurable: true}); } catch (e) { try { P[n] = noop; } catch (e2) { /* ignorat */ } }
+      });
+      try {
+        var OS = window.IDBObjectStore && window.IDBObjectStore.prototype;
+        if (OS) {
+          var fake = function () {
+            return {readyState: 'pending', result: undefined, error: null, onsuccess: null, onerror: null,
+              addEventListener: noop, removeEventListener: noop, dispatchEvent: function () { return false; }};
+          };
+          ['put', 'add', 'delete', 'clear'].forEach(function (n) { try { Object.defineProperty(OS, n, {value: fake, writable: true, configurable: true}); } catch (e) { /* ignorat */ } });
+        }
+      } catch (e3) { /* ignorat */ }
+    },
+    frozen: function () { return frozen; },
     forget: function (k) { if (observing) untrack(k); },
     remember: function (k) { if (observing) track(k); },
     available: function () { return lsOk(); },
@@ -392,6 +490,454 @@
     if (n < 1048576) return (n / 1024).toFixed(1) + ' KB';
     return (n / 1048576).toFixed(2) + ' MB';
   };
+})();
+/* ---- fff-kit/store ---- */
+/* fff-kit · store — stocare cu prefix de slug: <slug>.<cheie> (JSON sigur, cote/erori prinse, migrare idempotentă a cheilor vechi).
+   Extinde FFF.store din core: get/set/remove/keys lucrează acum pe `<slug>.`; datele kitului din `fff.<slug>.*` (srs, tts) rămân citibile (rezervă la citire). */
+(function () {
+  'use strict';
+  var F = window.FFF;
+  if (!F || !F.store || !F.core || F.store.migrate) return;
+  var S = F.store, SLUG = F.core.slug, PFX = SLUG + '.', LEG = S.prefix;   // LEG = 'fff.<slug>.' (spațiul kitului, din core)
+  var old = {get: S.get, set: S.set, remove: S.remove, keys: S.keys, indexKeys: S.indexKeys};
+  var mem = Object.create(null);
+
+  function lsOk() { return S.available(); }
+  function fail(op, key, e) {
+    var q = !!(e && (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || e.code === 22 || e.code === 1014));
+    S.lastError = {op: op, key: key, quota: q, message: String(e && e.message || e)};
+    try { F.bus.emit('store:error', S.lastError); } catch (x) { /* ignorat */ }
+    return S.lastError;
+  }
+  function okKey(k) { return k != null && String(k) !== ''; }
+  function parse(raw, d) {
+    if (raw == null) return d;
+    try { return JSON.parse(raw); } catch (e) { return raw; }   // valoare migrată fără JSON (ex. „dark”): se întoarce ca șir
+  }
+
+  S.appPrefix = PFX;
+  S.lastError = null;
+
+  /** get(cheie, implicit): citește `<slug>.<cheie>`, apoi (rezervă) `fff.<slug>.<cheie>`, apoi memoria (dacă stocarea a fost indisponibilă la scriere). */
+  S.get = function (k, d) {
+    if (!okKey(k)) return d;
+    k = String(k);
+    if (lsOk()) {
+      try {
+        var v = S.raw.get(PFX + k);
+        if (v == null) v = S.raw.get(LEG + k);
+        if (v != null) return parse(v, d);
+      } catch (e) { fail('get', k, e); }
+    }
+    return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : d;
+  };
+  /** set(cheie, valoare) → true dacă a ajuns în localStorage; false dacă e înghețat, JSON invalid (circular, BigInt…), cotă depășită sau stocare indisponibilă (valoarea rămâne în memorie). `undefined` = remove. */
+  S.set = function (k, v) {
+    if (!okKey(k)) return false;
+    k = String(k);
+    if (S.frozen()) return false;
+    if (v === undefined) { S.remove(k); return true; }
+    var str;
+    try { str = JSON.stringify(v); } catch (e) { fail('set', k, e); return false; }
+    if (str === undefined) { fail('set', k, new Error('valoare neserializabilă')); return false; }
+    if (lsOk()) {
+      try { S.raw.set(PFX + k, str); delete mem[k]; return true; } catch (e) { fail('set', k, e); }
+    }
+    mem[k] = v;
+    return false;
+  };
+  S.remove = function (k) {
+    if (!okKey(k) || S.frozen()) return;
+    k = String(k);
+    if (lsOk()) { try { S.raw.remove(PFX + k); S.raw.remove(LEG + k); } catch (e) { fail('remove', k, e); } }
+    delete mem[k];
+  };
+  S.has = function (k) {
+    if (!okKey(k)) return false;
+    try { if (lsOk() && (S.raw.get(PFX + k) != null || S.raw.get(LEG + k) != null)) return true; } catch (e) { /* ignorat */ }
+    return Object.prototype.hasOwnProperty.call(mem, String(k));
+  };
+  S.keys = function () {
+    var out = Object.create(null);
+    try {
+      var ls = window.localStorage;
+      for (var i = 0; i < ls.length; i++) {
+        var n = ls.key(i);
+        if (n && n.indexOf(PFX) === 0 && n !== S.indexKey) out[n.slice(PFX.length)] = 1;
+      }
+    } catch (e) { /* ignorat */ }
+    old.keys.call(S).forEach(function (k) { if (k !== '__keys') out[k] = 1; });
+    Object.keys(mem).forEach(function (k) { out[k] = 1; });
+    return Object.keys(out).sort();
+  };
+  /** Cheile cu nume complet ale aplicației: indexate, `<slug>.*` și `fff.<slug>.*`. */
+  S.indexKeys = function () {
+    var out = Object.create(null);
+    old.indexKeys.call(S).forEach(function (k) { out[k] = 1; });
+    try {
+      var ls = window.localStorage;
+      for (var i = 0; i < ls.length; i++) { var n = ls.key(i); if (n && n.indexOf(PFX) === 0) out[n] = 1; }
+    } catch (e) { /* ignorat */ }
+    return Object.keys(out).sort();
+  };
+  /** Este `nume` (complet, din localStorage) o cheie a spațiului aplicației? */
+  S.owns = function (name) { name = String(name); return name.indexOf(PFX) === 0 || name.indexOf(LEG) === 0; };
+
+  /**
+   * migrate({'cheieVeche': 'cheieNouă', 'prefix_*': 'nou.*'}, {wrap, dryRun, dropOld}) → {moved, same, conflicts, missing, errors, frozen}.
+   *  - cheia veche = numele brut din localStorage; cheia nouă = relativă la prefix (FFF.store.get('cheieNouă')); dacă începe deja cu `<slug>.` e luată ca atare.
+   *  - copiază valoarea EXACTĂ (șirul brut), verifică citirea înapoi, abia apoi șterge cheia veche. Nu suprascrie niciodată o valoare nouă existentă:
+   *    dacă ambele există și sunt identice → doar șterge cheia veche; dacă diferă → conflict (rămân ambele; `dropOld:true` șterge totuși cheia veche).
+   *  - idempotentă: a doua rulare nu mai găsește nimic de mutat. Un șablon cu `*` (la sfârșit, în ambele chei) mută toate cheile cu acel prefix.
+   *  - wrap: 'keep' (implicit; valoarea brută e copiată, iar get() întoarce JSON-ul parsat sau șirul brut) | 'string' (valoarea veche este împachetată ca șir JSON: get() întoarce exact șirul vechi).
+   *  - nu face nimic cât timp stocarea e înghețată (restaurare în curs). Emite `store:migrated` pe FFF.bus dacă a mutat ceva. */
+  S.migrate = function (map, opt) {
+    opt = opt || {};
+    var rep = {moved: [], same: [], conflicts: [], missing: [], errors: [], frozen: false};
+    if (S.frozen()) { rep.frozen = true; return rep; }
+    if (!lsOk() || !map || typeof map !== 'object') { if (map && typeof map === 'object') rep.errors.push({key: '*', message: 'stocare indisponibilă'}); return rep; }
+    var ls = window.localStorage, names = [];
+    try { for (var i = 0; i < ls.length; i++) names.push(ls.key(i)); } catch (e) { /* ignorat */ }
+    var pairs = [];
+    Object.keys(map).forEach(function (from) {
+      var to = String(map[from]);
+      if (from.charAt(from.length - 1) === '*') {
+        var fp = from.slice(0, -1), tp = to.charAt(to.length - 1) === '*' ? to.slice(0, -1) : to;
+        names.forEach(function (n) { if (n.indexOf(fp) === 0 && n.indexOf('fff.') !== 0) pairs.push([n, tp + n.slice(fp.length)]); });
+      } else pairs.push([from, to]);
+    });
+    pairs.forEach(function (p) {
+      var from = p[0], full = p[1].indexOf(PFX) === 0 ? p[1] : PFX + p[1];
+      if (!from || from === full || from.indexOf('fff.') === 0 || full === PFX) return;
+      try {
+        var oldV = S.raw.get(from);
+        if (oldV == null) { rep.missing.push(from); return; }
+        var cur = S.raw.get(full), val = opt.wrap === 'string' ? JSON.stringify(oldV) : oldV;
+        if (cur != null) {
+          if (cur === val || cur === oldV) { if (!opt.dryRun) { S.raw.remove(from); S.forget(from); } rep.same.push(from); }
+          else if (opt.dropOld) { if (!opt.dryRun) { S.raw.remove(from); S.forget(from); } rep.conflicts.push({key: from, to: full, dropped: true}); }
+          else rep.conflicts.push({key: from, to: full});
+          return;
+        }
+        if (opt.dryRun) { rep.moved.push(from); return; }
+        S.raw.set(full, val);
+        if (S.raw.get(full) !== val) throw new Error('verificarea citirii înapoi a eșuat');
+        S.raw.remove(from); S.forget(from);
+        rep.moved.push(from);
+      } catch (e) { rep.errors.push({key: from, message: fail('migrate', from, e).message, quota: S.lastError.quota}); }
+    });
+    if (rep.moved.length && !opt.dryRun) { try { F.bus.emit('store:migrated', rep); } catch (e) { /* ignorat */ } }
+    return rep;
+  };
+})();
+/* ---- fff-kit/dialog ---- */
+/* fff-kit · dialog — un singur sistem de dialoguri: confirm/alert/prompt (promisiuni), toast/notify (aria-live), <dialog> modal accesibil. */
+(function () {
+  'use strict';
+  var F = window.FFF;
+  if (!F || F.dialog) return;
+  var doc = document;
+  function T(k, v) { return F.t('dialog', k, v); }
+
+  var uid = 0;
+  var stack = [];   // dialogurile deschise (ultimul = cel de sus)
+
+  /* ---------- DOM mic ---------- */
+  function el(tag, cls, text) {
+    var e = doc.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function btn(label, cls) {
+    var b = el('button', 'fff-btn' + (cls ? ' ' + cls : ''), label);
+    b.type = 'button';
+    return b;
+  }
+
+  /* ---------- tema gazdei (la fel ca în label) ---------- */
+  function hostDark() {
+    function rgba(e) {
+      var m = /rgba?\(([^)]+)\)/.exec(getComputedStyle(e).backgroundColor || '');
+      if (!m) return null;
+      var p = m[1].split(/[ ,\/]+/).map(parseFloat);
+      if (p.length > 3 && p[3] === 0) return null;
+      return p;
+    }
+    var p = (doc.body && rgba(doc.body)) || rgba(doc.documentElement);
+    if (!p) return null;
+    function lin(v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+    return (0.2126 * lin(p[0]) + 0.7152 * lin(p[1]) + 0.0722 * lin(p[2])) < 0.18;
+  }
+
+  /* ---------- focus ---------- */
+  var FOCUSABLE = 'button:not([disabled]),input:not([disabled]):not([type=hidden]),textarea:not([disabled]),select:not([disabled]),a[href],summary,[tabindex]:not([tabindex="-1"])';
+  function focusables(root) {
+    return Array.prototype.filter.call(root.querySelectorAll(FOCUSABLE), function (n) {
+      return !n.hidden && !n.closest('[hidden]') && (n.offsetWidth || n.offsetHeight || n.getClientRects().length);
+    });
+  }
+
+  /**
+   * Nucleul: construiește și afișează un dialog.
+   * spec: {kind, title (șir|false), message, body(ctx) → {nodes, focus, value, validate}, buttons: [{label, value|fn, primary, danger}], cancel (valoarea la Esc/închidere),
+   *        focus: indexul butonului focalizat implicit (dacă body nu dă un câmp), small}
+   */
+  function open(spec) {
+    return new Promise(function (resolve) {
+      var id = ++uid, prev = doc.activeElement, settled = false;
+      var d = el('dialog', 'fff-dlg fff-dialog' + (spec.wide ? '' : ' fff-dlg-sm'));
+      d.setAttribute('role', 'dialog');
+      d.setAttribute('aria-modal', 'true');
+      d.setAttribute('data-fff-dialog', spec.kind || 'custom');
+      var inner = el('div', 'fff-in');
+      var titleId = 'fff-dt-' + id, msgId = 'fff-dm-' + id;
+      var hasTitle = spec.title !== false && spec.title !== '' && spec.title != null;
+      if (hasTitle) { var h = el('h2', 'fff-dt', String(spec.title)); h.id = titleId; inner.appendChild(h); }
+      var msg = null;
+      if (spec.message != null && spec.message !== '') {
+        msg = el('p', 'fff-msg', String(spec.message)); msg.id = msgId; inner.appendChild(msg);
+      }
+      if (hasTitle) {
+        d.setAttribute('aria-labelledby', titleId);
+        if (msg) d.setAttribute('aria-describedby', msgId);
+      } else if (msg) d.setAttribute('aria-labelledby', msgId);
+      else d.setAttribute('aria-label', T('title_alert'));
+      var ctx = {id: id, msgId: msg ? msgId : titleId, finish: null};
+      var body = spec.body ? spec.body(ctx) : null;
+      if (body && body.nodes) body.nodes.forEach(function (n) { inner.appendChild(n); });
+      var row = el('div', 'fff-row fff-end');
+      var btns = [];
+      function finish(v) {
+        if (settled) return;
+        settled = true;
+        stack = stack.filter(function (x) { return x !== d; });
+        try { if (d.open) d.close(); } catch (e) { /* ignorat */ }
+        d.remove();
+        try { doc.removeEventListener('focusin', trap, true); } catch (e) { /* ignorat */ }
+        if (prev && prev !== doc.body && prev.focus && doc.contains(prev)) { try { prev.focus(); } catch (e) { /* ignorat */ } }
+        resolve(v);
+      }
+      ctx.finish = finish;
+      (spec.buttons || []).forEach(function (b) {
+        var e = btn(b.label, (b.primary ? 'fff-primary' : '') + (b.danger ? ' fff-danger' : ''));
+        e.addEventListener('click', function () {
+          if (b.check) { var r = b.check(); if (r === false) return; }
+          finish(typeof b.value === 'function' ? b.value() : b.value);
+        });
+        row.appendChild(e); btns.push(e);
+      });
+      inner.appendChild(row);
+      d.appendChild(inner);
+      ctx.buttons = btns;
+      /* Esc (nativ: evenimentul cancel; rezervă fără showModal: keydown) + capcana de focus (Tab/Shift+Tab ciclează în dialog) */
+      d.addEventListener('cancel', function (e) { e.preventDefault(); finish(spec.cancel); });
+      d.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); finish(spec.cancel); return; }
+        if (e.key !== 'Tab') return;
+        var f = focusables(d);
+        if (!f.length) { e.preventDefault(); d.focus(); return; }
+        var first = f[0], last = f[f.length - 1], a = doc.activeElement;
+        if (e.shiftKey && (a === first || !d.contains(a))) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && (a === last || !d.contains(a))) { e.preventDefault(); first.focus(); }
+      });
+      function trap(e) {
+        if (stack[stack.length - 1] !== d || d.contains(e.target)) return;
+        var f = focusables(d); if (f.length) f[0].focus();
+      }
+      d.setAttribute('tabindex', '-1');
+      var dark = hostDark();
+      if (dark === true) d.classList.add('fff-dark'); else if (dark === false) d.classList.add('fff-light');
+      (doc.body || doc.documentElement).appendChild(d);
+      stack.push(d);
+      if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+      doc.addEventListener('focusin', trap, true);
+      raiseToasts();
+      var target = (body && body.focus) || (btns[spec.focus == null ? btns.length - 1 : spec.focus]) || d;
+      try { target.focus(); if (body && body.select && target.select) target.select(); } catch (e) { /* ignorat */ }
+      d._fffClose = function () { finish(spec.cancel); };
+    });
+  }
+
+  function opts(o) { return o && typeof o === 'object' ? o : {}; }
+  function title(o, key) { return o.title === false ? false : (o.title != null ? o.title : T(key)); }
+
+  /* ---------- confirm / alert / prompt / show / choice ---------- */
+  /** confirm(mesaj, {title, yes, no, danger, focus:'yes'|'no'}) → Promise<boolean>. Esc / Anulează → false. Focusul implicit: „Anulează” (acțiunea sigură). */
+  function confirm(message, o) {
+    o = opts(o);
+    return open({
+      kind: 'confirm', title: title(o, 'title_confirm'), message: message, cancel: false,
+      buttons: [{label: o.no || T('cancel'), value: false}, {label: o.yes || T('yes'), value: true, primary: true, danger: !!o.danger}],
+      focus: o.focus === 'yes' ? 1 : 0
+    });
+  }
+  /** alert(mesaj, {title, ok}) → Promise<void>. */
+  function alertDlg(message, o) {
+    o = opts(o);
+    return open({kind: 'alert', title: title(o, 'title_alert'), message: message, cancel: undefined, buttons: [{label: o.ok || T('ok'), value: undefined, primary: true}], focus: 0});
+  }
+  /** prompt(mesaj, valoareImplicită, {title, yes, no, type, multiline, placeholder, maxlength, inputmode, autocomplete, required, validate(v) → șir de eroare|falsy}) → Promise<string|null>. */
+  function prompt(message, def, o) {
+    if (def && typeof def === 'object') { o = def; def = o.value; }
+    o = opts(o);
+    var input, err, ok;
+    return open({
+      kind: 'prompt', title: title(o, 'title_prompt'), message: message, cancel: null,
+      body: function (ctx) {
+        input = o.multiline ? el('textarea', 'fff-input') : el('input', 'fff-input');
+        if (!o.multiline) input.type = o.type || 'text'; else input.rows = o.rows || 4;
+        input.value = def == null ? '' : String(def);
+        input.setAttribute('aria-labelledby', ctx.msgId);
+        if (o.placeholder) input.placeholder = o.placeholder;
+        if (o.maxlength) input.maxLength = o.maxlength;
+        if (o.inputmode) input.setAttribute('inputmode', o.inputmode);
+        input.autocomplete = o.autocomplete || 'off';
+        if (o.required) input.required = true;
+        err = el('p', 'fff-res fff-sm fff-bad');
+        err.id = 'fff-de-' + ctx.id; err.setAttribute('role', 'alert');
+        input.setAttribute('aria-describedby', err.id);
+        input.addEventListener('input', function () { err.textContent = ''; input.removeAttribute('aria-invalid'); });
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' && !e.shiftKey && !o.multiline) { e.preventDefault(); if (ok.check() !== false) ctx.finish(input.value); }
+          else if (e.key === 'Enter' && o.multiline && (e.ctrlKey || e.metaKey)) { e.preventDefault(); if (ok.check() !== false) ctx.finish(input.value); }
+        });
+        var wrap = el('div', 'fff-field'); wrap.appendChild(input); wrap.appendChild(err);
+        return {nodes: [wrap], focus: input, select: true};
+      },
+      buttons: [{label: o.no || T('cancel'), value: null}, ok = {
+        label: o.yes || T('ok'), primary: true, value: function () { return input.value; },
+        check: function () {
+          var bad = null;
+          if (o.required && !String(input.value).trim()) bad = T('err_required');
+          else if (typeof o.validate === 'function') { try { bad = o.validate(input.value) || null; } catch (e) { bad = String(e && e.message || e); } }
+          if (bad) { err.textContent = String(bad); input.setAttribute('aria-invalid', 'true'); input.focus(); return false; }
+          return true;
+        }
+      }]
+    });
+  }
+  /** show(mesaj, text, {title, ok}) → Promise<void>: text în citire, selectat (pentru copiere). */
+  function showText(message, text, o) {
+    o = opts(o);
+    return open({
+      kind: 'show', title: title(o, 'title_show'), message: message, cancel: undefined,
+      body: function (ctx) {
+        var ta = el('textarea', 'fff-input fff-ta');
+        ta.readOnly = true; ta.rows = o.rows || 3; ta.value = String(text == null ? '' : text);
+        ta.setAttribute('aria-labelledby', ctx.msgId);
+        return {nodes: [ta], focus: ta, select: true};
+      },
+      buttons: [{label: o.ok || T('ok'), value: undefined, primary: true}]
+    });
+  }
+  /** choice(mesaj, [{label, value, primary, danger}], {title}) → Promise<valoare|null>. Primul buton primește focusul. */
+  function choice(message, buttons, o) {
+    o = opts(o);
+    return open({
+      kind: 'choice', title: title(o, 'title_confirm'), message: message, cancel: null,
+      buttons: (buttons || []).map(function (b) { return {label: b.label, value: b.value, primary: !!b.primary, danger: !!b.danger}; }), focus: 0
+    });
+  }
+
+  /* ---------- toast / notify (regiuni aria-live) ---------- */
+  var regions = null, regTimer = 0, toasts = [], pend = [];
+  function ensureRegions(cb) {
+    if (regions) return cb();
+    F.ready(function () {
+      if (regions) return cb();
+      var wrap = el('div', 'fff-toasts');
+      wrap.setAttribute('data-fff-toasts', '');
+      var pol = el('div', 'fff-toast-reg'); pol.setAttribute('role', 'status'); pol.setAttribute('aria-live', 'polite'); pol.setAttribute('aria-relevant', 'additions');
+      var ass = el('div', 'fff-toast-reg'); ass.setAttribute('role', 'alert'); ass.setAttribute('aria-live', 'assertive'); ass.setAttribute('aria-relevant', 'additions');
+      wrap.appendChild(pol); wrap.appendChild(ass);
+      if (typeof wrap.showPopover === 'function') wrap.setAttribute('popover', 'manual');   // strat superior: vizibil și deasupra unui <dialog> modal
+      (doc.body || doc.documentElement).appendChild(wrap);
+      if (typeof wrap.showPopover === 'function') { try { wrap.showPopover(); } catch (e) { /* ignorat */ } }
+      regions = {wrap: wrap, polite: pol, assertive: ass};
+      setTimeout(cb, 80);   // regiunea trebuie să existe în arborele de accesibilitate înainte de a primi text
+    });
+  }
+  function raiseToasts() {
+    if (!regions || !toasts.length || typeof regions.wrap.showPopover !== 'function') return;
+    try { regions.wrap.hidePopover(); regions.wrap.showPopover(); } catch (e) { /* ignorat */ }
+  }
+  function dropRegionsLater() {
+    clearTimeout(regTimer);
+    regTimer = setTimeout(function () {
+      if (toasts.length || !regions) return;
+      regions.wrap.remove(); regions = null;   // nu rămâne în outerHTML-ul aplicațiilor care își serializează pagina
+    }, 1500);
+  }
+  var TYPES = {info: 1, success: 1, warning: 1, error: 1};
+  /**
+   * toast(mesaj, {type:'info'|'success'|'warning'|'error', timeout (ms; 0 = rămâne până îl închizi), action:{label, onClick}}) → {close(), el}.
+   * error/warning: regiune assertive (role=alert); restul: polite (role=status). Timpul se oprește la hover/focus.
+   */
+  function toast(message, o) {
+    o = opts(o);
+    var type = TYPES[o.type] ? o.type : 'info';
+    var timeout = o.timeout != null ? o.timeout : (type === 'error' ? 8000 : 4500);
+    var handle = {el: null, close: function () { handle._closed = true; if (handle._close) handle._close(); }};
+    pend.push(handle);
+    ensureRegions(function () {
+      pend = pend.filter(function (x) { return x !== handle; });
+      if (handle._closed) { dropRegionsLater(); return; }
+      var t = el('div', 'fff-toast fff-toast-' + type);
+      t.setAttribute('data-type', type);
+      var sr = el('span', 'fff-sr', T('sr_' + type) + ': ');
+      var tx = el('span', 'fff-toast-msg', String(message));
+      t.appendChild(sr); t.appendChild(tx);
+      if (o.action && o.action.label) {
+        var ab = btn(String(o.action.label), 'fff-toast-act');
+        ab.addEventListener('click', function () { try { if (o.action.onClick) o.action.onClick(); } finally { close(); } });
+        t.appendChild(ab);
+      }
+      var xb = btn('×', 'fff-toast-x');
+      xb.setAttribute('aria-label', T('dismiss'));
+      xb.addEventListener('click', function () { close(); });
+      t.appendChild(xb);
+      var reg = (type === 'error' || type === 'warning') ? regions.assertive : regions.polite;
+      while (toasts.length >= 4) toasts[0].close();
+      reg.appendChild(t);
+      var rec = {close: close}, timer = 0, paused = false, left = timeout;
+      toasts.push(rec); handle.el = t;
+      function arm() { clearTimeout(timer); if (timeout > 0 && !paused) { var s = Date.now(); timer = setTimeout(close, left); rec._s = s; } }
+      function pause() { if (paused) return; paused = true; clearTimeout(timer); if (rec._s) left = Math.max(1000, left - (Date.now() - rec._s)); }
+      function resume() { paused = false; arm(); }
+      t.addEventListener('mouseenter', pause); t.addEventListener('mouseleave', resume);
+      t.addEventListener('focusin', pause); t.addEventListener('focusout', resume);
+      function close() {
+        clearTimeout(timer);
+        if (!t.parentNode) return;
+        t.remove();
+        toasts = toasts.filter(function (x) { return x !== rec; });
+        if (!toasts.length) dropRegionsLater();
+      }
+      handle._close = close;
+      arm();
+      raiseToasts();
+    });
+    return handle;
+  }
+  function closeAll() {
+    stack.slice().forEach(function (d) { if (d._fffClose) d._fffClose(); });
+    toasts.slice().forEach(function (t) { t.close(); });
+    pend.slice().forEach(function (h) { h.close(); });
+  }
+
+  F.dialog = {
+    confirm: confirm, alert: alertDlg, prompt: prompt, show: showText, choice: choice,
+    toast: toast, notify: toast, closeAll: closeAll,
+    isOpen: function () { return stack.length > 0; },
+    open: open
+  };
+
+  /* ---------- alias-uri (compatibilitate cu implementările proprii din aplicații: ffAsk/ffShow/ffPrompt) ---------- */
+  function noTitle(o) { o = opts(o); return Object.assign({title: false}, o); }
+  if (!window.ffAsk) window.ffAsk = function (msg, o) { return confirm(String(msg), noTitle(o)); };
+  if (!window.ffShow) window.ffShow = function (msg, text, o) { return showText(String(msg), text, noTitle(o)); };
+  if (!window.ffPrompt) window.ffPrompt = function (msg, def, o) { return prompt(String(msg), def, noTitle(o)); };
 })();
 /* ---- fff-kit/label ---- */
 /* fff-kit · label — dialogul „Transparență”: rețea, stocare, permisiuni, fișier + hash, copie de siguranță. */
@@ -618,23 +1164,32 @@
     return d;
   }
 
+  /** Număr cu separator de mii după limbă (aceeași formă ca în textele traduse). */
+  function fmtNum(n) {
+    var sep = {en: ',', it: '.', de: '.'}[F.lang()] || ' ';
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+  }
+
   function backup() {
     var bk = section('bk', T('bk_h'));
     var status = h('p', {role: 'status', class: 'fff-res'});
     function say(msg, kind) { status.className = 'fff-res' + (kind ? ' fff-' + kind : ''); status.textContent = msg; }
     function fail(e) { say((e && e.message) || String(e), 'bad'); }
-    bk.appendChild(h('p', {class: 'fff-mut fff-sm', text: T('bk_hint')}));
+    bk.appendChild(h('p', {class: 'fff-mut fff-sm', text: T('bk_hint', {iter: fmtNum(F.bundle.iterations)})}));
 
     /* export criptat */
     var encRow = h('div', {class: 'fff-box', hidden: ''});
-    var pw1 = field(T('bk_pw'), 'password', 'new-password'), pw2 = field(T('bk_pw2'), 'password', 'new-password');
+    var pw1 = field(T('bk_pw', {n: F.bundle.minPassword}), 'password', 'new-password'), pw2 = field(T('bk_pw2'), 'password', 'new-password');
     var goEnc = btn(T('bk_go'), 'fff-primary', function () {
       if (pw1.input.value !== pw2.input.value) return say(T('pw_mismatch'), 'bad');
       F.bundle.export({encrypt: true, password: pw1.input.value}).then(function (r) {
+        pwStrength.textContent = '';
         say(T('ok_export_enc', {file: r.filename, n: r.keys}), 'ok'); pw1.input.value = pw2.input.value = ''; encRow.hidden = true; encBtn.setAttribute('aria-expanded', 'false');
       }).catch(fail);
     });
-    encRow.appendChild(pw1.wrap); encRow.appendChild(pw2.wrap); encRow.appendChild(h('div', {class: 'fff-row'}, goEnc));
+    var pwStrength = h('p', {role: 'status', class: 'fff-mut fff-sm fff-res'});
+    pw1.input.addEventListener('input', function () { pwStrength.textContent = pw1.input.value ? F.t('bundle', ['pw_weak', 'pw_fair', 'pw_strong'][F.bundle.passwordStrength(pw1.input.value)]) : ''; });
+    encRow.appendChild(pw1.wrap); encRow.appendChild(pwStrength); encRow.appendChild(pw2.wrap); encRow.appendChild(h('div', {class: 'fff-row'}, goEnc));
 
     /* import */
     var impRow = h('div', {class: 'fff-box', hidden: ''});
@@ -654,7 +1209,7 @@
     }
 
     var expB = btn(T('bk_export'), '', function () {
-      F.bundle.export().then(function (r) { say(T('ok_export', {file: r.filename, n: r.keys}), 'ok'); }).catch(fail);
+      F.bundle.export().then(function (r) { if (r.cancelled) return say(T('cancelled')); say(T('ok_export', {file: r.filename, n: r.keys}), 'ok'); }).catch(fail);
     });
     var encBtn = btn(T('bk_export_enc'), '', function () {
       var open = encRow.hidden;
@@ -755,17 +1310,36 @@
     for (var i = 0; i < fs.length; i++) if (fs[i].getClientRects().length && getComputedStyle(fs[i]).visibility !== 'hidden') return fs[i];
     return null;
   }
+  /* Dimensiuni minime (WCAG 2.2 · 2.5.8 țintă ≥ 24 px; text ≥ 12 px) fără a atinge layoutul aplicației:
+     inline → inline-flex doar dacă elementul e într-adevăr inline; fontul se ridică la 12 px doar acolo unde e mai mic. */
+  function fit(el) {
+    try {
+      var all = [el].concat([].slice.call(el.querySelectorAll('*'))), i, n;
+      for (i = 0; i < all.length; i++) { all[i].removeAttribute('data-fff-fs'); }
+      el.removeAttribute('data-fff-inl');
+      if (getComputedStyle(el).display === 'inline') el.setAttribute('data-fff-inl', '1');
+      for (i = 0; i < all.length; i++) {
+        n = all[i];
+        var has = false, c;
+        for (c = n.firstChild; c; c = c.nextSibling) if (c.nodeType === 3 && c.nodeValue.trim()) { has = true; break; }
+        if (has && parseFloat(getComputedStyle(n).fontSize) < 12) n.setAttribute('data-fff-fs', '1');
+      }
+    } catch (e) {}
+  }
+  var fitT = 0, fitEl = null;
+  function fitSoon() { if (fitT) return; fitT = setTimeout(function () { fitT = 0; var e = doc.querySelector('#app-version[data-fff-label]'); if (e) fit(e); }, 150); }
   function decorate() {
     var el = doc.getElementById('app-version');
     if (el) {
       if (fallback) { fallback.remove(); fallback = null; }
-      if (el.getAttribute('data-fff-label')) { api.state = 'button'; return; }
+      if (el.getAttribute('data-fff-label')) { if (fitEl !== el) { fitEl = el; fit(el); } api.state = 'button'; return; }
       if (el.closest('a,button,[role="button"],[role="link"],summary,label,input,select,textarea')) { api.state = 'nested'; return; }
       el.setAttribute('data-fff-label', '1');
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.setAttribute('aria-haspopup', 'dialog');
       el.setAttribute('title', T('open_hint'));
+      fitEl = el; fit(el);
       api.state = 'button';
       return;
     }
@@ -804,7 +1378,8 @@
         setTimeout(function () { pend = false; decorate(); }, 200);
       }).observe(doc.body || doc.documentElement, {childList: true, subtree: true});
     }
-    window.addEventListener('load', function () { setTimeout(decorate, 800); });
+    window.addEventListener('load', function () { setTimeout(decorate, 800); setTimeout(fitSoon, 900); });
+    window.addEventListener('resize', fitSoon);
     F.onLang(function () {
       var el = doc.querySelector('#app-version[data-fff-label]');
       if (el) el.setAttribute('title', T('open_hint'));
@@ -820,7 +1395,8 @@
   var F = window.FFF;
   if (!F || F.bundle) return;
   var doc = document;
-  var SCHEMA = 1, ITER = 310000, MAX_BYTES = 64 * 1048576, MAX_KEYS = 20000;
+  var SCHEMA = 1, ITER = 600000, ITER_MIN = 100000, ITER_MAX = 5000000, PW_MIN = 12, MAX_BYTES = 64 * 1048576, MAX_KEYS = 20000;
+  var SENSITIVE_RE = /api[-_]?key|token|secret|password|passwd|totp/i;
   function T(k, v) { return F.t('bundle', k, v); }
 
   function BErr(code, vars) {
@@ -859,6 +1435,8 @@
   /* ---------- confirmare (dialog propriu, nu window.confirm) ---------- */
   function confirmDlg(message, opt) {
     opt = opt || {};
+    /* kit ≥ 1.2.0: dacă modulul „dialog” e prezent, confirmarea trece prin FFF.dialog (un singur sistem de dialoguri) */
+    if (F.dialog && F.dialog.confirm) return F.dialog.confirm(message, {title: false, yes: opt.yes, no: opt.no, danger: !!opt.danger});
     return new Promise(function (res) {
       var d = doc.createElement('dialog');
       d.className = 'fff-dlg fff-dlg-sm';
@@ -880,6 +1458,79 @@
       no.focus();
     });
   }
+  /** Dialog cu mai multe butoane: [{label, value, primary, danger}] → valoarea aleasă sau null (anulare). Ultimul buton = implicit evidențiat. */
+  function choiceDlg(message, buttons) {
+    if (F.dialog && F.dialog.choice) return F.dialog.choice(message, buttons, {title: false});
+    return new Promise(function (res) {
+      var d = doc.createElement('dialog');
+      d.className = 'fff-dlg fff-dlg-sm';
+      d.setAttribute('aria-labelledby', 'fff-cf-msg');
+      var inner = doc.createElement('div'); inner.className = 'fff-in';
+      var p = doc.createElement('p'); p.id = 'fff-cf-msg'; p.className = 'fff-msg'; p.textContent = message;
+      var row = doc.createElement('div'); row.className = 'fff-row fff-end';
+      var val = null, first = null;
+      function fin() { try { d.close(); } catch (e) { /* ignorat */ } }
+      buttons.forEach(function (b) {
+        var el = doc.createElement('button'); el.type = 'button'; el.className = 'fff-btn' + (b.primary ? ' fff-primary' : ''); el.textContent = b.label;
+        el.addEventListener('click', function () { val = b.value; fin(); });
+        row.appendChild(el); if (!first) first = el;
+      });
+      inner.appendChild(p); inner.appendChild(row); d.appendChild(inner);
+      d.addEventListener('cancel', function () { val = null; });
+      d.addEventListener('close', function () { d.remove(); res(val); });
+      (doc.body || doc.documentElement).appendChild(d);
+      if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+      if (first) first.focus();
+    });
+  }
+  /** 0 = slabă (< PW_MIN caractere sau foarte puține caractere distincte), 1 = acceptabilă, 2 = bună. */
+  function strength(pw) {
+    pw = String(pw == null ? '' : pw);
+    if (pw.length < PW_MIN) return 0;
+    var uniq = {}, u = 0, i;
+    for (i = 0; i < pw.length; i++) if (!uniq[pw.charAt(i)]) { uniq[pw.charAt(i)] = 1; u++; }
+    if (u < 5) return 0;
+    var cls = (/[a-z]/.test(pw) ? 1 : 0) + (/[A-Z]/.test(pw) ? 1 : 0) + (/[0-9]/.test(pw) ? 1 : 0) + (/[^A-Za-z0-9]/.test(pw) ? 1 : 0);
+    return (pw.length >= 16 || (cls >= 3 && pw.length >= 14)) ? 2 : 1;
+  }
+  function strengthLabel(pw) { return T(['pw_weak', 'pw_fair', 'pw_strong'][strength(pw)]); }
+  /** Cere o parolă nouă (2 câmpuri, min. PW_MIN caractere, indicator de tărie). Rezolvă cu parola sau null. */
+  function passwordDlg() {
+    return new Promise(function (res) {
+      var d = doc.createElement('dialog');
+      d.className = 'fff-dlg fff-dlg-sm';
+      d.setAttribute('aria-labelledby', 'fff-pw-h');
+      var inner = doc.createElement('div'); inner.className = 'fff-in';
+      var hd = doc.createElement('p'); hd.id = 'fff-pw-h'; hd.className = 'fff-msg'; hd.textContent = T('pw_prompt', {n: PW_MIN});
+      function fld(id, label) {
+        var w = doc.createElement('div'); w.className = 'fff-field';
+        var l = doc.createElement('label'); l.setAttribute('for', id); l.textContent = label;
+        var i = doc.createElement('input'); i.id = id; i.type = 'password'; i.className = 'fff-input'; i.autocomplete = 'new-password';
+        w.appendChild(l); w.appendChild(i); return {w: w, i: i};
+      }
+      var a = fld('fff-pw-1', T('pw_label', {n: PW_MIN})), b = fld('fff-pw-2', T('pw_label2'));
+      var st = doc.createElement('p'); st.setAttribute('role', 'status'); st.className = 'fff-res fff-sm';
+      var row = doc.createElement('div'); row.className = 'fff-row fff-end';
+      var no = doc.createElement('button'); no.type = 'button'; no.className = 'fff-btn'; no.textContent = T('no');
+      var go = doc.createElement('button'); go.type = 'button'; go.className = 'fff-btn fff-primary'; go.textContent = T('pw_go');
+      row.appendChild(no); row.appendChild(go);
+      inner.appendChild(hd); inner.appendChild(a.w); inner.appendChild(b.w); inner.appendChild(st); inner.appendChild(row); d.appendChild(inner);
+      var val = null;
+      function fin() { try { d.close(); } catch (e) { /* ignorat */ } }
+      a.i.addEventListener('input', function () { st.className = 'fff-res fff-sm'; st.textContent = a.i.value ? strengthLabel(a.i.value) : ''; });
+      go.addEventListener('click', function () {
+        if (a.i.value.length < PW_MIN) { st.className = 'fff-res fff-sm fff-bad'; st.textContent = T('err_pw_short', {n: PW_MIN}); return; }
+        if (a.i.value !== b.i.value) { st.className = 'fff-res fff-sm fff-bad'; st.textContent = T('pw_mismatch'); return; }
+        val = a.i.value; fin();
+      });
+      no.addEventListener('click', fin);
+      d.addEventListener('cancel', function () { val = null; });
+      d.addEventListener('close', function () { d.remove(); res(val); });
+      (doc.body || doc.documentElement).appendChild(d);
+      if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+      a.i.focus();
+    });
+  }
   function ask(msg, c, o) {
     if (c === false) return Promise.resolve(true);
     if (typeof c === 'function') return Promise.resolve(c(msg));
@@ -889,7 +1540,7 @@
   /* ---------- construire ---------- */
   var redactors = [];
   function plain(redact) {
-    var keys = F.store.indexKeys(), data = {};
+    var keys = F.store.indexKeys(), data = Object.create(null);   // fără prototip: chei ca __proto__/constructor/toString sunt chei obișnuite
     keys.forEach(function (k) {
       if (k === F.store.indexKey) return;
       var v = F.store.raw.get(k);
@@ -914,7 +1565,8 @@
   function decrypt(env, password) {
     var s = subtle();
     var iter = env.iter;
-    if (typeof iter !== 'number' || iter < 100000 || iter > 5000000) throw BErr('format');
+    if (typeof iter !== 'number' || !isFinite(iter) || Math.floor(iter) !== iter) throw BErr('iter', {min: ITER_MIN, max: ITER_MAX});
+    if (iter < ITER_MIN || iter > ITER_MAX) throw BErr('iter', {min: ITER_MIN, max: ITER_MAX});
     var salt, iv, ct;
     try { salt = unb64(env.salt); iv = unb64(env.iv); ct = unb64(env.ct); } catch (e) { throw BErr('format'); }
     if (iv.length !== 12 || salt.length < 8) throw BErr('format');
@@ -955,27 +1607,94 @@
     return keys;
   }
 
+  /* ---------- chei permise la import ---------- */
+  var allowed = [];
+  function declaredKeys() {
+    var out = allowed.slice();
+    try {
+      var el = doc.getElementById('fff-info');
+      if (el) {
+        var j = JSON.parse(el.textContent || '{}');
+        [j.storageKeys, j.bundleKeys].forEach(function (a) { if (Array.isArray(a)) a.forEach(function (x) { if (typeof x === 'string' && x) out.push(x); }); });
+      }
+    } catch (e) { /* fff-info absent sau invalid */ }
+    return out;
+  }
+  /** Chei cunoscute: fff.<slug>.*, cheile deja indexate în acest browser, cele declarate (fff-info storageKeys/bundleKeys, bundle.allow);
+   *  o declarație care se termină în „*”, „_”, „.”, „:” sau „-” e prefix. Restul sunt „necunoscute” (avertisment la import, nu refuz). */
+  function unknownKeys(keys) {
+    var decl = declaredKeys(), idx = Object.create(null);
+    F.store.indexKeys().forEach(function (k) { idx[k] = 1; });
+    var pfx = F.store.prefix;
+    return keys.filter(function (k) {
+      if (k.indexOf(pfx) === 0 || idx[k] === 1) return false;
+      if (F.store.appPrefix && k.indexOf(F.store.appPrefix) === 0) return false;   // modulul „store”: <slug>.*
+      return !decl.some(function (d) {
+        if (d.charAt(d.length - 1) === '*') return k.indexOf(d.slice(0, -1)) === 0;
+        if (/[_.:-]$/.test(d)) return k.indexOf(d) === 0;
+        return d === k;
+      });
+    });
+  }
+  function keyList(keys, max) {
+    max = max || 8;
+    var shown = keys.slice(0, max).map(function (k) { return k.length > 60 ? k.slice(0, 57) + '…' : k; }).join(', ');
+    return shown + (keys.length > max ? ' … (+' + (keys.length - max) + ')' : '');
+  }
+  function sensitiveKeys(obj) {
+    var full = plain(false).data;
+    return Object.keys(obj.data).filter(function (k) { return SENSITIVE_RE.test(k) && obj.data[k] !== '' && obj.data[k] === full[k]; });
+  }
+
   /* ---------- API ---------- */
   var bundle = F.bundle = {
     schema: SCHEMA,
     iterations: ITER,
+    minPassword: PW_MIN,
+    passwordStrength: strength,
+    sensitivePattern: SENSITIVE_RE,
+    /** Declară chei (sau prefixe: „prefix_*”) pe care importul le consideră ale aplicației. */
+    allow: function (list) { [].concat(list || []).forEach(function (x) { if (typeof x === 'string' && x) allowed.push(x); }); },
     build: function () { return plain(false); },
     /** Înregistrează fn(cheie, valoare) -> valoare curățată (șir); se aplică doar exportului necriptat. */
     redact: function (fn) { if (typeof fn === 'function') redactors.push(fn); },
     confirm: confirmDlg,
 
-    /** Descarcă un .fff.json. Cu {encrypt:true, password} produce varianta criptată. */
+    /** Descarcă un .fff.json. Cu {encrypt:true, password} produce varianta criptată. Exportul necriptat cu chei sensibile
+     *  (api key, token, secret, parolă…) cere confirmare și propune criptarea ({confirm:false} sau {sensitive:false} o omit). */
     export: function (opt) {
       opt = opt || {};
       return Promise.resolve().then(function () {
-        var obj = plain(!opt.encrypt && !opt.secrets);   // exportul necriptat trece prin redactori (secrete scoase); cel criptat sau {secrets:true} e complet
-        var n = Object.keys(obj.data).length;
-        if (opt.encrypt) {
-          if (typeof opt.password !== 'string' || opt.password.length < 8) throw BErr('pw_short');
-          return encrypt(obj, opt.password).then(function (env) { return {payload: env, n: n, enc: true}; });
+        var enc = !!opt.encrypt, pw = opt.password;
+        var obj = plain(!enc && !opt.secrets);   // exportul necriptat trece prin redactori (secrete scoase); cel criptat sau {secrets:true} e complet
+        var step = Promise.resolve();
+        if (!enc && opt.confirm !== false && opt.sensitive !== false) {
+          var sens = sensitiveKeys(obj);
+          if (sens.length) {
+            step = choiceDlg(T('sens_msg', {list: keyList(sens)}), [
+              {label: T('no'), value: null},
+              {label: T('sens_plain'), value: 'plain'},
+              {label: T('sens_enc'), value: 'enc', primary: true}
+            ]).then(function (c) {
+              if (c === null) return {cancelled: true};
+              if (c === 'plain') return null;
+              enc = true; obj = plain(false);
+              if (typeof pw === 'string' && pw.length >= PW_MIN) return null;
+              return passwordDlg().then(function (p) { if (p == null) return {cancelled: true}; pw = p; return null; });
+            });
+          }
         }
-        return {payload: obj, n: n, enc: false};
+        return step.then(function (stop) {
+          if (stop && stop.cancelled) return {cancelled: true};
+          var n = Object.keys(obj.data).length;
+          if (enc) {
+            if (typeof pw !== 'string' || pw.length < PW_MIN) throw BErr('pw_short', {n: PW_MIN});
+            return encrypt(obj, pw).then(function (env) { return {payload: env, n: n, enc: true}; });
+          }
+          return {payload: obj, n: n, enc: false};
+        });
       }).then(function (r) {
+        if (r.cancelled) return {filename: null, size: 0, keys: 0, encrypted: false, cancelled: true};
         var name = opt.filename || (F.app.slug + '-' + stamp() + (r.enc ? '.enc' : '') + '.fff.json');
         var text = JSON.stringify(r.payload, null, 1);
         var size = F.download(name, text, 'application/json');
@@ -1018,23 +1737,28 @@
         return o;
       }).then(function (o) {
         var keys = validatePlain(o, slug);
-        return ask(T('confirm_import', {n: keys.length, app: slug, ver: o.version || '?', date: (o.exported || '').slice(0, 10) || '?'}), opt.confirm)
+        var unknown = unknownKeys(keys);
+        var msg = T('confirm_import', {n: keys.length, app: slug, ver: o.version || '?', date: (o.exported || '').slice(0, 10) || '?'}) +
+          '\n\n' + T('import_keys', {list: keyList(keys)}) +
+          (unknown.length ? '\n\n' + T('import_unknown', {n: unknown.length, list: keyList(unknown)}) : '');
+        return ask(msg, opt.confirm)
           .then(function (ok) {
             if (!ok) return {keys: 0, cancelled: true};
-            var undo = {};
+            var undo = new Map();   // Map: numele cheilor din Object.prototype (constructor, toString, __proto__) nu mai sunt „deja prezente”
             try {
               keys.forEach(function (k) {
-                if (!(k in undo)) undo[k] = F.store.raw.get(k);
+                if (!undo.has(k)) undo.set(k, F.store.raw.get(k));
                 F.store.raw.set(k, o.data[k]);
                 if (k.indexOf('fff.') !== 0) F.store.remember(k);
               });
             } catch (e) {
-              Object.keys(undo).forEach(function (k) { try { if (undo[k] == null) F.store.raw.remove(k); else F.store.raw.set(k, undo[k]); } catch (e2) { /* ignorat */ } });
+              undo.forEach(function (v, k) { try { if (v == null) F.store.raw.remove(k); else F.store.raw.set(k, v); } catch (e2) { /* ignorat */ } });
               throw BErr('quota');
             }
-            F.bus.emit('bundle:imported', {keys: keys.length, file: fname});
+            if (opt.reload === true) F.store.freeze();   // înainte de reload: handlerele pagehide/beforeunload ale aplicației nu mai pot suprascrie importul
+            F.bus.emit('bundle:imported', {keys: keys.length, file: fname, unknown: unknown});
             if (opt.reload === true) setTimeout(function () { location.reload(); }, opt.delay == null ? 900 : opt.delay);
-            return {keys: keys.length, cancelled: false};
+            return {keys: keys.length, cancelled: false, unknown: unknown};
           });
       });
     },
@@ -1048,6 +1772,7 @@
         if (!ok) return {keys: 0, cancelled: true};
         keys.forEach(function (k) { try { F.store.raw.remove(k); } catch (e) { /* ignorat */ } F.store.forget(k); });
         try { F.store.raw.remove(F.store.indexKey); } catch (e) { /* ignorat */ }
+        if (opt.reload === true) F.store.freeze();
         F.bus.emit('bundle:wiped', {keys: keys.length});
         if (opt.reload === true) setTimeout(function () { location.reload(); }, opt.delay == null ? 900 : opt.delay);
         return {keys: keys.length, cancelled: false};
@@ -1056,18 +1781,18 @@
   };
 })();
 </script>
-<script type="application/json" id="fff-i18n">{"label":{"ro":{"title":"Transparență","open_hint":"Deschide eticheta de transparență","close":"Închide","disabled":"Funcțiile kitului sunt dezactivate pentru această aplicație: {reason}","self_mod":"Atenție: aplicația își poate salva propria copie (împreună cu datele tale). Suma SHA-256 declarată se aplică doar fișierului distribuit inițial.","net_h":"Rețea","net_none":"0 cereri externe declarate","net_list":"Gazde externe declarate sau permise de politica de securitate (CSP):","net_note":"Declarat la construirea fișierului, prin analiza codului; poți verifica și în fila Rețea a instrumentelor browserului.","net_unknown":"Informații indisponibile: fișierul nu conține descriptorul de transparență.","store_h":"Stocare locală","store_none":"Nicio cheie în localStorage.","store_sum":"{n} chei · {size}","store_key":"Cheie","store_size":"Mărime","store_more":"…și încă {n} chei","store_idb":"Aplicația folosește și IndexedDB, care nu este inclus în copia de siguranță.","store_note":"Datele rămân în acest browser; nimic nu este trimis.","perm_h":"Permisiuni și API-uri folosite","perm_none":"Nu au fost detectate API-uri sensibile.","perm_note":"Detectate static în codul sursă; pentru cele sensibile, browserul îți cere acordul.","perm_cam":"Cameră / microfon","perm_geo":"Locație","perm_rtc":"Conexiuni directe între browsere (WebRTC)","perm_share":"Partajare (Web Share)","perm_notif":"Notificări","perm_tts":"Sinteză vocală","perm_stt":"Recunoaștere vocală","perm_clip":"Clipboard","perm_sw":"Service worker (instalare / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Criptografie (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Fișier","file_size":"Dimensiune: {size}","file_hash":"SHA-256 declarat:","file_nohash":"Suma de control nu este declarată în acest fișier.","file_how_h":"Cum verifici","file_how":"Alege fișierul descărcat: se calculează SHA-256 după golirea câmpurilor de hash (data-fff-hash și „sha256”) și se compară cu valoarea declarată. Același calcul în terminal:","verify_btn":"Verifică un fișier descărcat…","verify_ok":"Se potrivește: fișierul este identic cu cel declarat.","verify_bad":"Nu se potrivește. Calculat: {got}","verify_err":"Fișierul nu a putut fi citit.","verify_cmd":"Comandă de verificare","bk_h":"Copie de siguranță","bk_hint":"Fișier .fff.json cu datele din localStorage ale aplicației. Varianta criptată folosește AES-GCM 256 cu cheie derivată prin PBKDF2-SHA256 (310 000 de iterații); parola nu poate fi recuperată.","bk_export":"Exportă","bk_export_enc":"Exportă criptat…","bk_import":"Importă…","bk_wipe":"Șterge datele aplicației","bk_pw":"Parolă (min. 8 caractere)","bk_pw2":"Repetă parola","bk_go":"Exportă criptat","bk_pw_file":"Parola fișierului","bk_import_go":"Importă","pw_mismatch":"Parolele nu coincid.","ok_export":"Exportat: {file} ({n} chei).","ok_export_enc":"Exportat criptat: {file} ({n} chei).","ok_import":"Importate {n} chei. Se reîncarcă pagina…","ok_wipe":"Șterse {n} chei. Se reîncarcă pagina…","nothing_to_wipe":"Nu există date de șters.","enter_pw":"Fișierul {file} este criptat: introdu parola.","cancelled":"Anulat.","kit_line":"fff-kit v{v} · module: {mods}","install":"Instalează aplicația"},"en":{"title":"Transparency","open_hint":"Open the transparency label","close":"Close","disabled":"Kit features are disabled for this app: {reason}","self_mod":"Note: this app can save its own copy (together with your data). The declared SHA-256 applies only to the originally distributed file.","net_h":"Network","net_none":"0 external requests declared","net_list":"External hosts declared or allowed by the security policy (CSP):","net_note":"Declared at build time by analysing the code; you can also check the Network tab of your browser tools.","net_unknown":"Information unavailable: the file has no transparency descriptor.","store_h":"Local storage","store_none":"No keys in localStorage.","store_sum":"{n} keys · {size}","store_key":"Key","store_size":"Size","store_more":"…and {n} more keys","store_idb":"The app also uses IndexedDB, which is not included in the backup.","store_note":"Data stays in this browser; nothing is sent.","perm_h":"Permissions and APIs used","perm_none":"No sensitive APIs detected.","perm_note":"Detected statically in the source code; for sensitive ones the browser asks for your consent.","perm_cam":"Camera / microphone","perm_geo":"Location","perm_rtc":"Direct browser-to-browser connections (WebRTC)","perm_share":"Sharing (Web Share)","perm_notif":"Notifications","perm_tts":"Speech synthesis","perm_stt":"Speech recognition","perm_clip":"Clipboard","perm_sw":"Service worker (install / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Cryptography (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"File","file_size":"Size: {size}","file_hash":"Declared SHA-256:","file_nohash":"No checksum is declared in this file.","file_how_h":"How to verify","file_how":"Choose the downloaded file: its SHA-256 is computed after blanking the hash fields (data-fff-hash and \"sha256\") and compared with the declared value. The same computation in a terminal:","verify_btn":"Verify a downloaded file…","verify_ok":"Match: the file is identical to the declared one.","verify_bad":"No match. Computed: {got}","verify_err":"The file could not be read.","verify_cmd":"Verification command","bk_h":"Backup","bk_hint":"A .fff.json file with the app's localStorage data. The encrypted variant uses AES-GCM 256 with a key derived via PBKDF2-SHA256 (310,000 iterations); the password cannot be recovered.","bk_export":"Export","bk_export_enc":"Export encrypted…","bk_import":"Import…","bk_wipe":"Delete app data","bk_pw":"Password (min. 8 characters)","bk_pw2":"Repeat password","bk_go":"Export encrypted","bk_pw_file":"File password","bk_import_go":"Import","pw_mismatch":"Passwords do not match.","ok_export":"Exported: {file} ({n} keys).","ok_export_enc":"Exported encrypted: {file} ({n} keys).","ok_import":"Imported {n} keys. Reloading the page…","ok_wipe":"Deleted {n} keys. Reloading the page…","nothing_to_wipe":"There is no data to delete.","enter_pw":"The file {file} is encrypted: enter the password.","cancelled":"Cancelled.","kit_line":"fff-kit v{v} · modules: {mods}","install":"Install the app"},"fr":{"title":"Transparence","open_hint":"Ouvrir l’étiquette de transparence","close":"Fermer","disabled":"Les fonctions du kit sont désactivées pour cette application : {reason}","self_mod":"Attention : cette application peut enregistrer sa propre copie (avec vos données). Le SHA-256 déclaré ne vaut que pour le fichier distribué à l’origine.","net_h":"Réseau","net_none":"0 requête externe déclarée","net_list":"Hôtes externes déclarés ou autorisés par la politique de sécurité (CSP) :","net_note":"Déclaré à la construction par analyse du code ; vous pouvez aussi vérifier dans l’onglet Réseau des outils du navigateur.","net_unknown":"Informations indisponibles : le fichier ne contient pas de descripteur de transparence.","store_h":"Stockage local","store_none":"Aucune clé dans localStorage.","store_sum":"{n} clés · {size}","store_key":"Clé","store_size":"Taille","store_more":"…et {n} clés de plus","store_idb":"L’application utilise aussi IndexedDB, non inclus dans la sauvegarde.","store_note":"Les données restent dans ce navigateur ; rien n’est envoyé.","perm_h":"Autorisations et API utilisées","perm_none":"Aucune API sensible détectée.","perm_note":"Détectées statiquement dans le code source ; pour les API sensibles, le navigateur demande votre accord.","perm_cam":"Caméra / microphone","perm_geo":"Localisation","perm_rtc":"Connexions directes entre navigateurs (WebRTC)","perm_share":"Partage (Web Share)","perm_notif":"Notifications","perm_tts":"Synthèse vocale","perm_stt":"Reconnaissance vocale","perm_clip":"Presse-papiers","perm_sw":"Service worker (installation / hors ligne)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Cryptographie (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Fichier","file_size":"Taille : {size}","file_hash":"SHA-256 déclaré :","file_nohash":"Aucune somme de contrôle n’est déclarée dans ce fichier.","file_how_h":"Comment vérifier","file_how":"Choisissez le fichier téléchargé : son SHA-256 est calculé après avoir vidé les champs de hachage (data-fff-hash et « sha256 ») puis comparé à la valeur déclarée. Même calcul dans un terminal :","verify_btn":"Vérifier un fichier téléchargé…","verify_ok":"Concordance : le fichier est identique à celui déclaré.","verify_bad":"Pas de concordance. Calculé : {got}","verify_err":"Le fichier n’a pas pu être lu.","verify_cmd":"Commande de vérification","bk_h":"Sauvegarde","bk_hint":"Un fichier .fff.json avec les données localStorage de l’application. La variante chiffrée utilise AES-GCM 256 avec une clé dérivée par PBKDF2-SHA256 (310 000 itérations) ; le mot de passe est irrécupérable.","bk_export":"Exporter","bk_export_enc":"Exporter chiffré…","bk_import":"Importer…","bk_wipe":"Supprimer les données de l’application","bk_pw":"Mot de passe (min. 8 caractères)","bk_pw2":"Répéter le mot de passe","bk_go":"Exporter chiffré","bk_pw_file":"Mot de passe du fichier","bk_import_go":"Importer","pw_mismatch":"Les mots de passe ne correspondent pas.","ok_export":"Exporté : {file} ({n} clés).","ok_export_enc":"Exporté chiffré : {file} ({n} clés).","ok_import":"{n} clés importées. Rechargement de la page…","ok_wipe":"{n} clés supprimées. Rechargement de la page…","nothing_to_wipe":"Aucune donnée à supprimer.","enter_pw":"Le fichier {file} est chiffré : saisissez le mot de passe.","cancelled":"Annulé.","kit_line":"fff-kit v{v} · modules : {mods}","install":"Installer l’application"},"it":{"title":"Trasparenza","open_hint":"Apri l’etichetta di trasparenza","close":"Chiudi","disabled":"Le funzioni del kit sono disattivate per questa app: {reason}","self_mod":"Attenzione: questa app può salvare una propria copia (insieme ai tuoi dati). Lo SHA-256 dichiarato vale solo per il file distribuito in origine.","net_h":"Rete","net_none":"0 richieste esterne dichiarate","net_list":"Host esterni dichiarati o consentiti dalla politica di sicurezza (CSP):","net_note":"Dichiarato in fase di costruzione tramite analisi del codice; puoi controllare anche nella scheda Rete degli strumenti del browser.","net_unknown":"Informazioni non disponibili: il file non contiene il descrittore di trasparenza.","store_h":"Archiviazione locale","store_none":"Nessuna chiave in localStorage.","store_sum":"{n} chiavi · {size}","store_key":"Chiave","store_size":"Dimensione","store_more":"…e altre {n} chiavi","store_idb":"L’app usa anche IndexedDB, non incluso nel backup.","store_note":"I dati restano in questo browser; non viene inviato nulla.","perm_h":"Permessi e API usati","perm_none":"Nessuna API sensibile rilevata.","perm_note":"Rilevate in modo statico nel codice sorgente; per quelle sensibili il browser chiede il tuo consenso.","perm_cam":"Fotocamera / microfono","perm_geo":"Posizione","perm_rtc":"Connessioni dirette tra browser (WebRTC)","perm_share":"Condivisione (Web Share)","perm_notif":"Notifiche","perm_tts":"Sintesi vocale","perm_stt":"Riconoscimento vocale","perm_clip":"Appunti","perm_sw":"Service worker (installazione / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Crittografia (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"File","file_size":"Dimensione: {size}","file_hash":"SHA-256 dichiarato:","file_nohash":"In questo file non è dichiarata alcuna somma di controllo.","file_how_h":"Come verificare","file_how":"Scegli il file scaricato: ne viene calcolato lo SHA-256 dopo aver svuotato i campi hash (data-fff-hash e «sha256») e confrontato con il valore dichiarato. Lo stesso calcolo da terminale:","verify_btn":"Verifica un file scaricato…","verify_ok":"Corrisponde: il file è identico a quello dichiarato.","verify_bad":"Non corrisponde. Calcolato: {got}","verify_err":"Impossibile leggere il file.","verify_cmd":"Comando di verifica","bk_h":"Copia di sicurezza","bk_hint":"Un file .fff.json con i dati localStorage dell’app. La variante cifrata usa AES-GCM 256 con chiave derivata tramite PBKDF2-SHA256 (310.000 iterazioni); la password non è recuperabile.","bk_export":"Esporta","bk_export_enc":"Esporta cifrato…","bk_import":"Importa…","bk_wipe":"Elimina i dati dell’app","bk_pw":"Password (min. 8 caratteri)","bk_pw2":"Ripeti la password","bk_go":"Esporta cifrato","bk_pw_file":"Password del file","bk_import_go":"Importa","pw_mismatch":"Le password non coincidono.","ok_export":"Esportato: {file} ({n} chiavi).","ok_export_enc":"Esportato cifrato: {file} ({n} chiavi).","ok_import":"Importate {n} chiavi. Ricarico la pagina…","ok_wipe":"Eliminate {n} chiavi. Ricarico la pagina…","nothing_to_wipe":"Non ci sono dati da eliminare.","enter_pw":"Il file {file} è cifrato: inserisci la password.","cancelled":"Annullato.","kit_line":"fff-kit v{v} · moduli: {mods}","install":"Installa l’app"},"es":{"title":"Transparencia","open_hint":"Abrir la etiqueta de transparencia","close":"Cerrar","disabled":"Las funciones del kit están desactivadas para esta aplicación: {reason}","self_mod":"Atención: esta aplicación puede guardar su propia copia (junto con tus datos). El SHA-256 declarado solo vale para el archivo distribuido originalmente.","net_h":"Red","net_none":"0 solicitudes externas declaradas","net_list":"Hosts externos declarados o permitidos por la política de seguridad (CSP):","net_note":"Declarado al construir el archivo mediante análisis del código; también puedes comprobarlo en la pestaña Red de las herramientas del navegador.","net_unknown":"Información no disponible: el archivo no contiene el descriptor de transparencia.","store_h":"Almacenamiento local","store_none":"Ninguna clave en localStorage.","store_sum":"{n} claves · {size}","store_key":"Clave","store_size":"Tamaño","store_more":"…y {n} claves más","store_idb":"La aplicación también usa IndexedDB, que no se incluye en la copia de seguridad.","store_note":"Los datos permanecen en este navegador; no se envía nada.","perm_h":"Permisos y API usadas","perm_none":"No se detectaron API sensibles.","perm_note":"Detectadas de forma estática en el código fuente; para las sensibles, el navegador pide tu consentimiento.","perm_cam":"Cámara / micrófono","perm_geo":"Ubicación","perm_rtc":"Conexiones directas entre navegadores (WebRTC)","perm_share":"Compartir (Web Share)","perm_notif":"Notificaciones","perm_tts":"Síntesis de voz","perm_stt":"Reconocimiento de voz","perm_clip":"Portapapeles","perm_sw":"Service worker (instalación / sin conexión)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Criptografía (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Archivo","file_size":"Tamaño: {size}","file_hash":"SHA-256 declarado:","file_nohash":"Este archivo no declara ninguna suma de verificación.","file_how_h":"Cómo verificar","file_how":"Elige el archivo descargado: se calcula su SHA-256 tras vaciar los campos de hash (data-fff-hash y «sha256») y se compara con el valor declarado. El mismo cálculo en una terminal:","verify_btn":"Verificar un archivo descargado…","verify_ok":"Coincide: el archivo es idéntico al declarado.","verify_bad":"No coincide. Calculado: {got}","verify_err":"No se pudo leer el archivo.","verify_cmd":"Comando de verificación","bk_h":"Copia de seguridad","bk_hint":"Un archivo .fff.json con los datos de localStorage de la aplicación. La variante cifrada usa AES-GCM 256 con clave derivada mediante PBKDF2-SHA256 (310 000 iteraciones); la contraseña no se puede recuperar.","bk_export":"Exportar","bk_export_enc":"Exportar cifrado…","bk_import":"Importar…","bk_wipe":"Borrar los datos de la aplicación","bk_pw":"Contraseña (mín. 8 caracteres)","bk_pw2":"Repite la contraseña","bk_go":"Exportar cifrado","bk_pw_file":"Contraseña del archivo","bk_import_go":"Importar","pw_mismatch":"Las contraseñas no coinciden.","ok_export":"Exportado: {file} ({n} claves).","ok_export_enc":"Exportado cifrado: {file} ({n} claves).","ok_import":"{n} claves importadas. Recargando la página…","ok_wipe":"{n} claves borradas. Recargando la página…","nothing_to_wipe":"No hay datos que borrar.","enter_pw":"El archivo {file} está cifrado: introduce la contraseña.","cancelled":"Cancelado.","kit_line":"fff-kit v{v} · módulos: {mods}","install":"Instalar la aplicación"},"pt":{"title":"Transparência","open_hint":"Abrir a etiqueta de transparência","close":"Fechar","disabled":"As funções do kit estão desativadas para esta aplicação: {reason}","self_mod":"Atenção: esta aplicação pode guardar a sua própria cópia (juntamente com os seus dados). O SHA-256 declarado aplica-se apenas ao ficheiro distribuído originalmente.","net_h":"Rede","net_none":"0 pedidos externos declarados","net_list":"Anfitriões externos declarados ou permitidos pela política de segurança (CSP):","net_note":"Declarado na construção do ficheiro, por análise do código; pode também verificar no separador Rede das ferramentas do navegador.","net_unknown":"Informação indisponível: o ficheiro não contém o descritor de transparência.","store_h":"Armazenamento local","store_none":"Nenhuma chave em localStorage.","store_sum":"{n} chaves · {size}","store_key":"Chave","store_size":"Tamanho","store_more":"…e mais {n} chaves","store_idb":"A aplicação usa também IndexedDB, que não está incluído na cópia de segurança.","store_note":"Os dados ficam neste navegador; nada é enviado.","perm_h":"Permissões e APIs usadas","perm_none":"Não foram detetadas APIs sensíveis.","perm_note":"Detetadas de forma estática no código-fonte; para as sensíveis, o navegador pede o seu consentimento.","perm_cam":"Câmara / microfone","perm_geo":"Localização","perm_rtc":"Ligações diretas entre navegadores (WebRTC)","perm_share":"Partilha (Web Share)","perm_notif":"Notificações","perm_tts":"Síntese de voz","perm_stt":"Reconhecimento de voz","perm_clip":"Área de transferência","perm_sw":"Service worker (instalação / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Criptografia (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Ficheiro","file_size":"Tamanho: {size}","file_hash":"SHA-256 declarado:","file_nohash":"Este ficheiro não declara nenhuma soma de verificação.","file_how_h":"Como verificar","file_how":"Escolha o ficheiro descarregado: o seu SHA-256 é calculado após esvaziar os campos de hash (data-fff-hash e «sha256») e comparado com o valor declarado. O mesmo cálculo num terminal:","verify_btn":"Verificar um ficheiro descarregado…","verify_ok":"Coincide: o ficheiro é idêntico ao declarado.","verify_bad":"Não coincide. Calculado: {got}","verify_err":"Não foi possível ler o ficheiro.","verify_cmd":"Comando de verificação","bk_h":"Cópia de segurança","bk_hint":"Um ficheiro .fff.json com os dados de localStorage da aplicação. A variante cifrada usa AES-GCM 256 com chave derivada por PBKDF2-SHA256 (310 000 iterações); a palavra-passe não pode ser recuperada.","bk_export":"Exportar","bk_export_enc":"Exportar cifrado…","bk_import":"Importar…","bk_wipe":"Apagar os dados da aplicação","bk_pw":"Palavra-passe (mín. 8 caracteres)","bk_pw2":"Repita a palavra-passe","bk_go":"Exportar cifrado","bk_pw_file":"Palavra-passe do ficheiro","bk_import_go":"Importar","pw_mismatch":"As palavras-passe não coincidem.","ok_export":"Exportado: {file} ({n} chaves).","ok_export_enc":"Exportado cifrado: {file} ({n} chaves).","ok_import":"{n} chaves importadas. A recarregar a página…","ok_wipe":"{n} chaves apagadas. A recarregar a página…","nothing_to_wipe":"Não há dados para apagar.","enter_pw":"O ficheiro {file} está cifrado: introduza a palavra-passe.","cancelled":"Cancelado.","kit_line":"fff-kit v{v} · módulos: {mods}","install":"Instalar a aplicação"},"hu":{"title":"Átláthatóság","open_hint":"Az átláthatósági címke megnyitása","close":"Bezárás","disabled":"A kit funkciói ki vannak kapcsolva ennél az alkalmazásnál: {reason}","self_mod":"Figyelem: ez az alkalmazás képes saját másolatot menteni (az adataiddal együtt). A megadott SHA-256 csak az eredetileg terjesztett fájlra érvényes.","net_h":"Hálózat","net_none":"0 külső kérés megadva","net_list":"A biztonsági irányelv (CSP) által megadott vagy engedélyezett külső gazdák:","net_note":"Az összeállításkor a kód elemzésével megadva; a böngésző eszközeinek Hálózat lapján is ellenőrizheted.","net_unknown":"Az információ nem érhető el: a fájl nem tartalmaz átláthatósági leírót.","store_h":"Helyi tárolás","store_none":"Nincs kulcs a localStorage-ban.","store_sum":"{n} kulcs · {size}","store_key":"Kulcs","store_size":"Méret","store_more":"…és még {n} kulcs","store_idb":"Az alkalmazás IndexedDB-t is használ, amely nem része a biztonsági mentésnek.","store_note":"Az adatok ebben a böngészőben maradnak; semmi sem kerül elküldésre.","perm_h":"Használt engedélyek és API-k","perm_none":"Nem található érzékeny API.","perm_note":"Statikusan, a forráskódban észlelve; az érzékenyeknél a böngésző a hozzájárulásodat kéri.","perm_cam":"Kamera / mikrofon","perm_geo":"Helyadat","perm_rtc":"Közvetlen böngésző–böngésző kapcsolatok (WebRTC)","perm_share":"Megosztás (Web Share)","perm_notif":"Értesítések","perm_tts":"Beszédszintézis","perm_stt":"Beszédfelismerés","perm_clip":"Vágólap","perm_sw":"Service worker (telepítés / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Kriptográfia (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Fájl","file_size":"Méret: {size}","file_hash":"Megadott SHA-256:","file_nohash":"Ebben a fájlban nincs megadva ellenőrző összeg.","file_how_h":"Hogyan ellenőrizd","file_how":"Válaszd ki a letöltött fájlt: a program kiszámolja az SHA-256 értéket a hash mezők (data-fff-hash és „sha256”) kiürítése után, és összeveti a megadottal. Ugyanez terminálban:","verify_btn":"Letöltött fájl ellenőrzése…","verify_ok":"Egyezik: a fájl megegyezik a megadottal.","verify_bad":"Nem egyezik. Számított: {got}","verify_err":"A fájlt nem sikerült beolvasni.","verify_cmd":"Ellenőrző parancs","bk_h":"Biztonsági mentés","bk_hint":"Egy .fff.json fájl az alkalmazás localStorage-adataival. A titkosított változat AES-GCM 256-ot használ, PBKDF2-SHA256-tal (310 000 iteráció) származtatott kulccsal; a jelszó nem állítható vissza.","bk_export":"Exportálás","bk_export_enc":"Titkosított exportálás…","bk_import":"Importálás…","bk_wipe":"Az alkalmazás adatainak törlése","bk_pw":"Jelszó (legalább 8 karakter)","bk_pw2":"Jelszó újra","bk_go":"Titkosított exportálás","bk_pw_file":"A fájl jelszava","bk_import_go":"Importálás","pw_mismatch":"A jelszavak nem egyeznek.","ok_export":"Exportálva: {file} ({n} kulcs).","ok_export_enc":"Titkosítva exportálva: {file} ({n} kulcs).","ok_import":"{n} kulcs importálva. Az oldal újratöltése…","ok_wipe":"{n} kulcs törölve. Az oldal újratöltése…","nothing_to_wipe":"Nincs törölhető adat.","enter_pw":"A(z) {file} fájl titkosított: add meg a jelszót.","cancelled":"Megszakítva.","kit_line":"fff-kit v{v} · modulok: {mods}","install":"Alkalmazás telepítése"},"de":{"title":"Transparenz","open_hint":"Transparenz-Etikett öffnen","close":"Schließen","disabled":"Die Kit-Funktionen sind für diese App deaktiviert: {reason}","self_mod":"Hinweis: Diese App kann eine eigene Kopie speichern (samt deiner Daten). Der angegebene SHA-256 gilt nur für die ursprünglich verteilte Datei.","net_h":"Netzwerk","net_none":"0 externe Anfragen angegeben","net_list":"Externe Hosts, die angegeben oder von der Sicherheitsrichtlinie (CSP) erlaubt sind:","net_note":"Beim Erstellen per Code-Analyse angegeben; du kannst es auch im Netzwerk-Tab der Browser-Werkzeuge prüfen.","net_unknown":"Informationen nicht verfügbar: Die Datei enthält keinen Transparenz-Deskriptor.","store_h":"Lokaler Speicher","store_none":"Keine Schlüssel in localStorage.","store_sum":"{n} Schlüssel · {size}","store_key":"Schlüssel","store_size":"Größe","store_more":"…und {n} weitere Schlüssel","store_idb":"Die App nutzt auch IndexedDB, das nicht in der Sicherung enthalten ist.","store_note":"Die Daten bleiben in diesem Browser; nichts wird gesendet.","perm_h":"Verwendete Berechtigungen und APIs","perm_none":"Keine sensiblen APIs erkannt.","perm_note":"Statisch im Quelltext erkannt; bei sensiblen fragt der Browser nach deiner Zustimmung.","perm_cam":"Kamera / Mikrofon","perm_geo":"Standort","perm_rtc":"Direkte Browser-zu-Browser-Verbindungen (WebRTC)","perm_share":"Teilen (Web Share)","perm_notif":"Benachrichtigungen","perm_tts":"Sprachsynthese","perm_stt":"Spracherkennung","perm_clip":"Zwischenablage","perm_sw":"Service Worker (Installation / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Kryptografie (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Datei","file_size":"Größe: {size}","file_hash":"Angegebener SHA-256:","file_nohash":"In dieser Datei ist keine Prüfsumme angegeben.","file_how_h":"So prüfst du","file_how":"Wähle die heruntergeladene Datei: Ihr SHA-256 wird nach dem Leeren der Hash-Felder (data-fff-hash und „sha256“) berechnet und mit dem angegebenen Wert verglichen. Dieselbe Berechnung im Terminal:","verify_btn":"Heruntergeladene Datei prüfen…","verify_ok":"Übereinstimmung: Die Datei ist identisch mit der angegebenen.","verify_bad":"Keine Übereinstimmung. Berechnet: {got}","verify_err":"Die Datei konnte nicht gelesen werden.","verify_cmd":"Prüfbefehl","bk_h":"Sicherung","bk_hint":"Eine .fff.json-Datei mit den localStorage-Daten der App. Die verschlüsselte Variante nutzt AES-GCM 256 mit einem per PBKDF2-SHA256 (310.000 Iterationen) abgeleiteten Schlüssel; das Passwort ist nicht wiederherstellbar.","bk_export":"Exportieren","bk_export_enc":"Verschlüsselt exportieren…","bk_import":"Importieren…","bk_wipe":"App-Daten löschen","bk_pw":"Passwort (mind. 8 Zeichen)","bk_pw2":"Passwort wiederholen","bk_go":"Verschlüsselt exportieren","bk_pw_file":"Passwort der Datei","bk_import_go":"Importieren","pw_mismatch":"Die Passwörter stimmen nicht überein.","ok_export":"Exportiert: {file} ({n} Schlüssel).","ok_export_enc":"Verschlüsselt exportiert: {file} ({n} Schlüssel).","ok_import":"{n} Schlüssel importiert. Seite wird neu geladen…","ok_wipe":"{n} Schlüssel gelöscht. Seite wird neu geladen…","nothing_to_wipe":"Keine Daten zum Löschen vorhanden.","enter_pw":"Die Datei {file} ist verschlüsselt: Passwort eingeben.","cancelled":"Abgebrochen.","kit_line":"fff-kit v{v} · Module: {mods}","install":"App installieren"}},"bundle":{"ro":{"err_format":"Fișierul nu este o copie de siguranță fff validă.","err_schema":"Schema {v} nu este acceptată (se așteaptă 1).","err_app":"Copia aparține aplicației „{got}”, nu „{want}”.","err_password_required":"Fișierul {file} este criptat: este necesară parola.","err_bad_password":"Parolă greșită sau fișier alterat.","err_pw_short":"Parola trebuie să aibă cel puțin 8 caractere.","err_nocrypto":"Browserul nu oferă Web Crypto (necesită https sau fișier local).","err_read":"Fișierul nu a putut fi citit.","err_too_big":"Fișierul este prea mare.","err_quota":"Spațiul de stocare este plin; nu s-a modificat nimic.","err_key":"Cheie nepermisă în fișier: {k}","yes":"Da","no":"Anulează","wipe_yes":"Șterge","confirm_import":"Imporți {n} chei în „{app}” (versiunea {ver}, exportat la {date})? Valorile existente cu aceleași chei vor fi înlocuite.","confirm_wipe":"Ștergi {n} chei ale acestei aplicații din acest browser? Acțiunea nu poate fi anulată."},"en":{"err_format":"The file is not a valid fff backup.","err_schema":"Schema {v} is not supported (expected 1).","err_app":"This backup belongs to the app \"{got}\", not \"{want}\".","err_password_required":"The file {file} is encrypted: a password is required.","err_bad_password":"Wrong password or altered file.","err_pw_short":"The password must have at least 8 characters.","err_nocrypto":"This browser does not offer Web Crypto (requires https or a local file).","err_read":"The file could not be read.","err_too_big":"The file is too large.","err_quota":"Storage is full; nothing was changed.","err_key":"Key not allowed in file: {k}","yes":"Yes","no":"Cancel","wipe_yes":"Delete","confirm_import":"Import {n} keys into \"{app}\" (version {ver}, exported {date})? Existing values with the same keys will be replaced.","confirm_wipe":"Delete {n} keys of this app from this browser? This cannot be undone."},"fr":{"err_format":"Le fichier n’est pas une sauvegarde fff valide.","err_schema":"Le schéma {v} n’est pas pris en charge (attendu : 1).","err_app":"Cette sauvegarde appartient à l’application « {got} », pas à « {want} ».","err_password_required":"Le fichier {file} est chiffré : un mot de passe est requis.","err_bad_password":"Mot de passe erroné ou fichier altéré.","err_pw_short":"Le mot de passe doit comporter au moins 8 caractères.","err_nocrypto":"Ce navigateur n’offre pas Web Crypto (https ou fichier local requis).","err_read":"Le fichier n’a pas pu être lu.","err_too_big":"Le fichier est trop volumineux.","err_quota":"Le stockage est plein ; rien n’a été modifié.","err_key":"Clé non autorisée dans le fichier : {k}","yes":"Oui","no":"Annuler","wipe_yes":"Supprimer","confirm_import":"Importer {n} clés dans « {app} » (version {ver}, exporté le {date}) ? Les valeurs existantes ayant les mêmes clés seront remplacées.","confirm_wipe":"Supprimer {n} clés de cette application dans ce navigateur ? Cette action est irréversible."},"it":{"err_format":"Il file non è un backup fff valido.","err_schema":"Lo schema {v} non è supportato (atteso: 1).","err_app":"Questo backup appartiene all’app «{got}», non a «{want}».","err_password_required":"Il file {file} è cifrato: serve la password.","err_bad_password":"Password errata o file alterato.","err_pw_short":"La password deve avere almeno 8 caratteri.","err_nocrypto":"Questo browser non offre Web Crypto (serve https o un file locale).","err_read":"Impossibile leggere il file.","err_too_big":"Il file è troppo grande.","err_quota":"Archivio pieno; non è stato modificato nulla.","err_key":"Chiave non consentita nel file: {k}","yes":"Sì","no":"Annulla","wipe_yes":"Elimina","confirm_import":"Importare {n} chiavi in «{app}» (versione {ver}, esportato il {date})? I valori esistenti con le stesse chiavi verranno sostituiti.","confirm_wipe":"Eliminare {n} chiavi di questa app da questo browser? L’azione non è annullabile."},"es":{"err_format":"El archivo no es una copia de seguridad fff válida.","err_schema":"El esquema {v} no es compatible (se espera 1).","err_app":"Esta copia pertenece a la aplicación «{got}», no a «{want}».","err_password_required":"El archivo {file} está cifrado: se necesita la contraseña.","err_bad_password":"Contraseña incorrecta o archivo alterado.","err_pw_short":"La contraseña debe tener al menos 8 caracteres.","err_nocrypto":"Este navegador no ofrece Web Crypto (requiere https o un archivo local).","err_read":"No se pudo leer el archivo.","err_too_big":"El archivo es demasiado grande.","err_quota":"El almacenamiento está lleno; no se modificó nada.","err_key":"Clave no permitida en el archivo: {k}","yes":"Sí","no":"Cancelar","wipe_yes":"Borrar","confirm_import":"¿Importar {n} claves en «{app}» (versión {ver}, exportado el {date})? Los valores existentes con las mismas claves se sustituirán.","confirm_wipe":"¿Borrar {n} claves de esta aplicación en este navegador? No se puede deshacer."},"pt":{"err_format":"O ficheiro não é uma cópia de segurança fff válida.","err_schema":"O esquema {v} não é suportado (esperado: 1).","err_app":"Esta cópia pertence à aplicação «{got}», não a «{want}».","err_password_required":"O ficheiro {file} está cifrado: é necessária a palavra-passe.","err_bad_password":"Palavra-passe errada ou ficheiro alterado.","err_pw_short":"A palavra-passe deve ter pelo menos 8 caracteres.","err_nocrypto":"Este navegador não oferece Web Crypto (requer https ou ficheiro local).","err_read":"Não foi possível ler o ficheiro.","err_too_big":"O ficheiro é demasiado grande.","err_quota":"O armazenamento está cheio; nada foi alterado.","err_key":"Chave não permitida no ficheiro: {k}","yes":"Sim","no":"Cancelar","wipe_yes":"Apagar","confirm_import":"Importar {n} chaves para «{app}» (versão {ver}, exportado em {date})? Os valores existentes com as mesmas chaves serão substituídos.","confirm_wipe":"Apagar {n} chaves desta aplicação neste navegador? Não é possível anular."},"hu":{"err_format":"A fájl nem érvényes fff biztonsági mentés.","err_schema":"A(z) {v} séma nem támogatott (várt: 1).","err_app":"Ez a mentés a(z) „{got}” alkalmazáshoz tartozik, nem a(z) „{want}” alkalmazáshoz.","err_password_required":"A(z) {file} fájl titkosított: jelszó szükséges.","err_bad_password":"Hibás jelszó vagy módosított fájl.","err_pw_short":"A jelszónak legalább 8 karakter hosszúnak kell lennie.","err_nocrypto":"Ez a böngésző nem kínál Web Crypto-t (https vagy helyi fájl szükséges).","err_read":"A fájlt nem sikerült beolvasni.","err_too_big":"A fájl túl nagy.","err_quota":"A tárhely megtelt; semmi sem változott.","err_key":"Nem engedélyezett kulcs a fájlban: {k}","yes":"Igen","no":"Mégse","wipe_yes":"Törlés","confirm_import":"Importálsz {n} kulcsot a(z) „{app}” alkalmazásba (verzió: {ver}, exportálva: {date})? Az azonos kulcsú meglévő értékek felülíródnak.","confirm_wipe":"Törlöd az alkalmazás {n} kulcsát ebből a böngészőből? Ez nem vonható vissza."},"de":{"err_format":"Die Datei ist keine gültige fff-Sicherung.","err_schema":"Schema {v} wird nicht unterstützt (erwartet: 1).","err_app":"Diese Sicherung gehört zur App „{got}“, nicht zu „{want}“.","err_password_required":"Die Datei {file} ist verschlüsselt: Passwort erforderlich.","err_bad_password":"Falsches Passwort oder veränderte Datei.","err_pw_short":"Das Passwort muss mindestens 8 Zeichen haben.","err_nocrypto":"Dieser Browser bietet kein Web Crypto (https oder lokale Datei erforderlich).","err_read":"Die Datei konnte nicht gelesen werden.","err_too_big":"Die Datei ist zu groß.","err_quota":"Speicher voll; es wurde nichts geändert.","err_key":"Schlüssel in der Datei nicht erlaubt: {k}","yes":"Ja","no":"Abbrechen","wipe_yes":"Löschen","confirm_import":"{n} Schlüssel in „{app}“ importieren (Version {ver}, exportiert am {date})? Vorhandene Werte mit denselben Schlüsseln werden ersetzt.","confirm_wipe":"{n} Schlüssel dieser App aus diesem Browser löschen? Das kann nicht rückgängig gemacht werden."}}}</script>
+<script type="application/json" id="fff-i18n">{"dialog":{"ro":{"yes":"Da","cancel":"Anulează","ok":"OK","close":"Închide","dismiss":"Închide notificarea","title_confirm":"Confirmare","title_alert":"Atenție","title_prompt":"Introdu o valoare","title_show":"Text","err_required":"Completează acest câmp.","sr_info":"Informație","sr_success":"Reușit","sr_warning":"Avertisment","sr_error":"Eroare"},"en":{"yes":"Yes","cancel":"Cancel","ok":"OK","close":"Close","dismiss":"Dismiss notification","title_confirm":"Confirm","title_alert":"Notice","title_prompt":"Enter a value","title_show":"Text","err_required":"Please fill in this field.","sr_info":"Information","sr_success":"Success","sr_warning":"Warning","sr_error":"Error"},"fr":{"yes":"Oui","cancel":"Annuler","ok":"OK","close":"Fermer","dismiss":"Fermer la notification","title_confirm":"Confirmation","title_alert":"Attention","title_prompt":"Saisissez une valeur","title_show":"Texte","err_required":"Veuillez remplir ce champ.","sr_info":"Information","sr_success":"Réussite","sr_warning":"Avertissement","sr_error":"Erreur"},"it":{"yes":"Sì","cancel":"Annulla","ok":"OK","close":"Chiudi","dismiss":"Chiudi la notifica","title_confirm":"Conferma","title_alert":"Attenzione","title_prompt":"Inserisci un valore","title_show":"Testo","err_required":"Compila questo campo.","sr_info":"Informazione","sr_success":"Operazione riuscita","sr_warning":"Avviso","sr_error":"Errore"},"es":{"yes":"Sí","cancel":"Cancelar","ok":"OK","close":"Cerrar","dismiss":"Cerrar la notificación","title_confirm":"Confirmación","title_alert":"Atención","title_prompt":"Introduce un valor","title_show":"Texto","err_required":"Rellena este campo.","sr_info":"Información","sr_success":"Correcto","sr_warning":"Aviso","sr_error":"Error"},"pt":{"yes":"Sim","cancel":"Cancelar","ok":"OK","close":"Fechar","dismiss":"Fechar a notificação","title_confirm":"Confirmação","title_alert":"Atenção","title_prompt":"Introduza um valor","title_show":"Texto","err_required":"Preencha este campo.","sr_info":"Informação","sr_success":"Sucesso","sr_warning":"Aviso","sr_error":"Erro"},"hu":{"yes":"Igen","cancel":"Mégse","ok":"OK","close":"Bezárás","dismiss":"Értesítés bezárása","title_confirm":"Megerősítés","title_alert":"Figyelem","title_prompt":"Adj meg egy értéket","title_show":"Szöveg","err_required":"Töltsd ki ezt a mezőt.","sr_info":"Információ","sr_success":"Sikeres","sr_warning":"Figyelmeztetés","sr_error":"Hiba"},"de":{"yes":"Ja","cancel":"Abbrechen","ok":"OK","close":"Schließen","dismiss":"Benachrichtigung schließen","title_confirm":"Bestätigung","title_alert":"Hinweis","title_prompt":"Wert eingeben","title_show":"Text","err_required":"Bitte dieses Feld ausfüllen.","sr_info":"Information","sr_success":"Erfolg","sr_warning":"Warnung","sr_error":"Fehler"}},"label":{"ro":{"title":"Transparență","open_hint":"Deschide eticheta de transparență","close":"Închide","disabled":"Funcțiile kitului sunt dezactivate pentru această aplicație: {reason}","self_mod":"Atenție: aplicația își poate salva propria copie (împreună cu datele tale). Suma SHA-256 declarată se aplică doar fișierului distribuit inițial.","net_h":"Rețea","net_none":"0 cereri externe declarate","net_list":"Gazde externe declarate sau permise de politica de securitate (CSP):","net_note":"Declarat la construirea fișierului, prin analiza codului; poți verifica și în fila Rețea a instrumentelor browserului.","net_unknown":"Informații indisponibile: fișierul nu conține descriptorul de transparență.","store_h":"Stocare locală","store_none":"Nicio cheie în localStorage.","store_sum":"{n} chei · {size}","store_key":"Cheie","store_size":"Mărime","store_more":"…și încă {n} chei","store_idb":"Aplicația folosește și IndexedDB, care nu este inclus în copia de siguranță.","store_note":"Datele rămân în acest browser; nimic nu este trimis.","perm_h":"Permisiuni și API-uri folosite","perm_none":"Nu au fost detectate API-uri sensibile.","perm_note":"Detectate static în codul sursă; pentru cele sensibile, browserul îți cere acordul.","perm_cam":"Cameră / microfon","perm_geo":"Locație","perm_rtc":"Conexiuni directe între browsere (WebRTC)","perm_share":"Partajare (Web Share)","perm_notif":"Notificări","perm_tts":"Sinteză vocală","perm_stt":"Recunoaștere vocală","perm_clip":"Clipboard","perm_sw":"Service worker (instalare / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Criptografie (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Fișier","file_size":"Dimensiune: {size}","file_hash":"SHA-256 declarat:","file_nohash":"Suma de control nu este declarată în acest fișier.","file_how_h":"Cum verifici","file_how":"Alege fișierul descărcat: se calculează SHA-256 după golirea câmpurilor de hash (data-fff-hash și „sha256”) și se compară cu valoarea declarată. Același calcul în terminal:","verify_btn":"Verifică un fișier descărcat…","verify_ok":"Se potrivește: fișierul este identic cu cel declarat.","verify_bad":"Nu se potrivește. Calculat: {got}","verify_err":"Fișierul nu a putut fi citit.","verify_cmd":"Comandă de verificare","bk_h":"Copie de siguranță","bk_hint":"Fișier .fff.json cu datele din localStorage ale aplicației. Varianta criptată folosește AES-GCM 256 cu cheie derivată prin PBKDF2-SHA256 ({iter} de iterații); parola nu poate fi recuperată.","bk_export":"Exportă","bk_export_enc":"Exportă criptat…","bk_import":"Importă…","bk_wipe":"Șterge datele aplicației","bk_pw":"Parolă (min. {n} caractere)","bk_pw2":"Repetă parola","bk_go":"Exportă criptat","bk_pw_file":"Parola fișierului","bk_import_go":"Importă","pw_mismatch":"Parolele nu coincid.","ok_export":"Exportat: {file} ({n} chei).","ok_export_enc":"Exportat criptat: {file} ({n} chei).","ok_import":"Importate {n} chei. Se reîncarcă pagina…","ok_wipe":"Șterse {n} chei. Se reîncarcă pagina…","nothing_to_wipe":"Nu există date de șters.","enter_pw":"Fișierul {file} este criptat: introdu parola.","cancelled":"Anulat.","kit_line":"fff-kit v{v} · module: {mods}","install":"Instalează aplicația"},"en":{"title":"Transparency","open_hint":"Open the transparency label","close":"Close","disabled":"Kit features are disabled for this app: {reason}","self_mod":"Note: this app can save its own copy (together with your data). The declared SHA-256 applies only to the originally distributed file.","net_h":"Network","net_none":"0 external requests declared","net_list":"External hosts declared or allowed by the security policy (CSP):","net_note":"Declared at build time by analysing the code; you can also check the Network tab of your browser tools.","net_unknown":"Information unavailable: the file has no transparency descriptor.","store_h":"Local storage","store_none":"No keys in localStorage.","store_sum":"{n} keys · {size}","store_key":"Key","store_size":"Size","store_more":"…and {n} more keys","store_idb":"The app also uses IndexedDB, which is not included in the backup.","store_note":"Data stays in this browser; nothing is sent.","perm_h":"Permissions and APIs used","perm_none":"No sensitive APIs detected.","perm_note":"Detected statically in the source code; for sensitive ones the browser asks for your consent.","perm_cam":"Camera / microphone","perm_geo":"Location","perm_rtc":"Direct browser-to-browser connections (WebRTC)","perm_share":"Sharing (Web Share)","perm_notif":"Notifications","perm_tts":"Speech synthesis","perm_stt":"Speech recognition","perm_clip":"Clipboard","perm_sw":"Service worker (install / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Cryptography (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"File","file_size":"Size: {size}","file_hash":"Declared SHA-256:","file_nohash":"No checksum is declared in this file.","file_how_h":"How to verify","file_how":"Choose the downloaded file: its SHA-256 is computed after blanking the hash fields (data-fff-hash and \"sha256\") and compared with the declared value. The same computation in a terminal:","verify_btn":"Verify a downloaded file…","verify_ok":"Match: the file is identical to the declared one.","verify_bad":"No match. Computed: {got}","verify_err":"The file could not be read.","verify_cmd":"Verification command","bk_h":"Backup","bk_hint":"A .fff.json file with the app's localStorage data. The encrypted variant uses AES-GCM 256 with a key derived via PBKDF2-SHA256 ({iter} iterations); the password cannot be recovered.","bk_export":"Export","bk_export_enc":"Export encrypted…","bk_import":"Import…","bk_wipe":"Delete app data","bk_pw":"Password (min. {n} characters)","bk_pw2":"Repeat password","bk_go":"Export encrypted","bk_pw_file":"File password","bk_import_go":"Import","pw_mismatch":"Passwords do not match.","ok_export":"Exported: {file} ({n} keys).","ok_export_enc":"Exported encrypted: {file} ({n} keys).","ok_import":"Imported {n} keys. Reloading the page…","ok_wipe":"Deleted {n} keys. Reloading the page…","nothing_to_wipe":"There is no data to delete.","enter_pw":"The file {file} is encrypted: enter the password.","cancelled":"Cancelled.","kit_line":"fff-kit v{v} · modules: {mods}","install":"Install the app"},"fr":{"title":"Transparence","open_hint":"Ouvrir l’étiquette de transparence","close":"Fermer","disabled":"Les fonctions du kit sont désactivées pour cette application : {reason}","self_mod":"Attention : cette application peut enregistrer sa propre copie (avec vos données). Le SHA-256 déclaré ne vaut que pour le fichier distribué à l’origine.","net_h":"Réseau","net_none":"0 requête externe déclarée","net_list":"Hôtes externes déclarés ou autorisés par la politique de sécurité (CSP) :","net_note":"Déclaré à la construction par analyse du code ; vous pouvez aussi vérifier dans l’onglet Réseau des outils du navigateur.","net_unknown":"Informations indisponibles : le fichier ne contient pas de descripteur de transparence.","store_h":"Stockage local","store_none":"Aucune clé dans localStorage.","store_sum":"{n} clés · {size}","store_key":"Clé","store_size":"Taille","store_more":"…et {n} clés de plus","store_idb":"L’application utilise aussi IndexedDB, non inclus dans la sauvegarde.","store_note":"Les données restent dans ce navigateur ; rien n’est envoyé.","perm_h":"Autorisations et API utilisées","perm_none":"Aucune API sensible détectée.","perm_note":"Détectées statiquement dans le code source ; pour les API sensibles, le navigateur demande votre accord.","perm_cam":"Caméra / microphone","perm_geo":"Localisation","perm_rtc":"Connexions directes entre navigateurs (WebRTC)","perm_share":"Partage (Web Share)","perm_notif":"Notifications","perm_tts":"Synthèse vocale","perm_stt":"Reconnaissance vocale","perm_clip":"Presse-papiers","perm_sw":"Service worker (installation / hors ligne)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Cryptographie (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Fichier","file_size":"Taille : {size}","file_hash":"SHA-256 déclaré :","file_nohash":"Aucune somme de contrôle n’est déclarée dans ce fichier.","file_how_h":"Comment vérifier","file_how":"Choisissez le fichier téléchargé : son SHA-256 est calculé après avoir vidé les champs de hachage (data-fff-hash et « sha256 ») puis comparé à la valeur déclarée. Même calcul dans un terminal :","verify_btn":"Vérifier un fichier téléchargé…","verify_ok":"Concordance : le fichier est identique à celui déclaré.","verify_bad":"Pas de concordance. Calculé : {got}","verify_err":"Le fichier n’a pas pu être lu.","verify_cmd":"Commande de vérification","bk_h":"Sauvegarde","bk_hint":"Un fichier .fff.json avec les données localStorage de l’application. La variante chiffrée utilise AES-GCM 256 avec une clé dérivée par PBKDF2-SHA256 ({iter} itérations) ; le mot de passe est irrécupérable.","bk_export":"Exporter","bk_export_enc":"Exporter chiffré…","bk_import":"Importer…","bk_wipe":"Supprimer les données de l’application","bk_pw":"Mot de passe (min. {n} caractères)","bk_pw2":"Répéter le mot de passe","bk_go":"Exporter chiffré","bk_pw_file":"Mot de passe du fichier","bk_import_go":"Importer","pw_mismatch":"Les mots de passe ne correspondent pas.","ok_export":"Exporté : {file} ({n} clés).","ok_export_enc":"Exporté chiffré : {file} ({n} clés).","ok_import":"{n} clés importées. Rechargement de la page…","ok_wipe":"{n} clés supprimées. Rechargement de la page…","nothing_to_wipe":"Aucune donnée à supprimer.","enter_pw":"Le fichier {file} est chiffré : saisissez le mot de passe.","cancelled":"Annulé.","kit_line":"fff-kit v{v} · modules : {mods}","install":"Installer l’application"},"it":{"title":"Trasparenza","open_hint":"Apri l’etichetta di trasparenza","close":"Chiudi","disabled":"Le funzioni del kit sono disattivate per questa app: {reason}","self_mod":"Attenzione: questa app può salvare una propria copia (insieme ai tuoi dati). Lo SHA-256 dichiarato vale solo per il file distribuito in origine.","net_h":"Rete","net_none":"0 richieste esterne dichiarate","net_list":"Host esterni dichiarati o consentiti dalla politica di sicurezza (CSP):","net_note":"Dichiarato in fase di costruzione tramite analisi del codice; puoi controllare anche nella scheda Rete degli strumenti del browser.","net_unknown":"Informazioni non disponibili: il file non contiene il descrittore di trasparenza.","store_h":"Archiviazione locale","store_none":"Nessuna chiave in localStorage.","store_sum":"{n} chiavi · {size}","store_key":"Chiave","store_size":"Dimensione","store_more":"…e altre {n} chiavi","store_idb":"L’app usa anche IndexedDB, non incluso nel backup.","store_note":"I dati restano in questo browser; non viene inviato nulla.","perm_h":"Permessi e API usati","perm_none":"Nessuna API sensibile rilevata.","perm_note":"Rilevate in modo statico nel codice sorgente; per quelle sensibili il browser chiede il tuo consenso.","perm_cam":"Fotocamera / microfono","perm_geo":"Posizione","perm_rtc":"Connessioni dirette tra browser (WebRTC)","perm_share":"Condivisione (Web Share)","perm_notif":"Notifiche","perm_tts":"Sintesi vocale","perm_stt":"Riconoscimento vocale","perm_clip":"Appunti","perm_sw":"Service worker (installazione / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Crittografia (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"File","file_size":"Dimensione: {size}","file_hash":"SHA-256 dichiarato:","file_nohash":"In questo file non è dichiarata alcuna somma di controllo.","file_how_h":"Come verificare","file_how":"Scegli il file scaricato: ne viene calcolato lo SHA-256 dopo aver svuotato i campi hash (data-fff-hash e «sha256») e confrontato con il valore dichiarato. Lo stesso calcolo da terminale:","verify_btn":"Verifica un file scaricato…","verify_ok":"Corrisponde: il file è identico a quello dichiarato.","verify_bad":"Non corrisponde. Calcolato: {got}","verify_err":"Impossibile leggere il file.","verify_cmd":"Comando di verifica","bk_h":"Copia di sicurezza","bk_hint":"Un file .fff.json con i dati localStorage dell’app. La variante cifrata usa AES-GCM 256 con chiave derivata tramite PBKDF2-SHA256 ({iter} iterazioni); la password non è recuperabile.","bk_export":"Esporta","bk_export_enc":"Esporta cifrato…","bk_import":"Importa…","bk_wipe":"Elimina i dati dell’app","bk_pw":"Password (min. {n} caratteri)","bk_pw2":"Ripeti la password","bk_go":"Esporta cifrato","bk_pw_file":"Password del file","bk_import_go":"Importa","pw_mismatch":"Le password non coincidono.","ok_export":"Esportato: {file} ({n} chiavi).","ok_export_enc":"Esportato cifrato: {file} ({n} chiavi).","ok_import":"Importate {n} chiavi. Ricarico la pagina…","ok_wipe":"Eliminate {n} chiavi. Ricarico la pagina…","nothing_to_wipe":"Non ci sono dati da eliminare.","enter_pw":"Il file {file} è cifrato: inserisci la password.","cancelled":"Annullato.","kit_line":"fff-kit v{v} · moduli: {mods}","install":"Installa l’app"},"es":{"title":"Transparencia","open_hint":"Abrir la etiqueta de transparencia","close":"Cerrar","disabled":"Las funciones del kit están desactivadas para esta aplicación: {reason}","self_mod":"Atención: esta aplicación puede guardar su propia copia (junto con tus datos). El SHA-256 declarado solo vale para el archivo distribuido originalmente.","net_h":"Red","net_none":"0 solicitudes externas declaradas","net_list":"Hosts externos declarados o permitidos por la política de seguridad (CSP):","net_note":"Declarado al construir el archivo mediante análisis del código; también puedes comprobarlo en la pestaña Red de las herramientas del navegador.","net_unknown":"Información no disponible: el archivo no contiene el descriptor de transparencia.","store_h":"Almacenamiento local","store_none":"Ninguna clave en localStorage.","store_sum":"{n} claves · {size}","store_key":"Clave","store_size":"Tamaño","store_more":"…y {n} claves más","store_idb":"La aplicación también usa IndexedDB, que no se incluye en la copia de seguridad.","store_note":"Los datos permanecen en este navegador; no se envía nada.","perm_h":"Permisos y API usadas","perm_none":"No se detectaron API sensibles.","perm_note":"Detectadas de forma estática en el código fuente; para las sensibles, el navegador pide tu consentimiento.","perm_cam":"Cámara / micrófono","perm_geo":"Ubicación","perm_rtc":"Conexiones directas entre navegadores (WebRTC)","perm_share":"Compartir (Web Share)","perm_notif":"Notificaciones","perm_tts":"Síntesis de voz","perm_stt":"Reconocimiento de voz","perm_clip":"Portapapeles","perm_sw":"Service worker (instalación / sin conexión)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Criptografía (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Archivo","file_size":"Tamaño: {size}","file_hash":"SHA-256 declarado:","file_nohash":"Este archivo no declara ninguna suma de verificación.","file_how_h":"Cómo verificar","file_how":"Elige el archivo descargado: se calcula su SHA-256 tras vaciar los campos de hash (data-fff-hash y «sha256») y se compara con el valor declarado. El mismo cálculo en una terminal:","verify_btn":"Verificar un archivo descargado…","verify_ok":"Coincide: el archivo es idéntico al declarado.","verify_bad":"No coincide. Calculado: {got}","verify_err":"No se pudo leer el archivo.","verify_cmd":"Comando de verificación","bk_h":"Copia de seguridad","bk_hint":"Un archivo .fff.json con los datos de localStorage de la aplicación. La variante cifrada usa AES-GCM 256 con clave derivada mediante PBKDF2-SHA256 ({iter} iteraciones); la contraseña no se puede recuperar.","bk_export":"Exportar","bk_export_enc":"Exportar cifrado…","bk_import":"Importar…","bk_wipe":"Borrar los datos de la aplicación","bk_pw":"Contraseña (mín. {n} caracteres)","bk_pw2":"Repite la contraseña","bk_go":"Exportar cifrado","bk_pw_file":"Contraseña del archivo","bk_import_go":"Importar","pw_mismatch":"Las contraseñas no coinciden.","ok_export":"Exportado: {file} ({n} claves).","ok_export_enc":"Exportado cifrado: {file} ({n} claves).","ok_import":"{n} claves importadas. Recargando la página…","ok_wipe":"{n} claves borradas. Recargando la página…","nothing_to_wipe":"No hay datos que borrar.","enter_pw":"El archivo {file} está cifrado: introduce la contraseña.","cancelled":"Cancelado.","kit_line":"fff-kit v{v} · módulos: {mods}","install":"Instalar la aplicación"},"pt":{"title":"Transparência","open_hint":"Abrir a etiqueta de transparência","close":"Fechar","disabled":"As funções do kit estão desativadas para esta aplicação: {reason}","self_mod":"Atenção: esta aplicação pode guardar a sua própria cópia (juntamente com os seus dados). O SHA-256 declarado aplica-se apenas ao ficheiro distribuído originalmente.","net_h":"Rede","net_none":"0 pedidos externos declarados","net_list":"Anfitriões externos declarados ou permitidos pela política de segurança (CSP):","net_note":"Declarado na construção do ficheiro, por análise do código; pode também verificar no separador Rede das ferramentas do navegador.","net_unknown":"Informação indisponível: o ficheiro não contém o descritor de transparência.","store_h":"Armazenamento local","store_none":"Nenhuma chave em localStorage.","store_sum":"{n} chaves · {size}","store_key":"Chave","store_size":"Tamanho","store_more":"…e mais {n} chaves","store_idb":"A aplicação usa também IndexedDB, que não está incluído na cópia de segurança.","store_note":"Os dados ficam neste navegador; nada é enviado.","perm_h":"Permissões e APIs usadas","perm_none":"Não foram detetadas APIs sensíveis.","perm_note":"Detetadas de forma estática no código-fonte; para as sensíveis, o navegador pede o seu consentimento.","perm_cam":"Câmara / microfone","perm_geo":"Localização","perm_rtc":"Ligações diretas entre navegadores (WebRTC)","perm_share":"Partilha (Web Share)","perm_notif":"Notificações","perm_tts":"Síntese de voz","perm_stt":"Reconhecimento de voz","perm_clip":"Área de transferência","perm_sw":"Service worker (instalação / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Criptografia (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Ficheiro","file_size":"Tamanho: {size}","file_hash":"SHA-256 declarado:","file_nohash":"Este ficheiro não declara nenhuma soma de verificação.","file_how_h":"Como verificar","file_how":"Escolha o ficheiro descarregado: o seu SHA-256 é calculado após esvaziar os campos de hash (data-fff-hash e «sha256») e comparado com o valor declarado. O mesmo cálculo num terminal:","verify_btn":"Verificar um ficheiro descarregado…","verify_ok":"Coincide: o ficheiro é idêntico ao declarado.","verify_bad":"Não coincide. Calculado: {got}","verify_err":"Não foi possível ler o ficheiro.","verify_cmd":"Comando de verificação","bk_h":"Cópia de segurança","bk_hint":"Um ficheiro .fff.json com os dados de localStorage da aplicação. A variante cifrada usa AES-GCM 256 com chave derivada por PBKDF2-SHA256 ({iter} iterações); a palavra-passe não pode ser recuperada.","bk_export":"Exportar","bk_export_enc":"Exportar cifrado…","bk_import":"Importar…","bk_wipe":"Apagar os dados da aplicação","bk_pw":"Palavra-passe (mín. {n} caracteres)","bk_pw2":"Repita a palavra-passe","bk_go":"Exportar cifrado","bk_pw_file":"Palavra-passe do ficheiro","bk_import_go":"Importar","pw_mismatch":"As palavras-passe não coincidem.","ok_export":"Exportado: {file} ({n} chaves).","ok_export_enc":"Exportado cifrado: {file} ({n} chaves).","ok_import":"{n} chaves importadas. A recarregar a página…","ok_wipe":"{n} chaves apagadas. A recarregar a página…","nothing_to_wipe":"Não há dados para apagar.","enter_pw":"O ficheiro {file} está cifrado: introduza a palavra-passe.","cancelled":"Cancelado.","kit_line":"fff-kit v{v} · módulos: {mods}","install":"Instalar a aplicação"},"hu":{"title":"Átláthatóság","open_hint":"Az átláthatósági címke megnyitása","close":"Bezárás","disabled":"A kit funkciói ki vannak kapcsolva ennél az alkalmazásnál: {reason}","self_mod":"Figyelem: ez az alkalmazás képes saját másolatot menteni (az adataiddal együtt). A megadott SHA-256 csak az eredetileg terjesztett fájlra érvényes.","net_h":"Hálózat","net_none":"0 külső kérés megadva","net_list":"A biztonsági irányelv (CSP) által megadott vagy engedélyezett külső gazdák:","net_note":"Az összeállításkor a kód elemzésével megadva; a böngésző eszközeinek Hálózat lapján is ellenőrizheted.","net_unknown":"Az információ nem érhető el: a fájl nem tartalmaz átláthatósági leírót.","store_h":"Helyi tárolás","store_none":"Nincs kulcs a localStorage-ban.","store_sum":"{n} kulcs · {size}","store_key":"Kulcs","store_size":"Méret","store_more":"…és még {n} kulcs","store_idb":"Az alkalmazás IndexedDB-t is használ, amely nem része a biztonsági mentésnek.","store_note":"Az adatok ebben a böngészőben maradnak; semmi sem kerül elküldésre.","perm_h":"Használt engedélyek és API-k","perm_none":"Nem található érzékeny API.","perm_note":"Statikusan, a forráskódban észlelve; az érzékenyeknél a böngésző a hozzájárulásodat kéri.","perm_cam":"Kamera / mikrofon","perm_geo":"Helyadat","perm_rtc":"Közvetlen böngésző–böngésző kapcsolatok (WebRTC)","perm_share":"Megosztás (Web Share)","perm_notif":"Értesítések","perm_tts":"Beszédszintézis","perm_stt":"Beszédfelismerés","perm_clip":"Vágólap","perm_sw":"Service worker (telepítés / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Kriptográfia (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Fájl","file_size":"Méret: {size}","file_hash":"Megadott SHA-256:","file_nohash":"Ebben a fájlban nincs megadva ellenőrző összeg.","file_how_h":"Hogyan ellenőrizd","file_how":"Válaszd ki a letöltött fájlt: a program kiszámolja az SHA-256 értéket a hash mezők (data-fff-hash és „sha256”) kiürítése után, és összeveti a megadottal. Ugyanez terminálban:","verify_btn":"Letöltött fájl ellenőrzése…","verify_ok":"Egyezik: a fájl megegyezik a megadottal.","verify_bad":"Nem egyezik. Számított: {got}","verify_err":"A fájlt nem sikerült beolvasni.","verify_cmd":"Ellenőrző parancs","bk_h":"Biztonsági mentés","bk_hint":"Egy .fff.json fájl az alkalmazás localStorage-adataival. A titkosított változat AES-GCM 256-ot használ, PBKDF2-SHA256-tal ({iter} iteráció) származtatott kulccsal; a jelszó nem állítható vissza.","bk_export":"Exportálás","bk_export_enc":"Titkosított exportálás…","bk_import":"Importálás…","bk_wipe":"Az alkalmazás adatainak törlése","bk_pw":"Jelszó (legalább {n} karakter)","bk_pw2":"Jelszó újra","bk_go":"Titkosított exportálás","bk_pw_file":"A fájl jelszava","bk_import_go":"Importálás","pw_mismatch":"A jelszavak nem egyeznek.","ok_export":"Exportálva: {file} ({n} kulcs).","ok_export_enc":"Titkosítva exportálva: {file} ({n} kulcs).","ok_import":"{n} kulcs importálva. Az oldal újratöltése…","ok_wipe":"{n} kulcs törölve. Az oldal újratöltése…","nothing_to_wipe":"Nincs törölhető adat.","enter_pw":"A(z) {file} fájl titkosított: add meg a jelszót.","cancelled":"Megszakítva.","kit_line":"fff-kit v{v} · modulok: {mods}","install":"Alkalmazás telepítése"},"de":{"title":"Transparenz","open_hint":"Transparenz-Etikett öffnen","close":"Schließen","disabled":"Die Kit-Funktionen sind für diese App deaktiviert: {reason}","self_mod":"Hinweis: Diese App kann eine eigene Kopie speichern (samt deiner Daten). Der angegebene SHA-256 gilt nur für die ursprünglich verteilte Datei.","net_h":"Netzwerk","net_none":"0 externe Anfragen angegeben","net_list":"Externe Hosts, die angegeben oder von der Sicherheitsrichtlinie (CSP) erlaubt sind:","net_note":"Beim Erstellen per Code-Analyse angegeben; du kannst es auch im Netzwerk-Tab der Browser-Werkzeuge prüfen.","net_unknown":"Informationen nicht verfügbar: Die Datei enthält keinen Transparenz-Deskriptor.","store_h":"Lokaler Speicher","store_none":"Keine Schlüssel in localStorage.","store_sum":"{n} Schlüssel · {size}","store_key":"Schlüssel","store_size":"Größe","store_more":"…und {n} weitere Schlüssel","store_idb":"Die App nutzt auch IndexedDB, das nicht in der Sicherung enthalten ist.","store_note":"Die Daten bleiben in diesem Browser; nichts wird gesendet.","perm_h":"Verwendete Berechtigungen und APIs","perm_none":"Keine sensiblen APIs erkannt.","perm_note":"Statisch im Quelltext erkannt; bei sensiblen fragt der Browser nach deiner Zustimmung.","perm_cam":"Kamera / Mikrofon","perm_geo":"Standort","perm_rtc":"Direkte Browser-zu-Browser-Verbindungen (WebRTC)","perm_share":"Teilen (Web Share)","perm_notif":"Benachrichtigungen","perm_tts":"Sprachsynthese","perm_stt":"Spracherkennung","perm_clip":"Zwischenablage","perm_sw":"Service Worker (Installation / offline)","perm_idb":"IndexedDB","perm_ls":"localStorage","perm_crypto":"Kryptografie (Web Crypto)","perm_webgl":"WebGL","perm_webgpu":"WebGPU","perm_worker":"Web Worker","perm_bc":"BroadcastChannel","file_h":"Datei","file_size":"Größe: {size}","file_hash":"Angegebener SHA-256:","file_nohash":"In dieser Datei ist keine Prüfsumme angegeben.","file_how_h":"So prüfst du","file_how":"Wähle die heruntergeladene Datei: Ihr SHA-256 wird nach dem Leeren der Hash-Felder (data-fff-hash und „sha256“) berechnet und mit dem angegebenen Wert verglichen. Dieselbe Berechnung im Terminal:","verify_btn":"Heruntergeladene Datei prüfen…","verify_ok":"Übereinstimmung: Die Datei ist identisch mit der angegebenen.","verify_bad":"Keine Übereinstimmung. Berechnet: {got}","verify_err":"Die Datei konnte nicht gelesen werden.","verify_cmd":"Prüfbefehl","bk_h":"Sicherung","bk_hint":"Eine .fff.json-Datei mit den localStorage-Daten der App. Die verschlüsselte Variante nutzt AES-GCM 256 mit einem per PBKDF2-SHA256 ({iter} Iterationen) abgeleiteten Schlüssel; das Passwort ist nicht wiederherstellbar.","bk_export":"Exportieren","bk_export_enc":"Verschlüsselt exportieren…","bk_import":"Importieren…","bk_wipe":"App-Daten löschen","bk_pw":"Passwort (mind. {n} Zeichen)","bk_pw2":"Passwort wiederholen","bk_go":"Verschlüsselt exportieren","bk_pw_file":"Passwort der Datei","bk_import_go":"Importieren","pw_mismatch":"Die Passwörter stimmen nicht überein.","ok_export":"Exportiert: {file} ({n} Schlüssel).","ok_export_enc":"Verschlüsselt exportiert: {file} ({n} Schlüssel).","ok_import":"{n} Schlüssel importiert. Seite wird neu geladen…","ok_wipe":"{n} Schlüssel gelöscht. Seite wird neu geladen…","nothing_to_wipe":"Keine Daten zum Löschen vorhanden.","enter_pw":"Die Datei {file} ist verschlüsselt: Passwort eingeben.","cancelled":"Abgebrochen.","kit_line":"fff-kit v{v} · Module: {mods}","install":"App installieren"}},"bundle":{"ro":{"err_format":"Fișierul nu este o copie de siguranță fff validă.","err_schema":"Schema {v} nu este acceptată (se așteaptă 1).","err_app":"Copia aparține aplicației „{got}”, nu „{want}”.","err_password_required":"Fișierul {file} este criptat: este necesară parola.","err_bad_password":"Parolă greșită sau fișier alterat.","err_pw_short":"Parola trebuie să aibă cel puțin {n} caractere.","err_nocrypto":"Browserul nu oferă Web Crypto (necesită https sau fișier local).","err_read":"Fișierul nu a putut fi citit.","err_too_big":"Fișierul este prea mare.","err_quota":"Spațiul de stocare este plin; nu s-a modificat nimic.","err_key":"Cheie nepermisă în fișier: {k}","yes":"Da","no":"Anulează","wipe_yes":"Șterge","confirm_import":"Imporți {n} chei în „{app}” (versiunea {ver}, exportat la {date})? Valorile existente cu aceleași chei vor fi înlocuite.","confirm_wipe":"Ștergi {n} chei ale acestei aplicații din acest browser? Acțiunea nu poate fi anulată.","err_iter":"Numărul de iterații din fișier este invalid (trebuie să fie un număr întreg între {min} și {max}).","import_keys":"Chei: {list}","import_unknown":"Atenție: {n} chei nu sunt declarate de această aplicație: {list}. Continuă doar dacă ai încredere în fișier.","sens_msg":"Exportul conține date sensibile necriptate (chei: {list}). Îl criptezi cu o parolă? (recomandat)","sens_enc":"Criptează (recomandat)","sens_plain":"Exportă necriptat","pw_prompt":"Alege o parolă pentru fișier (min. {n} caractere). Nu poate fi recuperată dacă o uiți.","pw_label":"Parolă (min. {n} caractere)","pw_label2":"Repetă parola","pw_go":"Exportă criptat","pw_mismatch":"Parolele nu coincid.","pw_weak":"Tărie: slabă","pw_fair":"Tărie: acceptabilă","pw_strong":"Tărie: bună"},"en":{"err_format":"The file is not a valid fff backup.","err_schema":"Schema {v} is not supported (expected 1).","err_app":"This backup belongs to the app \"{got}\", not \"{want}\".","err_password_required":"The file {file} is encrypted: a password is required.","err_bad_password":"Wrong password or altered file.","err_pw_short":"The password must have at least {n} characters.","err_nocrypto":"This browser does not offer Web Crypto (requires https or a local file).","err_read":"The file could not be read.","err_too_big":"The file is too large.","err_quota":"Storage is full; nothing was changed.","err_key":"Key not allowed in file: {k}","yes":"Yes","no":"Cancel","wipe_yes":"Delete","confirm_import":"Import {n} keys into \"{app}\" (version {ver}, exported {date})? Existing values with the same keys will be replaced.","confirm_wipe":"Delete {n} keys of this app from this browser? This cannot be undone.","err_iter":"The number of iterations in the file is invalid (it must be a whole number between {min} and {max}).","import_keys":"Keys: {list}","import_unknown":"Warning: {n} keys are not declared by this app: {list}. Continue only if you trust the file.","sens_msg":"The export contains unencrypted sensitive data (keys: {list}). Encrypt it with a password? (recommended)","sens_enc":"Encrypt (recommended)","sens_plain":"Export unencrypted","pw_prompt":"Choose a password for the file (min. {n} characters). It cannot be recovered if you forget it.","pw_label":"Password (min. {n} characters)","pw_label2":"Repeat password","pw_go":"Export encrypted","pw_mismatch":"Passwords do not match.","pw_weak":"Strength: weak","pw_fair":"Strength: fair","pw_strong":"Strength: good"},"fr":{"err_format":"Le fichier n’est pas une sauvegarde fff valide.","err_schema":"Le schéma {v} n’est pas pris en charge (attendu : 1).","err_app":"Cette sauvegarde appartient à l’application « {got} », pas à « {want} ».","err_password_required":"Le fichier {file} est chiffré : un mot de passe est requis.","err_bad_password":"Mot de passe erroné ou fichier altéré.","err_pw_short":"Le mot de passe doit comporter au moins {n} caractères.","err_nocrypto":"Ce navigateur n’offre pas Web Crypto (https ou fichier local requis).","err_read":"Le fichier n’a pas pu être lu.","err_too_big":"Le fichier est trop volumineux.","err_quota":"Le stockage est plein ; rien n’a été modifié.","err_key":"Clé non autorisée dans le fichier : {k}","yes":"Oui","no":"Annuler","wipe_yes":"Supprimer","confirm_import":"Importer {n} clés dans « {app} » (version {ver}, exporté le {date}) ? Les valeurs existantes ayant les mêmes clés seront remplacées.","confirm_wipe":"Supprimer {n} clés de cette application dans ce navigateur ? Cette action est irréversible.","err_iter":"Le nombre d’itérations du fichier est invalide (il doit être un entier compris entre {min} et {max}).","import_keys":"Clés : {list}","import_unknown":"Attention : {n} clés ne sont pas déclarées par cette application : {list}. Ne continuez que si vous faites confiance au fichier.","sens_msg":"L’export contient des données sensibles non chiffrées (clés : {list}). Le chiffrer avec un mot de passe ? (recommandé)","sens_enc":"Chiffrer (recommandé)","sens_plain":"Exporter sans chiffrement","pw_prompt":"Choisissez un mot de passe pour le fichier (min. {n} caractères). Il est irrécupérable si vous l’oubliez.","pw_label":"Mot de passe (min. {n} caractères)","pw_label2":"Répéter le mot de passe","pw_go":"Exporter chiffré","pw_mismatch":"Les mots de passe ne correspondent pas.","pw_weak":"Robustesse : faible","pw_fair":"Robustesse : correcte","pw_strong":"Robustesse : bonne"},"it":{"err_format":"Il file non è un backup fff valido.","err_schema":"Lo schema {v} non è supportato (atteso: 1).","err_app":"Questo backup appartiene all’app «{got}», non a «{want}».","err_password_required":"Il file {file} è cifrato: serve la password.","err_bad_password":"Password errata o file alterato.","err_pw_short":"La password deve avere almeno {n} caratteri.","err_nocrypto":"Questo browser non offre Web Crypto (serve https o un file locale).","err_read":"Impossibile leggere il file.","err_too_big":"Il file è troppo grande.","err_quota":"Archivio pieno; non è stato modificato nulla.","err_key":"Chiave non consentita nel file: {k}","yes":"Sì","no":"Annulla","wipe_yes":"Elimina","confirm_import":"Importare {n} chiavi in «{app}» (versione {ver}, esportato il {date})? I valori esistenti con le stesse chiavi verranno sostituiti.","confirm_wipe":"Eliminare {n} chiavi di questa app da questo browser? L’azione non è annullabile.","err_iter":"Il numero di iterazioni nel file non è valido (deve essere un intero compreso tra {min} e {max}).","import_keys":"Chiavi: {list}","import_unknown":"Attenzione: {n} chiavi non sono dichiarate da questa app: {list}. Continua solo se ti fidi del file.","sens_msg":"L’esportazione contiene dati sensibili non cifrati (chiavi: {list}). Cifrarla con una password? (consigliato)","sens_enc":"Cifra (consigliato)","sens_plain":"Esporta senza cifratura","pw_prompt":"Scegli una password per il file (min. {n} caratteri). Non è recuperabile se la dimentichi.","pw_label":"Password (min. {n} caratteri)","pw_label2":"Ripeti la password","pw_go":"Esporta cifrato","pw_mismatch":"Le password non coincidono.","pw_weak":"Robustezza: debole","pw_fair":"Robustezza: discreta","pw_strong":"Robustezza: buona"},"es":{"err_format":"El archivo no es una copia de seguridad fff válida.","err_schema":"El esquema {v} no es compatible (se espera 1).","err_app":"Esta copia pertenece a la aplicación «{got}», no a «{want}».","err_password_required":"El archivo {file} está cifrado: se necesita la contraseña.","err_bad_password":"Contraseña incorrecta o archivo alterado.","err_pw_short":"La contraseña debe tener al menos {n} caracteres.","err_nocrypto":"Este navegador no ofrece Web Crypto (requiere https o un archivo local).","err_read":"No se pudo leer el archivo.","err_too_big":"El archivo es demasiado grande.","err_quota":"El almacenamiento está lleno; no se modificó nada.","err_key":"Clave no permitida en el archivo: {k}","yes":"Sí","no":"Cancelar","wipe_yes":"Borrar","confirm_import":"¿Importar {n} claves en «{app}» (versión {ver}, exportado el {date})? Los valores existentes con las mismas claves se sustituirán.","confirm_wipe":"¿Borrar {n} claves de esta aplicación en este navegador? No se puede deshacer.","err_iter":"El número de iteraciones del archivo no es válido (debe ser un entero entre {min} y {max}).","import_keys":"Claves: {list}","import_unknown":"Atención: {n} claves no están declaradas por esta aplicación: {list}. Continúa solo si confías en el archivo.","sens_msg":"La exportación contiene datos sensibles sin cifrar (claves: {list}). ¿Cifrarla con una contraseña? (recomendado)","sens_enc":"Cifrar (recomendado)","sens_plain":"Exportar sin cifrar","pw_prompt":"Elige una contraseña para el archivo (mín. {n} caracteres). No se puede recuperar si la olvidas.","pw_label":"Contraseña (mín. {n} caracteres)","pw_label2":"Repite la contraseña","pw_go":"Exportar cifrado","pw_mismatch":"Las contraseñas no coinciden.","pw_weak":"Seguridad: débil","pw_fair":"Seguridad: aceptable","pw_strong":"Seguridad: buena"},"pt":{"err_format":"O ficheiro não é uma cópia de segurança fff válida.","err_schema":"O esquema {v} não é suportado (esperado: 1).","err_app":"Esta cópia pertence à aplicação «{got}», não a «{want}».","err_password_required":"O ficheiro {file} está cifrado: é necessária a palavra-passe.","err_bad_password":"Palavra-passe errada ou ficheiro alterado.","err_pw_short":"A palavra-passe deve ter pelo menos {n} caracteres.","err_nocrypto":"Este navegador não oferece Web Crypto (requer https ou ficheiro local).","err_read":"Não foi possível ler o ficheiro.","err_too_big":"O ficheiro é demasiado grande.","err_quota":"O armazenamento está cheio; nada foi alterado.","err_key":"Chave não permitida no ficheiro: {k}","yes":"Sim","no":"Cancelar","wipe_yes":"Apagar","confirm_import":"Importar {n} chaves para «{app}» (versão {ver}, exportado em {date})? Os valores existentes com as mesmas chaves serão substituídos.","confirm_wipe":"Apagar {n} chaves desta aplicação neste navegador? Não é possível anular.","err_iter":"O número de iterações do ficheiro é inválido (deve ser um inteiro entre {min} e {max}).","import_keys":"Chaves: {list}","import_unknown":"Atenção: {n} chaves não são declaradas por esta aplicação: {list}. Continue apenas se confiar no ficheiro.","sens_msg":"A exportação contém dados sensíveis não cifrados (chaves: {list}). Cifrá-la com uma palavra-passe? (recomendado)","sens_enc":"Cifrar (recomendado)","sens_plain":"Exportar sem cifrar","pw_prompt":"Escolha uma palavra-passe para o ficheiro (mín. {n} caracteres). Não é recuperável se a esquecer.","pw_label":"Palavra-passe (mín. {n} caracteres)","pw_label2":"Repita a palavra-passe","pw_go":"Exportar cifrado","pw_mismatch":"As palavras-passe não coincidem.","pw_weak":"Robustez: fraca","pw_fair":"Robustez: razoável","pw_strong":"Robustez: boa"},"hu":{"err_format":"A fájl nem érvényes fff biztonsági mentés.","err_schema":"A(z) {v} séma nem támogatott (várt: 1).","err_app":"Ez a mentés a(z) „{got}” alkalmazáshoz tartozik, nem a(z) „{want}” alkalmazáshoz.","err_password_required":"A(z) {file} fájl titkosított: jelszó szükséges.","err_bad_password":"Hibás jelszó vagy módosított fájl.","err_pw_short":"A jelszónak legalább {n} karakter hosszúnak kell lennie.","err_nocrypto":"Ez a böngésző nem kínál Web Crypto-t (https vagy helyi fájl szükséges).","err_read":"A fájlt nem sikerült beolvasni.","err_too_big":"A fájl túl nagy.","err_quota":"A tárhely megtelt; semmi sem változott.","err_key":"Nem engedélyezett kulcs a fájlban: {k}","yes":"Igen","no":"Mégse","wipe_yes":"Törlés","confirm_import":"Importálsz {n} kulcsot a(z) „{app}” alkalmazásba (verzió: {ver}, exportálva: {date})? Az azonos kulcsú meglévő értékek felülíródnak.","confirm_wipe":"Törlöd az alkalmazás {n} kulcsát ebből a böngészőből? Ez nem vonható vissza.","err_iter":"A fájlban szereplő iterációszám érvénytelen (egész számnak kell lennie {min} és {max} között).","import_keys":"Kulcsok: {list}","import_unknown":"Figyelem: {n} kulcsot nem deklarál ez az alkalmazás: {list}. Csak akkor folytasd, ha megbízol a fájlban.","sens_msg":"Az export titkosítatlan érzékeny adatokat tartalmaz (kulcsok: {list}). Titkosítod jelszóval? (ajánlott)","sens_enc":"Titkosítás (ajánlott)","sens_plain":"Exportálás titkosítás nélkül","pw_prompt":"Válassz jelszót a fájlhoz (legalább {n} karakter). Ha elfelejted, nem állítható vissza.","pw_label":"Jelszó (legalább {n} karakter)","pw_label2":"Jelszó ismét","pw_go":"Titkosított exportálás","pw_mismatch":"A jelszavak nem egyeznek.","pw_weak":"Erősség: gyenge","pw_fair":"Erősség: elfogadható","pw_strong":"Erősség: jó"},"de":{"err_format":"Die Datei ist keine gültige fff-Sicherung.","err_schema":"Schema {v} wird nicht unterstützt (erwartet: 1).","err_app":"Diese Sicherung gehört zur App „{got}“, nicht zu „{want}“.","err_password_required":"Die Datei {file} ist verschlüsselt: Passwort erforderlich.","err_bad_password":"Falsches Passwort oder veränderte Datei.","err_pw_short":"Das Passwort muss mindestens {n} Zeichen haben.","err_nocrypto":"Dieser Browser bietet kein Web Crypto (https oder lokale Datei erforderlich).","err_read":"Die Datei konnte nicht gelesen werden.","err_too_big":"Die Datei ist zu groß.","err_quota":"Speicher voll; es wurde nichts geändert.","err_key":"Schlüssel in der Datei nicht erlaubt: {k}","yes":"Ja","no":"Abbrechen","wipe_yes":"Löschen","confirm_import":"{n} Schlüssel in „{app}“ importieren (Version {ver}, exportiert am {date})? Vorhandene Werte mit denselben Schlüsseln werden ersetzt.","confirm_wipe":"{n} Schlüssel dieser App aus diesem Browser löschen? Das kann nicht rückgängig gemacht werden.","err_iter":"Die Anzahl der Iterationen in der Datei ist ungültig (muss eine ganze Zahl zwischen {min} und {max} sein).","import_keys":"Schlüssel: {list}","import_unknown":"Achtung: {n} Schlüssel werden von dieser App nicht deklariert: {list}. Fahre nur fort, wenn du der Datei vertraust.","sens_msg":"Der Export enthält unverschlüsselte sensible Daten (Schlüssel: {list}). Mit einem Passwort verschlüsseln? (empfohlen)","sens_enc":"Verschlüsseln (empfohlen)","sens_plain":"Unverschlüsselt exportieren","pw_prompt":"Wähle ein Passwort für die Datei (mind. {n} Zeichen). Es lässt sich nicht wiederherstellen, wenn du es vergisst.","pw_label":"Passwort (mind. {n} Zeichen)","pw_label2":"Passwort wiederholen","pw_go":"Verschlüsselt exportieren","pw_mismatch":"Die Passwörter stimmen nicht überein.","pw_weak":"Stärke: schwach","pw_fair":"Stärke: ausreichend","pw_strong":"Stärke: gut"}}}</script>
 <!--fff:kit:end-->
 <!--fff:info:start-->
-<script type="application/json" id="fff-info">{"schema":1,"slug":"decibel","name":"Decibel","version":"1.0.1","updated":"2026-10-27","description":"Decibel: sonometru (ponderări A/C/Z, Fast/Slow, LAeq, Lmax, L10/L50/L90, SEL, doză de zgomot), analizor de spectru 1/3 și 1/1 de octavă, calibrare și audiogramă orientativă. Rulează local, nu trimite nimic.","egress":[],"permissions":["getUserMedia","serviceWorker","localStorage"],"storageKeys":[],"sizeBytes":379545,"sha256":"60c95138f01795a74f0648dc36bd3f56eaa67a5d1c8756da5779f94270e3fd4c","csp":{"present":true,"directives":{"default-src":"'none'","script-src":"sha256×3","style-src":"'unsafe-inline'","img-src":"'self' data: blob:","media-src":"data: blob:","font-src":"data:","connect-src":"'none'","base-uri":"'none'","form-action":"'none'","frame-src":"'none'","object-src":"'none'","worker-src":"'self' blob:","manifest-src":"'self'"},"scriptInline":"hash","connect":"'none'"},"features":{"export":true,"import":true,"i18n":["ro","en","fr","it","es","pt","hu","de"],"pwa":{"manifest":true,"serviceWorker":true},"modules":["core","label","bundle"]},"kit":{"version":"1.2.0","modules":["core","label","bundle"]},"selfSerializing":false}</script>
+<script type="application/json" id="fff-info">{"schema":1,"slug":"decibel","name":"Decibel","version":"2.1.0","updated":"2026-10-31","description":"Decibel: sonometru (ponderări A/C/Z, Fast/Slow, LAeq, Lmax, L10/L50/L90, SEL, doză de zgomot), analizor de spectru 1/3 și 1/1 de octavă, calibrare și audiogramă orientativă. Rulează local, nu trimite nimic.","egress":[],"permissions":["getUserMedia","serviceWorker","localStorage"],"storageKeys":[],"sizeBytes":452219,"sha256":"825c6a3ff0f701d442417be58ce5cacf177a6bfc000c3291844f92cb2d876162","csp":{"present":true,"directives":{"default-src":"'none'","script-src":"sha256×3","style-src":"'unsafe-inline'","img-src":"'self' data: blob:","media-src":"data: blob:","font-src":"data:","connect-src":"'none'","base-uri":"'none'","form-action":"'none'","frame-src":"'none'","object-src":"'none'","worker-src":"'self' blob:","manifest-src":"'self'"},"scriptInline":"hash","connect":"'none'"},"features":{"export":true,"import":true,"i18n":["ro","en","fr","it","es","pt","hu","de"],"pwa":{"manifest":true,"serviceWorker":true},"modules":["core","store","dialog","label","bundle"]},"kit":{"version":"1.2.0","modules":["core","store","dialog","label","bundle"]},"selfSerializing":false}</script>
 <!--fff:info:end-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Decibel</title>
 <meta name="description" content="Decibel: sonometru (ponderări A/C/Z, Fast/Slow, LAeq, Lmax, L10/L50/L90, SEL, doză de zgomot), analizor de spectru 1/3 și 1/1 de octavă, calibrare și audiogramă orientativă. Rulează local, nu trimite nimic.">
-<meta name="application-version" content="1.0.1">
-<meta name="last-updated" content="2026-10-27">
+<meta name="application-version" content="2.1.0">
+<meta name="last-updated" content="2026-10-31">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-vYPdi/ArsSF/P0+T3/VF6X2PG9dca/AVodHyMbTq69g=' 'sha256-YO40Pa9U54kBXfBS8s7ySLVhwIuT7JC9cMSApha5DIk=' 'sha256-d1sYdJR/IWM06EXr4KpgxH6/mobSgTAfYM0uSI8TV+8='; style-src 'unsafe-inline'; img-src 'self' data: blob:; media-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; object-src 'none'; worker-src 'self' blob:; manifest-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V7SIlgjVGmpL1YFiUTLcsbEsgPi4Dx6cTfjva9cD2Vg=' 'sha256-YO40Pa9U54kBXfBS8s7ySLVhwIuT7JC9cMSApha5DIk=' 'sha256-maQQL1szhlNAC/idoVULhfsLL7fshteey9WChob8Lgo='; style-src 'unsafe-inline'; img-src 'self' data: blob:; media-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; object-src 'none'; worker-src 'self' blob:; manifest-src 'self'">
 <style>
 :root{
   color-scheme:light dark;
@@ -1117,7 +1842,7 @@ p{margin:.4rem 0}
 .btn.big{min-height:52px;font-size:1.1rem;padding:.6rem 1.4rem}
 select,input[type=text],input[type=number]{min-height:36px;padding:.3rem .5rem;border:1px solid var(--line);border-radius:6px;background:var(--surface);max-width:100%}
 input[type=range]{width:100%;min-height:28px;accent-color:var(--accent)}
-input[type=checkbox],input[type=radio]{width:18px;height:18px;accent-color:var(--accent);vertical-align:-3px}
+input[type=checkbox],input[type=radio]{width:24px;height:24px;accent-color:var(--accent);vertical-align:-6px}
 label{display:inline-block}
 .banner{border:1px solid var(--line);border-left:4px solid var(--warn);background:var(--warn-bg);color:var(--ink);padding:.5rem .8rem;border-radius:6px;font-size:.92rem;margin:.4rem 0}
 .banner strong{color:var(--warn)}
@@ -1155,6 +1880,9 @@ fieldset label{margin-right:.8rem;white-space:nowrap;min-height:28px}
 .stat{border:1px solid var(--line);border-radius:6px;padding:.4rem .6rem;background:var(--bg);min-width:0}
 .stat .k{font-size:.78rem;color:var(--ink2);overflow-wrap:anywhere}
 .stat .v{font-size:1.25rem;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.mapbar{display:block;height:10px;min-width:70px;background:var(--surface2);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.mapbar span{display:block;height:100%;width:0;background:var(--accent)}
+.mapbar.hi span{background:var(--danger)}
 canvas.cv{width:100%;display:block;background:var(--bg);border:1px solid var(--line);border-radius:6px}
 .tbl-wrap{overflow-x:auto;position:relative}
 table{border-collapse:collapse;width:100%;font-size:.9rem}
@@ -1218,6 +1946,7 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
   <button type="button" role="tab" id="t-spec" aria-controls="p-spec" data-tab="spec" data-i18n="tab_spec"></button>
   <button type="button" role="tab" id="t-cal" aria-controls="p-cal" data-tab="cal" data-i18n="tab_cal"></button>
   <button type="button" role="tab" id="t-aud" aria-controls="p-aud" data-tab="aud" data-i18n="tab_aud"></button>
+  <button type="button" role="tab" id="t-map" aria-controls="p-map" data-tab="map" data-i18n="tab_map"></button>
   <button type="button" role="tab" id="t-log" aria-controls="p-log" data-tab="log" data-i18n="tab_log"></button>
   <button type="button" role="tab" id="t-about" aria-controls="p-about" data-tab="about" data-i18n="tab_about"></button>
 </div>
@@ -1256,7 +1985,7 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
     <p class="note" id="wExpl" data-i18n="w_expl"></p>
     <div class="row"><label for="intSel" data-i18n="interval"></label>
       <select id="intSel"><option value="0" data-i18n="int_all"></option><option value="480">1 min</option><option value="2400">5 min</option><option value="7200">15 min</option></select></div>
-    <div class="row"><label for="placeIn" data-i18n="place"></label><input type="text" id="placeIn" maxlength="120" autocomplete="off"></div>
+    <div class="row"><label for="placeIn" data-i18n="place"></label><input type="text" id="placeIn" maxlength="120" autocomplete="off" list="placeList"><datalist id="placeList"></datalist></div>
     <div class="row"><label><input type="checkbox" id="autoSave" checked> <span data-i18n="autosave"></span></label></div>
     <div class="row"><button type="button" id="btnSaveNow" class="btn" disabled data-i18n="save_now"></button></div>
   </div>
@@ -1462,6 +2191,31 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
 </section>
 
 <!-- ============ JURNAL ============ -->
+<section id="p-map" class="panel" role="tabpanel" aria-labelledby="t-map" tabindex="-1" hidden>
+ <div class="card">
+  <h2 data-i18n="map_title"></h2>
+  <p class="note" data-i18n="map_intro"></p>
+  <div class="banner"><strong data-i18n="honest_h"></strong> <span data-i18n="map_unc"></span></div>
+  <div class="row">
+    <label for="mapSort" data-i18n="map_sort"></label>
+    <select id="mapSort"><option value="leq" data-i18n="map_sort_leq"></option><option value="max" data-i18n="map_sort_max"></option><option value="n" data-i18n="map_sort_n"></option><option value="name" data-i18n="map_sort_name"></option></select>
+    <button type="button" id="btnMapCsv" class="btn" data-i18n="map_csv"></button>
+    <button type="button" id="btnMapPrint" class="btn" data-i18n="map_print"></button>
+  </div>
+  <p id="mapMsg" class="status" role="status"></p>
+  <p id="mapSummary" class="status"></p>
+  <div class="tbl-wrap" tabindex="0" role="region" data-i18n-aria="map_title"><table id="mapTbl"><caption class="sr" data-i18n="map_title"></caption>
+   <thead><tr><th scope="col" data-i18n="map_c_place"></th><th scope="col" class="num" data-i18n="map_c_n"></th><th scope="col" class="num" data-i18n="map_c_time"></th><th scope="col" class="num">LAeq</th><th scope="col" class="num" data-i18n="map_c_max"></th><th scope="col" class="num" data-i18n="map_c_bg"></th><th scope="col"><span class="sr" data-i18n="map_c_bar"></span></th><th scope="col"><span class="sr" data-i18n="c_act"></span></th></tr></thead><tbody></tbody></table></div>
+  <p id="mapEmpty" class="note" data-i18n="map_empty"></p>
+  <p class="note" data-i18n="map_units"></p>
+ </div>
+ <div class="card" id="mapDetail" hidden>
+  <h3 id="mapDetailH"></h3>
+  <ul id="mapDetailL" class="clean"></ul>
+ </div>
+</section>
+
+<!-- ============ JURNAL ============ -->
 <section id="p-log" class="panel" role="tabpanel" aria-labelledby="t-log" tabindex="-1" hidden>
  <div class="card">
   <h2 data-i18n="log_title"></h2>
@@ -1509,7 +2263,7 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
  </div>
 </section>
 </main>
-<footer class="foot"><p><span id="app-version">v 1.0.1 · 2026-10-27</span> · <span data-i18n="local_note"></span></p></footer>
+<footer class="foot"><p><span id="app-version">v 2.1.0 · 2026-10-31</span> · <span data-i18n="local_note"></span></p></footer>
 </div>
 <div id="report" aria-hidden="true"></div>
 <dialog id="dlg" aria-labelledby="dlgT"><h2 id="dlgT"></h2><div id="dlgB"></div><div class="row" style="justify-content:flex-end"><button type="button" class="btn" id="dlgNo"></button><button type="button" class="btn primary" id="dlgYes"></button></div></dialog>
@@ -1840,7 +2594,8 @@ ab_lim_h:'Ce NU face și limitele', ab_l1:'Nu este un sonometru certificat (IEC 
 ab_priv_h:'Confidențialitate', ab_priv:'Rulează local, nu trimite nimic. Microfonul se folosește doar după ce apeși „Pornește microfonul” și permiți accesul; nu se înregistrează sunet, se calculează numai niveluri. Jurnalul și profilurile rămân în localStorage (prefix fff.decibel.). Nu există rețea (CSP connect-src none).',
 ab_keys_h:'Tastatură', ab_keys:'Tab/Shift+Tab pentru navigare; săgeți stânga/dreapta pe file; M = marchează eveniment (în fila Măsurare); Spațiu = „Aud” în testul auditiv; cursorul graficului se mișcă cu săgețile.', ab_std_h:'Standarde și surse', ab_std:'Ponderări A/C: IEC 61672-1 (poli analogici 20,6 / 107,7 / 737,9 / 12 194 Hz). Benzi de octavă/terț: IEC 61260-1 (baza 10). Curbe NR: ISO R 1996 (1971). Doza: recomandări NIOSH, Directiva 2003/10/CE (informativ). Pragul audiometric: ISO 389-1 (valori de referință orientative).',
 ab_rel_h:'Aplicații înrudite (sunet)', ab_rel_t:'Aceste aplicații sunt independente; Decibel nu le modifică și nu depinde de ele.', ab_tr:'Interfața este în română (limba de referință); franceza, italiana, spaniola, portugheza, maghiara și germana sunt traduceri automate, neverificate de vorbitori nativi.',
-local_note:'Rulează local; nu trimite nimic.', ok:'OK', cancel:'Anulează', chip_cal:'Calibrat ({o} dB)', chip_uncal:'Necalibrat (dBFS)', chip_src_mic:'Microfon', chip_src_file:'Fișier', chip_src_demo:'Exemplu sintetic', chip_proc_ok:'Procesări browser: dezactivate', chip_proc_bad:'Procesări browser: neconfirmate'
+local_note:'Rulează local; nu trimite nimic.', ok:'OK', cancel:'Anulează', chip_cal:'Calibrat ({o} dB)', chip_uncal:'Necalibrat (dBFS)', chip_src_mic:'Microfon', chip_src_file:'Fișier', chip_src_demo:'Exemplu sintetic', chip_proc_ok:'Procesări browser: dezactivate', chip_proc_bad:'Procesări browser: neconfirmate',
+tab_map:'Hartă',map_title:'Hartă personală de zgomot',map_intro:'Sesiunile salvate se grupează după locație (câmpul „Locația” din Măsurare). LAeq al unei locații este media energetică ponderată cu durata; vârful este cel mai mare LAFmax; fundalul este cel mai mic L90 dintre sesiuni.',map_unc:'Hartă personală, orientativă și necertificată: nu are valoare metrologică sau legală. Datele rămân în acest browser.',map_sort:'Sortare',map_sort_leq:'după LAeq',map_sort_max:'după vârf',map_sort_n:'după nr. de sesiuni',map_sort_name:'după nume',map_csv:'Exportă harta (CSV)',map_print:'Tipărește raportul hărții (PDF)',map_c_place:'Locația',map_c_n:'Sesiuni',map_c_time:'Durată',map_c_max:'Vârf (LAFmax)',map_c_bg:'Fundal (L90 min.)',map_c_bar:'Nivel relativ',map_empty:'Nu există încă sesiuni salvate. Pornește o măsurare, scrie locația și salveaz-o; locurile apar aici.',map_units:'Locurile necalibrate (dBFS) și cele calibrate (dB SPL) se țin separat și nu se compară între ele. Locurile fără nume se grupează la „fără locație”.',map_noplace:'(fără locație)',map_detail:'Sesiuni',map_detail_h:'Sesiunile din „{p}” ({u})',map_sum:'{n} locuri din {s} sesiuni. Cel mai zgomotos: {hi} ({hl}); cel mai liniștit: {lo} ({ll}).',map_csv_note:'Harta personală de zgomot (orientativ, necertificat; locurile necalibrate sunt în dBFS)'
 };
 DICT.en = {
 skip:'Skip to content', subtitle:'Sound level meter, spectrum analyser and indicative hearing test', language:'Language', theme:'Light/dark theme',
@@ -1902,7 +2657,8 @@ ab_lim_h:'What it does NOT do and its limits', ab_l1:'It is not a certified soun
 ab_priv_h:'Privacy', ab_priv:'Runs locally, sends nothing. The microphone is used only after you press “Start microphone” and allow access; no sound is recorded, only levels are computed. The log and profiles stay in localStorage (prefix fff.decibel.). There is no network (CSP connect-src none).',
 ab_keys_h:'Keyboard', ab_keys:'Tab/Shift+Tab to navigate; left/right arrows on tabs; M = mark event (Measure tab); Space = “I hear it” in the hearing test; the chart cursor moves with the arrow keys.', ab_std_h:'Standards and sources', ab_std:'A/C weighting: IEC 61672-1 (analogue poles 20.6 / 107.7 / 737.9 / 12 194 Hz). Octave/third-octave bands: IEC 61260-1 (base 10). NR curves: ISO R 1996 (1971). Dose: NIOSH recommendations, Directive 2003/10/EC (informative). Audiometric zero: ISO 389-1 (indicative reference values).',
 ab_rel_h:'Related apps (sound)', ab_rel_t:'These apps are independent; Decibel does not modify them and does not depend on them.', ab_tr:'The interface is in Romanian (reference language) and English; French, Italian, Spanish, Portuguese, Hungarian and German are machine translations, not verified by native speakers.',
-local_note:'Runs locally; sends nothing.', ok:'OK', cancel:'Cancel', chip_cal:'Calibrated ({o} dB)', chip_uncal:'Uncalibrated (dBFS)', chip_src_mic:'Microphone', chip_src_file:'File', chip_src_demo:'Synthetic example', chip_proc_ok:'Browser processing: off', chip_proc_bad:'Browser processing: unconfirmed'
+local_note:'Runs locally; sends nothing.', ok:'OK', cancel:'Cancel', chip_cal:'Calibrated ({o} dB)', chip_uncal:'Uncalibrated (dBFS)', chip_src_mic:'Microphone', chip_src_file:'File', chip_src_demo:'Synthetic example', chip_proc_ok:'Browser processing: off', chip_proc_bad:'Browser processing: unconfirmed',
+tab_map:'Map',map_title:'Personal noise map',map_intro:'Saved sessions are grouped by location (the “Location” field in Measure). A location’s LAeq is the duration-weighted energy average; the peak is the highest LAFmax; the background is the lowest L90 among its sessions.',map_unc:'A personal, indicative, uncertified map: it has no metrological or legal value. Data stays in this browser.',map_sort:'Sort',map_sort_leq:'by LAeq',map_sort_max:'by peak',map_sort_n:'by number of sessions',map_sort_name:'by name',map_csv:'Export map (CSV)',map_print:'Print map report (PDF)',map_c_place:'Location',map_c_n:'Sessions',map_c_time:'Duration',map_c_max:'Peak (LAFmax)',map_c_bg:'Background (min. L90)',map_c_bar:'Relative level',map_empty:'No saved sessions yet. Start a measurement, type the location and save it; places appear here.',map_units:'Uncalibrated (dBFS) and calibrated (dB SPL) places are kept apart and not compared. Sessions without a name are grouped under “no location”.',map_noplace:'(no location)',map_detail:'Sessions',map_detail_h:'Sessions at “{p}” ({u})',map_sum:'{n} places from {s} sessions. Loudest: {hi} ({hl}); quietest: {lo} ({ll}).',map_csv_note:'Personal noise map (indicative, uncertified; uncalibrated places are in dBFS)'
 };
 
 DICT.fr = {
@@ -1965,7 +2721,8 @@ ab_lim_h:'Ce qu’il ne fait PAS et ses limites', ab_l1:'Ce n’est pas un sonom
 ab_priv_h:'Confidentialité', ab_priv:'Fonctionne en local, n’envoie rien. Le microphone n’est utilisé qu’après avoir appuyé sur « Démarrer le microphone » et autorisé l’accès ; aucun son n’est enregistré, seuls des niveaux sont calculés. Le journal et les profils restent dans le localStorage (préfixe fff.decibel.). Aucun accès réseau (CSP connect-src none).',
 ab_keys_h:'Clavier', ab_keys:'Tab/Maj+Tab pour naviguer ; flèches gauche/droite sur les onglets ; M = marquer un événement (onglet Mesure) ; Espace = « J’entends » dans le test auditif ; le curseur du graphique se déplace avec les flèches.', ab_std_h:'Normes et sources', ab_std:'Pondérations A/C : CEI 61672-1 (pôles analogiques 20,6 / 107,7 / 737,9 / 12 194 Hz). Bandes d’octave/tiers d’octave : CEI 61260-1 (base 10). Courbes NR : ISO R 1996 (1971). Dose : recommandations NIOSH, directive 2003/10/CE (à titre informatif). Zéro audiométrique : ISO 389-1 (valeurs de référence indicatives).',
 ab_rel_h:'Applications apparentées (son)', ab_rel_t:'Ces applications sont indépendantes ; Decibel ne les modifie pas et n’en dépend pas.', ab_tr:'L’interface est en roumain (langue de référence) et en anglais ; le français, l’italien, l’espagnol, le portugais, le hongrois et l’allemand sont des traductions automatiques, non vérifiées par des locuteurs natifs.',
-local_note:'Fonctionne en local ; n’envoie rien.', ok:'OK', cancel:'Annuler', chip_cal:'Étalonné ({o} dB)', chip_uncal:'Non étalonné (dBFS)', chip_src_mic:'Microphone', chip_src_file:'Fichier', chip_src_demo:'Exemple synthétique', chip_proc_ok:'Traitements du navigateur : désactivés', chip_proc_bad:'Traitements du navigateur : non confirmés'
+local_note:'Fonctionne en local ; n’envoie rien.', ok:'OK', cancel:'Annuler', chip_cal:'Étalonné ({o} dB)', chip_uncal:'Non étalonné (dBFS)', chip_src_mic:'Microphone', chip_src_file:'Fichier', chip_src_demo:'Exemple synthétique', chip_proc_ok:'Traitements du navigateur : désactivés', chip_proc_bad:'Traitements du navigateur : non confirmés',
+tab_map:'Carte',map_title:'Carte personnelle du bruit',map_intro:'Les sessions enregistrées sont regroupées par lieu (champ « Lieu » de Mesure). Le LAeq d’un lieu est la moyenne énergétique pondérée par la durée ; le pic est le plus grand LAFmax ; le fond est le plus petit L90 de ses sessions.',map_unc:'Carte personnelle, indicative et non certifiée : sans valeur métrologique ni légale. Les données restent dans ce navigateur.',map_sort:'Tri',map_sort_leq:'par LAeq',map_sort_max:'par pic',map_sort_n:'par nombre de sessions',map_sort_name:'par nom',map_csv:'Exporter la carte (CSV)',map_print:'Imprimer le rapport de la carte (PDF)',map_c_place:'Lieu',map_c_n:'Sessions',map_c_time:'Durée',map_c_max:'Pic (LAFmax)',map_c_bg:'Fond (L90 min.)',map_c_bar:'Niveau relatif',map_empty:'Aucune session enregistrée. Lancez une mesure, indiquez le lieu et enregistrez-la ; les lieux apparaissent ici.',map_units:'Les lieux non étalonnés (dBFS) et étalonnés (dB SPL) sont séparés et non comparés. Les sessions sans nom sont regroupées sous « sans lieu ».',map_noplace:'(sans lieu)',map_detail:'Sessions',map_detail_h:'Sessions de « {p} » ({u})',map_sum:'{n} lieux sur {s} sessions. Le plus bruyant : {hi} ({hl}) ; le plus calme : {lo} ({ll}).',map_csv_note:'Carte personnelle du bruit (indicatif, non certifié ; lieux non étalonnés en dBFS)'
 };
 
 DICT.it = {
@@ -2028,7 +2785,8 @@ ab_lim_h:'Cosa NON fa e i suoi limiti', ab_l1:'Non è un fonometro certificato (
 ab_priv_h:'Privacy', ab_priv:'Funziona in locale, non invia nulla. Il microfono viene usato solo dopo aver premuto «Avvia il microfono» e consentito l’accesso; non si registra audio, si calcolano solo livelli. Registro e profili restano nel localStorage (prefisso fff.decibel.). Nessuna rete (CSP connect-src none).',
 ab_keys_h:'Tastiera', ab_keys:'Tab/Maiusc+Tab per navigare; frecce sinistra/destra sulle schede; M = segna evento (scheda Misura); Spazio = «Sento» nel test uditivo; il cursore del grafico si muove con le frecce.', ab_std_h:'Norme e fonti', ab_std:'Ponderazioni A/C: IEC 61672-1 (poli analogici 20,6 / 107,7 / 737,9 / 12 194 Hz). Bande di ottava/terzo d’ottava: IEC 61260-1 (base 10). Curve NR: ISO R 1996 (1971). Dose: raccomandazioni NIOSH, direttiva 2003/10/CE (a titolo informativo). Zero audiometrico: ISO 389-1 (valori di riferimento indicativi).',
 ab_rel_h:'App correlate (suono)', ab_rel_t:'Queste app sono indipendenti; Decibel non le modifica e non ne dipende.', ab_tr:'L’interfaccia è in rumeno (lingua di riferimento) e inglese; francese, italiano, spagnolo, portoghese, ungherese e tedesco sono traduzioni automatiche, non verificate da madrelingua.',
-local_note:'Funziona in locale; non invia nulla.', ok:'OK', cancel:'Annulla', chip_cal:'Calibrato ({o} dB)', chip_uncal:'Non calibrato (dBFS)', chip_src_mic:'Microfono', chip_src_file:'File', chip_src_demo:'Esempio sintetico', chip_proc_ok:'Elaborazioni del browser: disattivate', chip_proc_bad:'Elaborazioni del browser: non confermate'
+local_note:'Funziona in locale; non invia nulla.', ok:'OK', cancel:'Annulla', chip_cal:'Calibrato ({o} dB)', chip_uncal:'Non calibrato (dBFS)', chip_src_mic:'Microfono', chip_src_file:'File', chip_src_demo:'Esempio sintetico', chip_proc_ok:'Elaborazioni del browser: disattivate', chip_proc_bad:'Elaborazioni del browser: non confermate',
+tab_map:'Mappa',map_title:'Mappa personale del rumore',map_intro:'Le sessioni salvate sono raggruppate per luogo (campo «Luogo» in Misura). Il LAeq di un luogo è la media energetica pesata sulla durata; il picco è il LAFmax più alto; il fondo è il L90 più basso tra le sessioni.',map_unc:'Mappa personale, indicativa e non certificata: priva di valore metrologico o legale. I dati restano in questo browser.',map_sort:'Ordina',map_sort_leq:'per LAeq',map_sort_max:'per picco',map_sort_n:'per numero di sessioni',map_sort_name:'per nome',map_csv:'Esporta la mappa (CSV)',map_print:'Stampa il rapporto della mappa (PDF)',map_c_place:'Luogo',map_c_n:'Sessioni',map_c_time:'Durata',map_c_max:'Picco (LAFmax)',map_c_bg:'Fondo (L90 min.)',map_c_bar:'Livello relativo',map_empty:'Nessuna sessione salvata. Avvia una misura, scrivi il luogo e salvala; i luoghi compaiono qui.',map_units:'I luoghi non calibrati (dBFS) e calibrati (dB SPL) restano separati e non si confrontano. Le sessioni senza nome sono raggruppate in «senza luogo».',map_noplace:'(senza luogo)',map_detail:'Sessioni',map_detail_h:'Sessioni in «{p}» ({u})',map_sum:'{n} luoghi da {s} sessioni. Più rumoroso: {hi} ({hl}); più silenzioso: {lo} ({ll}).',map_csv_note:'Mappa personale del rumore (indicativa, non certificata; luoghi non calibrati in dBFS)'
 };
 
 DICT.es = {
@@ -2091,7 +2849,8 @@ ab_lim_h:'Lo que NO hace y sus límites', ab_l1:'No es un sonómetro certificado
 ab_priv_h:'Privacidad', ab_priv:'Se ejecuta en local y no envía nada. El micrófono solo se usa tras pulsar «Activar el micrófono» y permitir el acceso; no se graba sonido, solo se calculan niveles. El registro y los perfiles quedan en localStorage (prefijo fff.decibel.). No hay red (CSP connect-src none).',
 ab_keys_h:'Teclado', ab_keys:'Tab/Mayús+Tab para navegar; flechas izquierda/derecha en las pestañas; M = marcar evento (pestaña Medición); Espacio = «Oigo» en la prueba auditiva; el cursor del gráfico se mueve con las flechas.', ab_std_h:'Normas y fuentes', ab_std:'Ponderaciones A/C: IEC 61672-1 (polos analógicos 20,6 / 107,7 / 737,9 / 12 194 Hz). Bandas de octava/tercio de octava: IEC 61260-1 (base 10). Curvas NR: ISO R 1996 (1971). Dosis: recomendaciones NIOSH, Directiva 2003/10/CE (informativo). Cero audiométrico: ISO 389-1 (valores de referencia orientativos).',
 ab_rel_h:'Aplicaciones relacionadas (sonido)', ab_rel_t:'Estas aplicaciones son independientes; Decibel no las modifica ni depende de ellas.', ab_tr:'La interfaz está en rumano (idioma de referencia) e inglés; francés, italiano, español, portugués, húngaro y alemán son traducciones automáticas, no verificadas por hablantes nativos.',
-local_note:'Se ejecuta en local; no envía nada.', ok:'OK', cancel:'Cancelar', chip_cal:'Calibrado ({o} dB)', chip_uncal:'Sin calibrar (dBFS)', chip_src_mic:'Micrófono', chip_src_file:'Archivo', chip_src_demo:'Ejemplo sintético', chip_proc_ok:'Procesamiento del navegador: desactivado', chip_proc_bad:'Procesamiento del navegador: sin confirmar'
+local_note:'Se ejecuta en local; no envía nada.', ok:'OK', cancel:'Cancelar', chip_cal:'Calibrado ({o} dB)', chip_uncal:'Sin calibrar (dBFS)', chip_src_mic:'Micrófono', chip_src_file:'Archivo', chip_src_demo:'Ejemplo sintético', chip_proc_ok:'Procesamiento del navegador: desactivado', chip_proc_bad:'Procesamiento del navegador: sin confirmar',
+tab_map:'Mapa',map_title:'Mapa personal de ruido',map_intro:'Las sesiones guardadas se agrupan por lugar (campo «Lugar» en Medición). El LAeq de un lugar es la media energética ponderada por duración; el pico es el mayor LAFmax; el fondo es el menor L90 de sus sesiones.',map_unc:'Mapa personal, orientativo y no certificado: sin valor metrológico ni legal. Los datos permanecen en este navegador.',map_sort:'Orden',map_sort_leq:'por LAeq',map_sort_max:'por pico',map_sort_n:'por n.º de sesiones',map_sort_name:'por nombre',map_csv:'Exportar el mapa (CSV)',map_print:'Imprimir el informe del mapa (PDF)',map_c_place:'Lugar',map_c_n:'Sesiones',map_c_time:'Duración',map_c_max:'Pico (LAFmax)',map_c_bg:'Fondo (L90 mín.)',map_c_bar:'Nivel relativo',map_empty:'Aún no hay sesiones guardadas. Inicia una medición, escribe el lugar y guárdala; los lugares aparecen aquí.',map_units:'Los lugares sin calibrar (dBFS) y calibrados (dB SPL) se mantienen separados y no se comparan. Las sesiones sin nombre se agrupan en «sin lugar».',map_noplace:'(sin lugar)',map_detail:'Sesiones',map_detail_h:'Sesiones en «{p}» ({u})',map_sum:'{n} lugares de {s} sesiones. Más ruidoso: {hi} ({hl}); más silencioso: {lo} ({ll}).',map_csv_note:'Mapa personal de ruido (orientativo, no certificado; lugares sin calibrar en dBFS)'
 };
 
 DICT.pt = {
@@ -2154,7 +2913,8 @@ ab_lim_h:'O que NÃO faz e os seus limites', ab_l1:'Não é um sonómetro certif
 ab_priv_h:'Privacidade', ab_priv:'Corre localmente, não envia nada. O microfone só é usado depois de carregar em «Ligar o microfone» e permitir o acesso; não se grava som, calculam-se apenas níveis. O registo e os perfis ficam no localStorage (prefixo fff.decibel.). Sem rede (CSP connect-src none).',
 ab_keys_h:'Teclado', ab_keys:'Tab/Shift+Tab para navegar; setas esquerda/direita nos separadores; M = marcar evento (separador Medição); Espaço = «Ouço» no teste auditivo; o cursor do gráfico move-se com as setas.', ab_std_h:'Normas e fontes', ab_std:'Ponderações A/C: IEC 61672-1 (polos analógicos 20,6 / 107,7 / 737,9 / 12 194 Hz). Bandas de oitava/terço de oitava: IEC 61260-1 (base 10). Curvas NR: ISO R 1996 (1971). Dose: recomendações NIOSH, Diretiva 2003/10/CE (informativo). Zero audiométrico: ISO 389-1 (valores de referência indicativos).',
 ab_rel_h:'Aplicações relacionadas (som)', ab_rel_t:'Estas aplicações são independentes; o Decibel não as modifica nem depende delas.', ab_tr:'A interface está em romeno (idioma de referência) e inglês; francês, italiano, espanhol, português, húngaro e alemão são traduções automáticas, não verificadas por falantes nativos.',
-local_note:'Corre localmente; não envia nada.', ok:'OK', cancel:'Cancelar', chip_cal:'Calibrado ({o} dB)', chip_uncal:'Não calibrado (dBFS)', chip_src_mic:'Microfone', chip_src_file:'Ficheiro', chip_src_demo:'Exemplo sintético', chip_proc_ok:'Processamento do navegador: desativado', chip_proc_bad:'Processamento do navegador: não confirmado'
+local_note:'Corre localmente; não envia nada.', ok:'OK', cancel:'Cancelar', chip_cal:'Calibrado ({o} dB)', chip_uncal:'Não calibrado (dBFS)', chip_src_mic:'Microfone', chip_src_file:'Ficheiro', chip_src_demo:'Exemplo sintético', chip_proc_ok:'Processamento do navegador: desativado', chip_proc_bad:'Processamento do navegador: não confirmado',
+tab_map:'Mapa',map_title:'Mapa pessoal de ruído',map_intro:'As sessões guardadas são agrupadas por local (campo «Local» em Medição). O LAeq de um local é a média energética ponderada pela duração; o pico é o maior LAFmax; o fundo é o menor L90 das suas sessões.',map_unc:'Mapa pessoal, indicativo e não certificado: sem valor metrológico nem legal. Os dados ficam neste navegador.',map_sort:'Ordenar',map_sort_leq:'por LAeq',map_sort_max:'por pico',map_sort_n:'por n.º de sessões',map_sort_name:'por nome',map_csv:'Exportar o mapa (CSV)',map_print:'Imprimir o relatório do mapa (PDF)',map_c_place:'Local',map_c_n:'Sessões',map_c_time:'Duração',map_c_max:'Pico (LAFmax)',map_c_bg:'Fundo (L90 mín.)',map_c_bar:'Nível relativo',map_empty:'Ainda não há sessões guardadas. Inicie uma medição, escreva o local e guarde-a; os locais aparecem aqui.',map_units:'Os locais não calibrados (dBFS) e calibrados (dB SPL) ficam separados e não se comparam. As sessões sem nome ficam agrupadas em «sem local».',map_noplace:'(sem local)',map_detail:'Sessões',map_detail_h:'Sessões em «{p}» ({u})',map_sum:'{n} locais de {s} sessões. Mais ruidoso: {hi} ({hl}); mais silencioso: {lo} ({ll}).',map_csv_note:'Mapa pessoal de ruído (indicativo, não certificado; locais não calibrados em dBFS)'
 };
 
 DICT.hu = {
@@ -2217,7 +2977,8 @@ ab_lim_h:'Amit NEM tud, és a korlátai', ab_l1:'Nem hitelesített hangszintmér
 ab_priv_h:'Adatvédelem', ab_priv:'Helyben fut, semmit nem küld el. A mikrofont csak a „Mikrofon indítása” megnyomása és a hozzáférés engedélyezése után használja; hangot nem rögzít, csak szinteket számol. A napló és a profilok a localStorage-ban maradnak (előtag: fff.decibel.). Nincs hálózat (CSP connect-src none).',
 ab_keys_h:'Billentyűzet', ab_keys:'Tab/Shift+Tab a navigációhoz; bal/jobb nyíl a füleken; M = esemény jelölése (Mérés fül); Szóköz = „Hallom” a hallásteszten; a grafikon kurzora a nyilakkal mozog.', ab_std_h:'Szabványok és források', ab_std:'A/C súlyozás: IEC 61672-1 (analóg pólusok 20,6 / 107,7 / 737,9 / 12 194 Hz). Oktáv-/tercoktávsávok: IEC 61260-1 (10-es alap). NR-görbék: ISO R 1996 (1971). Dózis: NIOSH-ajánlások, 2003/10/EK irányelv (tájékoztató). Audiometriai nulla: ISO 389-1 (tájékoztató referenciaértékek).',
 ab_rel_h:'Kapcsolódó alkalmazások (hang)', ab_rel_t:'Ezek az alkalmazások függetlenek; a Decibel nem módosítja őket, és nem függ tőlük.', ab_tr:'A felület román (referencianyelv) és angol nyelvű; a francia, olasz, spanyol, portugál, magyar és német gépi fordítás, anyanyelvi beszélők nem ellenőrizték.',
-local_note:'Helyben fut; semmit nem küld.', ok:'OK', cancel:'Mégse', chip_cal:'Kalibrált ({o} dB)', chip_uncal:'Nem kalibrált (dBFS)', chip_src_mic:'Mikrofon', chip_src_file:'Fájl', chip_src_demo:'Szintetikus példa', chip_proc_ok:'Böngészős feldolgozás: ki', chip_proc_bad:'Böngészős feldolgozás: nem megerősített'
+local_note:'Helyben fut; semmit nem küld.', ok:'OK', cancel:'Mégse', chip_cal:'Kalibrált ({o} dB)', chip_uncal:'Nem kalibrált (dBFS)', chip_src_mic:'Mikrofon', chip_src_file:'Fájl', chip_src_demo:'Szintetikus példa', chip_proc_ok:'Böngészős feldolgozás: ki', chip_proc_bad:'Böngészős feldolgozás: nem megerősített',
+tab_map:'Térkép',map_title:'Személyes zajtérkép',map_intro:'A mentett munkamenetek helyszín szerint csoportosulnak (a Mérés fül „Helyszín” mezője). Egy helyszín LAeq-je az időtartammal súlyozott energiaátlag; a csúcs a legnagyobb LAFmax; a háttér a munkamenetek legkisebb L90-e.',map_unc:'Személyes, tájékoztató jellegű, nem hitelesített térkép: nincs metrológiai vagy jogi értéke. Az adatok ebben a böngészőben maradnak.',map_sort:'Rendezés',map_sort_leq:'LAeq szerint',map_sort_max:'csúcs szerint',map_sort_n:'munkamenetek száma szerint',map_sort_name:'név szerint',map_csv:'Térkép exportálása (CSV)',map_print:'Térképjelentés nyomtatása (PDF)',map_c_place:'Helyszín',map_c_n:'Munkamenetek',map_c_time:'Időtartam',map_c_max:'Csúcs (LAFmax)',map_c_bg:'Háttér (min. L90)',map_c_bar:'Relatív szint',map_empty:'Még nincs mentett munkamenet. Indíts mérést, írd be a helyszínt és mentsd el; a helyszínek itt jelennek meg.',map_units:'A nem kalibrált (dBFS) és a kalibrált (dB SPL) helyszínek külön maradnak, és nem hasonlíthatók össze. A név nélküli munkamenetek a „nincs helyszín” alá kerülnek.',map_noplace:'(nincs helyszín)',map_detail:'Munkamenetek',map_detail_h:'Munkamenetek: „{p}” ({u})',map_sum:'{n} helyszín, {s} munkamenetből. Leghangosabb: {hi} ({hl}); legcsendesebb: {lo} ({ll}).',map_csv_note:'Személyes zajtérkép (tájékoztató, nem hitelesített; a nem kalibrált helyszínek dBFS-ben)'
 };
 
 DICT.de = {
@@ -2280,11 +3041,12 @@ ab_lim_h:'Was es NICHT kann, und seine Grenzen', ab_l1:'Es ist kein zertifiziert
 ab_priv_h:'Datenschutz', ab_priv:'Läuft lokal, sendet nichts. Das Mikrofon wird erst verwendet, nachdem du „Mikrofon starten“ gedrückt und den Zugriff erlaubt hast; es wird kein Ton aufgenommen, nur Pegel werden berechnet. Protokoll und Profile bleiben im localStorage (Präfix fff.decibel.). Kein Netzwerk (CSP connect-src none).',
 ab_keys_h:'Tastatur', ab_keys:'Tab/Umschalt+Tab zum Navigieren; Pfeile links/rechts auf den Reitern; M = Ereignis markieren (Reiter Messung); Leertaste = „Ich höre“ im Hörtest; der Diagrammcursor bewegt sich mit den Pfeiltasten.', ab_std_h:'Normen und Quellen', ab_std:'A/C-Bewertung: IEC 61672-1 (analoge Pole 20,6 / 107,7 / 737,9 / 12 194 Hz). Oktav-/Terzbänder: IEC 61260-1 (Basis 10). NR-Kurven: ISO R 1996 (1971). Dosis: NIOSH-Empfehlungen, Richtlinie 2003/10/EG (informativ). Audiometrischer Nullpegel: ISO 389-1 (orientierende Referenzwerte).',
 ab_rel_h:'Verwandte Apps (Klang)', ab_rel_t:'Diese Apps sind unabhängig; Decibel verändert sie nicht und hängt nicht von ihnen ab.', ab_tr:'Die Oberfläche ist auf Rumänisch (Referenzsprache) und Englisch; Französisch, Italienisch, Spanisch, Portugiesisch, Ungarisch und Deutsch sind maschinelle Übersetzungen, nicht von Muttersprachlern geprüft.',
-local_note:'Läuft lokal; sendet nichts.', ok:'OK', cancel:'Abbrechen', chip_cal:'Kalibriert ({o} dB)', chip_uncal:'Nicht kalibriert (dBFS)', chip_src_mic:'Mikrofon', chip_src_file:'Datei', chip_src_demo:'Synthetisches Beispiel', chip_proc_ok:'Browser-Verarbeitung: aus', chip_proc_bad:'Browser-Verarbeitung: unbestätigt'
+local_note:'Läuft lokal; sendet nichts.', ok:'OK', cancel:'Abbrechen', chip_cal:'Kalibriert ({o} dB)', chip_uncal:'Nicht kalibriert (dBFS)', chip_src_mic:'Mikrofon', chip_src_file:'Datei', chip_src_demo:'Synthetisches Beispiel', chip_proc_ok:'Browser-Verarbeitung: aus', chip_proc_bad:'Browser-Verarbeitung: unbestätigt',
+tab_map:'Karte',map_title:'Persönliche Lärmkarte',map_intro:'Gespeicherte Sitzungen werden nach Ort gruppiert (Feld „Ort“ unter Messung). Das LAeq eines Ortes ist der dauergewichtete Energiemittelwert; die Spitze ist der höchste LAFmax; der Hintergrund ist der kleinste L90 seiner Sitzungen.',map_unc:'Persönliche, orientierende, nicht zertifizierte Karte: ohne metrologischen oder rechtlichen Wert. Die Daten bleiben in diesem Browser.',map_sort:'Sortierung',map_sort_leq:'nach LAeq',map_sort_max:'nach Spitze',map_sort_n:'nach Anzahl Sitzungen',map_sort_name:'nach Name',map_csv:'Karte exportieren (CSV)',map_print:'Kartenbericht drucken (PDF)',map_c_place:'Ort',map_c_n:'Sitzungen',map_c_time:'Dauer',map_c_max:'Spitze (LAFmax)',map_c_bg:'Hintergrund (min. L90)',map_c_bar:'Relativer Pegel',map_empty:'Noch keine gespeicherten Sitzungen. Messung starten, Ort eintragen und speichern; die Orte erscheinen hier.',map_units:'Unkalibrierte (dBFS) und kalibrierte (dB SPL) Orte bleiben getrennt und werden nicht verglichen. Sitzungen ohne Namen werden unter „kein Ort“ gruppiert.',map_noplace:'(kein Ort)',map_detail:'Sitzungen',map_detail_h:'Sitzungen an „{p}“ ({u})',map_sum:'{n} Orte aus {s} Sitzungen. Am lautesten: {hi} ({hl}); am leisesten: {lo} ({ll}).',map_csv_note:'Persönliche Lärmkarte (orientierend, nicht zertifiziert; unkalibrierte Orte in dBFS)'
 };
 
 /* ================= Aplicație ================= */
-const VERSION = '1.0.1', UPDATED = '2026-10-27', PFX = 'fff.decibel.';
+const VERSION = '2.1.0', UPDATED = '2026-10-31', PFX = 'fff.decibel.';
 const LANGS = ['ro','en','fr','it','es','pt','hu','de'];
 const $ = id => document.getElementById(id);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
@@ -2572,7 +3334,7 @@ function saveSession() {
   const s = S.sess; if (!s || S.saved || s.n < 40) return false;   // sub 5 s nu se salvează
   s.place = ($('placeIn').value || '').trim();
   const log = jget('sessions', []); log.unshift(sessionSummary(s)); jset('sessions', log.slice(0, 200));
-  S.saved = true; uiButtons(); renderLog(); return true;
+  S.saved = true; uiButtons(); renderLog(); renderMap(); return true;
 }
 
 /* ---- doză ---- */
@@ -3208,6 +3970,66 @@ function renderLog() {
     tb.appendChild(tr);
   });
 }
+/* ---- hartă personală de zgomot (agregare pe locații din jurnal) ---- */
+function placeKey(p) { return String(p || '').replace(/\s+/g, ' ').trim().toLocaleLowerCase(); }
+function mapData(log) {
+  const g = new Map();
+  (log || []).forEach(r => {
+    if (!r || !isFinite(r.laeq) || !(r.dur > 0)) return;
+    const raw = String(r.place || '').replace(/\s+/g, ' ').trim(), k = placeKey(raw) + '|' + (r.cal ? 1 : 0);
+    let e = g.get(k);
+    if (!e) { e = {key: k, place: raw, cal: !!r.cal, n: 0, dur: 0, en: 0, max: -Infinity, bg: Infinity, ids: [], first: r.start, last: r.start}; g.set(k, e); }
+    e.n++; e.dur += r.dur; e.en += r.dur * Math.pow(10, r.laeq / 10); e.ids.push(r.id);
+    if (isFinite(r.lmax) && r.lmax > e.max) e.max = r.lmax;
+    if (isFinite(r.l90) && r.l90 < e.bg) e.bg = r.l90;
+    if (r.start < e.first) e.first = r.start; if (r.start > e.last) e.last = r.start;
+  });
+  return Array.from(g.values()).map(e => Object.assign(e, {leq: round1(10 * Math.log10(e.en / e.dur)), max: isFinite(e.max) ? e.max : null, bg: isFinite(e.bg) ? e.bg : null, dur: Math.round(e.dur)}));
+}
+function mapSorted(rows, how) {
+  const a = rows.slice(), nm = x => x.place || '\uffff';
+  const cmp = {leq: (x, y) => y.leq - x.leq, max: (x, y) => (y.max == null ? -1e9 : y.max) - (x.max == null ? -1e9 : x.max), n: (x, y) => y.n - x.n, name: (x, y) => nm(x).localeCompare(nm(y), lang)}[how] || ((x, y) => y.leq - x.leq);
+  return a.sort((x, y) => (x.cal === y.cal ? cmp(x, y) : (x.cal ? -1 : 1)));
+}
+const mapUnit = e => (e.cal ? 'dB(A)' : 'dBFS(A)');
+const mapName = e => e.place || t('map_noplace');
+function mapCsv() {
+  const rows = mapSorted(mapData(jget('sessions', [])), set.mapSort || 'leq');
+  const head = ['locatie', 'sesiuni', 'durata_totala_s', 'LAeq_dB', 'LAFmax_dB', 'LAF90_min_dB', 'calibrat', 'prima', 'ultima'];
+  const body = rows.map(e => [e.place, e.n, e.dur, e.leq, e.max, e.bg, e.cal ? 1 : 0, e.first, e.last].map(csvCell).join(','));
+  return '﻿# ' + t('map_csv_note') + '\r\n' + [head.join(','), ...body].join('\r\n') + '\r\n';
+}
+let mapSel = null;
+function renderMap() {
+  const log = jget('sessions', []), rows = mapSorted(mapData(log), $('mapSort').value), tb = $('mapTbl').tBodies[0]; tb.innerHTML = '';
+  $('mapEmpty').hidden = rows.length > 0; $('btnMapCsv').disabled = $('btnMapPrint').disabled = !rows.length;
+  const dl = $('placeList'); dl.innerHTML = '';
+  Array.from(new Set(log.map(r => String(r.place || '').trim()).filter(Boolean))).slice(0, 50).forEach(p => { const o = document.createElement('option'); o.value = p; dl.appendChild(o); });
+  const rng = {};
+  rows.forEach(e => { const r = rng[e.cal] || (rng[e.cal] = {lo: Infinity, hi: -Infinity}); r.lo = Math.min(r.lo, e.leq); r.hi = Math.max(r.hi, e.leq); });
+  rows.forEach(e => {
+    const tr = document.createElement('tr'), un = mapUnit(e);
+    const cells = [mapName(e), String(e.n), fdurLong(e.dur), fmt(e.leq) + ' ' + un, e.max == null ? '–' : fmt(e.max) + ' ' + un, e.bg == null ? '–' : fmt(e.bg) + ' ' + un];
+    cells.forEach((v, i) => { const td = document.createElement('td'); td.textContent = v; if (i) td.className = 'num'; tr.appendChild(td); });
+    const r = rng[e.cal], lo = r.lo - 10, w = r.hi > lo ? (e.leq - lo) / (r.hi - lo) : 1;
+    const tdb = document.createElement('td'), bar = document.createElement('span'), fill = document.createElement('span');
+    bar.className = 'mapbar' + (e.cal && e.leq >= 85 ? ' hi' : ''); bar.setAttribute('aria-hidden', 'true'); fill.style.width = Math.round(Math.max(3, Math.min(100, w * 100))) + '%'; bar.appendChild(fill); tdb.appendChild(bar); tr.appendChild(tdb);
+    const tda = document.createElement('td'), b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.dataset.mapSel = e.key; b.textContent = t('map_detail'); b.setAttribute('aria-label', t('map_detail') + ': ' + mapName(e) + ' (' + mapUnit(e) + ')'); b.setAttribute('aria-expanded', mapSel === e.key ? 'true' : 'false'); tda.appendChild(b); tr.appendChild(tda);
+    tb.appendChild(tr);
+  });
+  const sm = $('mapSummary');
+  if (rows.length) {
+    const cr = rows.filter(e => e.cal), pool = cr.length ? cr : rows, top = pool.slice().sort((x, y) => y.leq - x.leq), lo = top[top.length - 1], hi = top[0];
+    sm.textContent = t('map_sum', {n: rows.length, s: log.length, hi: mapName(hi), hl: fmt(hi.leq) + ' ' + mapUnit(hi), lo: mapName(lo), ll: fmt(lo.leq) + ' ' + mapUnit(lo)});
+  } else sm.textContent = '';
+  const det = rows.find(e => e.key === mapSel);
+  $('mapDetail').hidden = !det;
+  if (det) {
+    $('mapDetailH').textContent = t('map_detail_h', {p: mapName(det), u: mapUnit(det)});
+    const ul = $('mapDetailL'); ul.innerHTML = '';
+    log.filter(r => det.ids.includes(r.id)).forEach(r => { const li = document.createElement('li'); li.textContent = new Date(r.start).toLocaleString(lang) + ' · ' + fdur(r.dur) + ' · LAeq ' + fmt(r.laeq) + ' · LAFmax ' + fmt(r.lmax); ul.appendChild(li); });
+  }
+}
 function logCsv() {
   const log = jget('sessions', []);
   const head = ['id', 'start', 'durata_s', 'sursa', 'locatie', 'LAeq_dB', 'LAFmax_dB', 'LAFmin_dB', 'LAF10_dB', 'LAF50_dB', 'LAF90_dB', 'LCpeak_dB', 'LCeq_dB', 'LZeq_dB', 'doza_pct', 'criteriu_doza', 'saturari', 'calibrat', 'offset_dB', 'profil', 'microfon'];
@@ -3245,7 +4067,7 @@ function reloadFromStorage() {
   cal = Object.assign({on: false, offset: 0, method: '', ref: null, date: '', name: ''}, jget('cal', {}));
   profiles = jget('profiles', []);
   hp = Object.assign({name: '', spl: {}, ret: Object.assign({}, RETSPL_DEF), flat: false, date: ''}, jget('hp', {}));
-  syncControls(); renderCal(); renderHp(); renderAud(); renderLog(); renderAll();
+  syncControls(); renderCal(); renderHp(); renderAud(); renderLog(); renderMap(); renderAll();
 }
 async function wipeAll() {
   if (!await confirmDlg(t('wipe'), t('wipe_ask'), t('wipe'), t('cancel'))) return;
@@ -3258,7 +4080,17 @@ function dimg(draw) { const cv = document.createElement('canvas'); draw(cv); ret
 function buildReport(kind) {
   const r = $('report'); let h = '';
   const warn = '<div class="warnp"><strong>' + esc(t('honest_h')) + '</strong> ' + esc(t('honest_t')) + '</div>';
-  if (kind === 'log') {
+  if (kind === 'map') {
+    renderMap();
+    const rows = mapSorted(mapData(jget('sessions', [])), $('mapSort').value);
+    h += '<h1>Decibel · ' + esc(t('map_title')) + '</h1><p>' + esc(new Date().toLocaleString(lang)) + '</p>' + warn + '<p>' + esc(t('map_unc')) + '</p><p>' + esc(t('map_intro')) + '</p>';
+    if (!rows.length) h += '<p>' + esc(t('map_empty')) + '</p>';
+    else {
+      h += '<table><thead><tr><th>' + esc(t('map_c_place')) + '</th><th>' + esc(t('map_c_n')) + '</th><th>' + esc(t('map_c_time')) + '</th><th>LAeq</th><th>' + esc(t('map_c_max')) + '</th><th>' + esc(t('map_c_bg')) + '</th></tr></thead><tbody>';
+      rows.forEach(e => { const un = mapUnit(e); h += '<tr><td>' + esc(mapName(e)) + '</td><td>' + e.n + '</td><td>' + esc(fdurLong(e.dur)) + '</td><td>' + esc(fmt(e.leq) + ' ' + un) + '</td><td>' + esc(e.max == null ? '–' : fmt(e.max) + ' ' + un) + '</td><td>' + esc(e.bg == null ? '–' : fmt(e.bg) + ' ' + un) + '</td></tr>'; });
+      h += '</tbody></table><p>' + esc(t('map_units')) + '</p><p>' + esc($('mapSummary').textContent) + '</p>';
+    }
+  } else if (kind === 'log') {
     const log = jget('sessions', []);
     h += '<h1>Decibel · ' + esc(t('log_title')) + '</h1><p>' + esc(new Date().toLocaleString(lang)) + '</p>' + warn + '<table><thead><tr><th>' + esc(t('c_date')) + '</th><th>' + esc(t('c_dur')) + '</th><th>LAeq</th><th>Lmax</th><th>' + esc(t('c_place')) + '</th><th>' + esc(t('c_cal')) + '</th></tr></thead><tbody>';
     log.forEach(x => { const un = x.cal ? 'dB(A)' : 'dBFS(A)'; h += '<tr><td>' + esc(new Date(x.start).toLocaleString(lang)) + '</td><td>' + fdur(x.dur) + '</td><td>' + fmt(x.laeq) + ' ' + un + '</td><td>' + fmt(x.lmax) + ' ' + un + '</td><td>' + esc(x.place || x.name || '—') + '</td><td>' + esc(x.cal ? t('cal_yes', {o: fmt(x.offset, 1)}) : t('cal_no')) + '</td></tr>'; });
@@ -3296,6 +4128,7 @@ function doPrint(kind) { buildReport(kind); try { window.print(); } catch (e) {}
 function syncControls() {
   document.querySelector('input[name=wt][value="' + set.w + '"]').checked = true;
   document.querySelector('input[name=tw][value="' + set.tw + '"]').checked = true;
+  if (set.mapSort) $('mapSort').value = set.mapSort;
   $('intSel').value = String(set.interval); $('viewSel').value = String(set.view); $('autoSave').checked = !!set.autosave;
   if (set.place != null) $('placeIn').value = set.place;
   const d = set.dose; $('dosePre').value = d.pre; $('doseLc').value = d.Lc; $('doseTc').value = d.Tc; $('doseQ').value = d.q; $('doseThr').value = d.thr;
@@ -3328,6 +4161,7 @@ function showTab(id, focus) {
   if (id === 'cal') { renderCal(); renderFilterCheck(); }
   if (id === 'aud') { renderHp(); renderAud(); }
   if (id === 'log') renderLog();
+  if (id === 'map') renderMap();
   renderAll();
   if (focus) $('t-' + id).focus();
 }
@@ -3337,7 +4171,7 @@ function setLang(l) {
   for (const k in nfc) delete nfc[k];
   $('btnGen').textContent = t(GEN.on ? 'gen_stop' : 'gen_start'); $('themeBtn').textContent = t('theme');
   document.title = 'Decibel'; lastChips = ''; $('bigUnit').textContent = '';
-  renderCal(); renderHp(); renderAud(); renderLog(); renderFilterCheck(); renderAll(); if (!S.running && !S.sess) setStatus('');
+  renderCal(); renderHp(); renderAud(); renderLog(); renderMap(); renderFilterCheck(); renderAll(); if (!S.running && !S.sess) setStatus('');
 }
 function setTheme(th) { if (th) document.documentElement.setAttribute('data-theme', th); else document.documentElement.removeAttribute('data-theme'); LS.set('theme', th || ''); renderAll(); drawAudChart(); }
 
@@ -3426,10 +4260,14 @@ function bind() {
   $('btnSesCsv').addEventListener('click', () => { if (!S.sess || !S.sess.n) { logMsg(t('report_none'), 'bad'); return; } download('decibel-sesiune.csv', sessionCsv(), 'text/csv'); });
   $('btnPrintRep').addEventListener('click', () => doPrint('session'));
   $('btnPrintLog').addEventListener('click', () => doPrint('log'));
+  $('mapSort').addEventListener('change', () => { set.mapSort = $('mapSort').value; jset('settings', set); renderMap(); });
+  $('btnMapCsv').addEventListener('click', () => download('decibel-harta.csv', mapCsv(), 'text/csv'));
+  $('btnMapPrint').addEventListener('click', () => doPrint('map'));
+  $('mapTbl').addEventListener('click', e => { const b = e.target.closest('[data-map-sel]'); if (!b) return; mapSel = mapSel === b.dataset.mapSel ? null : b.dataset.mapSel; renderMap(); const again = Array.from(document.querySelectorAll('[data-map-sel]')).find(x => x.dataset.mapSel === b.dataset.mapSel); if (again) again.focus(); });
   $('btnImport').addEventListener('click', () => $('impIn').click());
   $('impIn').addEventListener('change', e => { const f = e.target.files[0]; e.target.value = ''; if (f) importBundle(f); });
   $('btnWipe').addEventListener('click', wipeAll);
-  $('logTbl').addEventListener('click', e => { const b = e.target.closest('[data-log-del]'); if (!b) return; jset('sessions', jget('sessions', []).filter(r => r.id !== b.dataset.logDel)); renderLog(); });
+  $('logTbl').addEventListener('click', e => { const b = e.target.closest('[data-log-del]'); if (!b) return; jset('sessions', jget('sessions', []).filter(r => r.id !== b.dataset.logDel)); renderLog(); renderMap(); });
   document.addEventListener('keydown', e => {
     const tg = e.target, typing = tg && (tg.tagName === 'INPUT' || tg.tagName === 'SELECT' || tg.tagName === 'TEXTAREA');
     if (e.key === ' ' && S.tab === 'aud' && AUD.run && !(tg && tg.tagName === 'BUTTON')) { e.preventDefault(); audHeard(); }
@@ -3449,7 +4287,7 @@ function init() {
   setInterval(() => { if (!S.running) { /* inactiv: nimic */ } }, 60000);
   window.Decibel = {version: VERSION, dsp: {Engine, Session, Chain, designWeighting, respDb, analogDb, spectrum, bandsFrom, bandPower, findPeak, noiseBuffer, doseOf, toDb, THIRD, OCT, TBL_A, TBL_C, TOL2, nrLevel, NR_AB, mulberry32, fft, parseWav, filterCheck, demoSignal},
     makeStair, state: () => S, cal: () => cal, set: () => set, specVals: () => SPEC.vals, specPeak: () => SPEC.peak, genState: () => ({on: GEN.on, amp: GEN.amp}), audState: () => AUD,
-    logCsv, sessionCsv, bundle, buildReport, analyzeFile, SG: () => SG, t, setLang};
+    logCsv, sessionCsv, mapData, mapCsv, bundle, buildReport, analyzeFile, SG: () => SG, t, setLang};
 }
 
 init();

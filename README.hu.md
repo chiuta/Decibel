@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.0.1 · **Utolsó frissítés:** 2026-10-27
+**Verzió:** 2.1.0 · **Utolsó frissítés:** 2026-10-31
 
 **Állapot:** stabil · **Offline:** teljes
 
@@ -21,6 +21,7 @@ Hangszintmérő, spektrumanalizátor és tájékoztató jellegű hallásvizsgál
 3. **Spektrum:** 1/3 vagy 1/1 oktávos sávok, lineáris FFT (Hann-ablak), csúcs parabolikus interpolációval, spektrogram; NR-görbék csak kalibrált értékekhez.
 4. **Audiogram:** tiszta hangok 250 Hz–8 kHz között, egyszerűsített Hughson–Westlake-módszer. A fejhallgató hangszintmérővel végzett kalibrálása nélkül az eredmény csak viszonylagos küszöb, nem dB HL.
 5. **Napló:** a munkamenetek (dátum, időtartam, LAeq, Lmax, helyszín) helyben mentődnek; exportálás CSV, JSON, `.fff.json` formátumban és nyomtatás (PDF a nyomtatási párbeszédablakból). A „Șterge tot” (Mindent töröl) gomb törli az összes helyi adatot.
+6. **Térkép (új a 2.0-ban):** a mentett mérések a Mérés fülön megadott hely szerint csoportosulnak (a mező a már használt helyeket javasolja; a kis- és nagybetű, valamint a felesleges szóközök nem számítanak). Minden helyhez megjelenik a mérések száma, az összidő, a LAeq (időtartammal súlyozott energiaátlag), a csúcs (legmagasabb LAFmax) és a háttér (legalacsonyabb L90), relatív sávval, a leghangosabb/legcsendesebb összegzésével és a mérések listájával. A térképet CSV-be exportálhatod vagy jelentésként (PDF) kinyomtathatod. A kalibrálatlan (dBFS) és kalibrált (dB SPL) helyek külön maradnak. A térkép személyes, tájékoztató jellegű és nem hitelesített.
 
 ## Amit NEM tud, és korlátok
 

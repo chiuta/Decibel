@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.0.1 · **Última actualización:** 2026-10-27
+**Versión:** 2.1.0 · **Última actualización:** 2026-10-31
 
 **Estado:** estable · **Sin conexión:** completo
 
@@ -21,6 +21,7 @@ Sonómetro, analizador de espectro y prueba auditiva orientativa, en un único a
 3. **Espectro:** bandas de 1/3 o 1/1 de octava, FFT lineal (ventana de Hann), pico con interpolación parabólica, espectrograma; curvas NR solo para valores calibrados.
 4. **Audiograma:** tonos puros de 250 Hz a 8 kHz, método de Hughson–Westlake simplificado. Sin calibrar los auriculares con un sonómetro, el resultado es solo un umbral relativo, no dB HL.
 5. **Registro:** las sesiones (fecha, duración, LAeq, Lmax, ubicación) se guardan localmente; exportación a CSV, JSON, `.fff.json` e impresión (PDF desde el cuadro de diálogo de impresión). El botón «Șterge tot» (Borrar todo) elimina todos los datos locales.
+6. **Mapa (novedad de la 2.0):** las sesiones guardadas se agrupan por el lugar escrito en Medición (el campo sugiere lugares ya usados; se ignoran mayúsculas y espacios sobrantes). Cada lugar muestra número de sesiones, duración total, LAeq (media energética ponderada por duración), pico (LAFmax más alto) y fondo (L90 más bajo), con una barra relativa, un resumen del más ruidoso/más silencioso y su lista de sesiones. Exporta el mapa en CSV o imprímelo como informe (PDF). Los lugares sin calibrar (dBFS) y calibrados (dB SPL) se mantienen separados. El mapa sigue siendo personal, orientativo y no certificado.
 
 ## Lo que NO hace, y límites
 

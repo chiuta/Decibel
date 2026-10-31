@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.0.1 · **Dernière mise à jour :** 2026-10-27
+**Version :** 2.1.0 · **Dernière mise à jour :** 2026-10-31
 
 **État:** stable · **Hors ligne:** complet
 
@@ -21,6 +21,7 @@ Sonomètre, analyseur de spectre et test auditif indicatif, dans un seul fichier
 3. **Spectre :** bandes de 1/3 ou 1/1 octave, FFT linéaire (fenêtre de Hann), crête avec interpolation parabolique, spectrogramme ; courbes NR uniquement pour les valeurs étalonnées.
 4. **Audiogramme :** sons purs de 250 Hz à 8 kHz, méthode de Hughson–Westlake simplifiée. Sans étalonnage du casque avec un sonomètre, le résultat n'est qu'un seuil relatif, pas des dB HL.
 5. **Journal :** les sessions (date, durée, LAeq, Lmax, lieu) sont enregistrées localement ; export CSV, JSON, `.fff.json` et impression (PDF depuis la boîte de dialogue d'impression). Le bouton « Șterge tot » (Tout effacer) supprime toutes les données locales.
+6. **Carte (nouveau en 2.0) :** les sessions enregistrées sont regroupées selon le lieu saisi dans Mesure (le champ propose les lieux déjà utilisés ; la casse et les espaces superflus sont ignorés). Chaque lieu affiche le nombre de sessions, la durée totale, le LAeq (moyenne énergétique pondérée par la durée), le pic (LAFmax le plus élevé) et le bruit de fond (L90 le plus bas), avec une barre relative, un résumé du plus bruyant/plus calme et sa liste de sessions. Exportez la carte en CSV ou imprimez-la en rapport (PDF). Les lieux non calibrés (dBFS) et calibrés (dB SPL) restent séparés. La carte reste personnelle, indicative et non certifiée.
 
 ## Ce qu'il ne fait PAS, et limites
 

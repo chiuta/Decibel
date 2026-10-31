@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.0.1 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-31
 
 **Stare:** stabil · **Offline:** complet
 
@@ -21,6 +21,7 @@ Sonometru, analizor de spectru și test auditiv orientativ, într-un singur fiș
 3. **Spectru:** benzi 1/3 sau 1/1 octavă, FFT liniar (fereastră Hann), vârf cu interpolare parabolică, spectrogramă; curbe NR doar pentru valori calibrate.
 4. **Audiogramă:** tonuri pure 250 Hz–8 kHz, metodă Hughson–Westlake simplificată. Fără calibrarea căștilor cu un sonometru rezultatul este doar un prag relativ, nu dB HL.
 5. **Jurnal:** sesiunile (dată, durată, LAeq, Lmax, locație) se salvează local; export CSV, JSON, `.fff.json` și tipărire (PDF din dialogul de tipărire). Butonul „Șterge tot” șterge toate datele locale.
+6. **Hartă (nou în 2.0):** sesiunile salvate se grupează după locația scrisă în Măsurare (câmpul are listă de sugestii cu locurile deja folosite; majusculele și spațiile în plus nu contează). Pentru fiecare loc vezi numărul de sesiuni, durata totală, LAeq (medie energetică ponderată cu durata), vârful (cel mai mare LAFmax) și fundalul (cel mai mic L90), cu bară relativă, rezumat „cel mai zgomotos / cel mai liniștit” și lista sesiunilor. Harta se exportă CSV și se tipărește ca raport (PDF). Locurile necalibrate (dBFS) se țin separat de cele calibrate (dB SPL). Harta rămâne personală, orientativă și necertificată.
 
 ## Ce NU face și limite
 
@@ -64,5 +65,6 @@ Licență: MIT — vezi fișierul `LICENSE` din rădăcina depozitului
 
 ## Istoric
 
+- 2.1.0 — 2026-10-31: îmbinat cu linia din hub (2.0.0): fila „Hartă personală de zgomot”, module kit de stocare; păstrează explicația A / C / Z din 1.0.1.
 - 1.0.1 — 2026-10-27: explicație în limbaj simplu a ponderărilor A / C / Z în fila Măsurare (8 limbi); liniile Stare și Offline în README; adăugat CHANGELOG.md. Punctele din recenzie deja acoperite în 1.0.0 (asistent de calibrare cu sonometru de referință, jurnal de sesiuni exportabil, avertizarea „nu este sonometru calibrat”) au rămas neschimbate.
 - 1.0.0 — 2026-10-14: prima versiune
