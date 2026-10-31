@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.0.1 · **Last updated:** 2026-10-27
+**Version:** 2.1.0 · **Last updated:** 2026-10-31
 
 **Status:** stable · **Offline:** complete
 
@@ -21,6 +21,7 @@ Sound level meter, spectrum analyzer and indicative hearing test, in a single HT
 3. **Spectrum:** 1/3- or 1/1-octave bands, linear FFT (Hann window), peak with parabolic interpolation, spectrogram; NR curves only for calibrated values.
 4. **Audiogram:** pure tones 250 Hz–8 kHz, simplified Hughson–Westlake method. Without calibrating the headphones against a sound level meter, the result is only a relative threshold, not dB HL.
 5. **Log:** sessions (date, duration, LAeq, Lmax, location) are saved locally; export to CSV, JSON, `.fff.json` and printing (PDF from the print dialog). The "Șterge tot" (Delete all) button deletes all local data.
+6. **Map (new in 2.0):** saved sessions are grouped by the location typed in Measure (the field suggests places already used; case and extra spaces are ignored). Each place shows session count, total time, LAeq (duration-weighted energy average), peak (highest LAFmax) and background (lowest L90), with a relative bar, a loudest/quietest summary and its session list. Export the map as CSV or print it as a report (PDF). Uncalibrated (dBFS) and calibrated (dB SPL) places are kept apart. The map stays personal, indicative and uncertified.
 
 ## What it does NOT do, and limits
 
