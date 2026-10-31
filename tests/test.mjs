@@ -89,7 +89,7 @@ await T('pornire curată: 0 erori, 0 CSP, 0 rețea, meta și versiune', async ()
   const p = await open(browser); await p.waitForTimeout(800); await clean(p, 'start');
   assert.equal(await p.getAttribute('meta[name=application-version]', 'content'), '2.1.0');
   assert.equal(await p.getAttribute('meta[name=last-updated]', 'content'), '2026-10-31');
-  assert.equal((await p.textContent('#app-version')).trim(), 'v 1.0.1 · 2026-10-27');
+  assert.equal((await p.textContent('#app-version')).trim(), 'v 2.1.0 · 2026-10-31');
   assert.equal(await p.evaluate(() => document.documentElement.lang), 'ro');
   const csp = await p.getAttribute('meta[http-equiv=Content-Security-Policy]', 'content');
   assert.ok(/default-src 'none'/.test(csp) && /connect-src 'none'/.test(csp) && /script-src 'sha256-/.test(csp) && !/unsafe-eval|script-src[^;]*unsafe-inline/.test(csp));
