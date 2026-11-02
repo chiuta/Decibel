@@ -12,8 +12,8 @@
     "localStorage"
   ],
   "storageKeys": [],
-  "sizeBytes": 473032,
-  "sha256": "f34717d7d88d811ed41bfc7cfc13c5ea4d0acddb672a1a31d79e59a30509dfc1",
+  "sizeBytes": 613466,
+  "sha256": "8b59c7666c1d71f056d5f46983cdac04cf8bbe5b5237f5745728dc6686b396d5",
   "csp": {
     "present": true,
     "directives": {
@@ -57,6 +57,10 @@
       "dialog",
       "label",
       "bundle",
+      "qr",
+      "p2p",
+      "sync",
+      "history",
       "bridge"
     ]
   },
@@ -68,6 +72,10 @@
       "dialog",
       "label",
       "bundle",
+      "qr",
+      "p2p",
+      "sync",
+      "history",
       "bridge"
     ]
   },
