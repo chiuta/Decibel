@@ -2,23 +2,26 @@
   "schema": 1,
   "slug": "decibel",
   "name": "Decibel",
-  "version": "2.2.0",
-  "updated": "2026-11-02",
+  "version": "2.2.1",
+  "updated": "2026-11-03",
   "description": "Decibel: sonometru (ponderări A/C/Z, Fast/Slow, LAeq, Lmax, L10/L50/L90, SEL, doză de zgomot), analizor de spectru 1/3 și 1/1 de octavă, calibrare și audiogramă orientativă. Rulează local, nu trimite nimic.",
   "egress": [],
   "permissions": [
     "getUserMedia",
+    "clipboard",
     "serviceWorker",
-    "localStorage"
+    "localStorage",
+    "Web Crypto",
+    "BroadcastChannel"
   ],
   "storageKeys": [],
-  "sizeBytes": 613466,
-  "sha256": "8b59c7666c1d71f056d5f46983cdac04cf8bbe5b5237f5745728dc6686b396d5",
+  "sizeBytes": 682951,
+  "sha256": "937eadea0cbbfee08399a38521f610d8330d8920f5e655d68389ba7231d3556a",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'none'",
-      "script-src": "sha256×4",
+      "script-src": "sha256×7",
       "style-src": "'unsafe-inline'",
       "img-src": "'self' data: blob:",
       "media-src": "data: blob:",
