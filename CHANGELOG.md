@@ -2,6 +2,10 @@
 
 Format: [SemVer](https://semver.org/lang/ro/) MAJOR.MINOR.PATCH.
 
+## 2.2.4 — 2026-11-08
+
+Exporturile CSV (jurnal, hartă) primesc coloanele `incertitudine_dB` (orientativă, doar pentru sesiuni calibrate) și `necertificat` (=1); CSV-ul de sesiune o spune în comentariul din antet. Sesiunile noi rețin metoda de calibrare.
+
 ## 2.2.1 — 2026-11-03
 
 Peisaj sonor comun (FFF): mixer Web Audio cu straturi de zgomot/ploaie/valuri/vânt/drone/ton, profile dormit/studiu/preparat (presetări, fără afirmații de efect), oprire automată, export/import sound/profile și randare WAV; local, fără server.
