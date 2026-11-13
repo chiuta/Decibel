@@ -87,9 +87,9 @@ const browser = await launch();
 /* =================== 1. pornire, meta, CSP, limbi =================== */
 await T('pornire curată: 0 erori, 0 CSP, 0 rețea, meta și versiune', async () => {
   const p = await open(browser); await p.waitForTimeout(800); await clean(p, 'start');
-  assert.equal(await p.getAttribute('meta[name=application-version]', 'content'), '2.2.7');
-  assert.equal(await p.getAttribute('meta[name=last-updated]', 'content'), '2026-11-11');
-  assert.equal((await p.textContent('#app-version')).trim(), 'v 2.2.7 · 2026-11-11');
+  assert.equal(await p.getAttribute('meta[name=application-version]', 'content'), '2.2.8');
+  assert.equal(await p.getAttribute('meta[name=last-updated]', 'content'), '2026-11-13');
+  assert.equal((await p.textContent('#app-version')).trim(), 'v 2.2.8 · 2026-11-13');
   assert.equal(await p.evaluate(() => document.documentElement.lang), 'ro');
   const csp = await p.getAttribute('meta[http-equiv=Content-Security-Policy]', 'content');
   assert.ok(/default-src 'none'/.test(csp) && /connect-src 'none'/.test(csp) && /script-src 'sha256-/.test(csp) && !/unsafe-eval|script-src[^;]*unsafe-inline/.test(csp));
@@ -415,12 +415,12 @@ await T('jurnal: CSV, .fff.json, import (round-trip), ștergere, „Șterge tot�
   assert.match(csv, /^\ufeffid,start,durata_s/); assert.equal(csv.trim().split(/\r?\n/).length, 3);
   assert.match(csv.split(/\r?\n/)[0], /,incertitudine_dB,necertificat$/); assert.ok(csv.trim().split(/\r?\n/).slice(1).every(l => /,1$/.test(l)), 'necertificat=1 pe fiecare rând');
   dl = p.waitForEvent('download'); await p.click('#btnJson'); f = await (await dl).path(); const j = JSON.parse(fs.readFileSync(f, 'utf8'));
-  assert.deepEqual([j.format, j.schema, j.app, j.version, j.updated], ['fff-bundle', 1, 'decibel', '2.2.7', '2026-11-11']); assert.ok(j.data['fff.decibel.sessions']);
+  assert.deepEqual([j.format, j.schema, j.app, j.version, j.updated], ['fff-bundle', 1, 'decibel', '2.2.8', '2026-11-13']); assert.ok(j.data['fff.decibel.sessions']);
   dl = p.waitForEvent('download'); await p.click('#btnSesCsv'); f = await (await dl).path(); const sc = fs.readFileSync(f, 'utf8'); assert.match(sc, /t_s,LAeq_1s,LCeq_1s,LZeq_1s,LAF,LAS/);
   const row = sc.split(/\r?\n/)[2].split(','); near(+row[1], 20 * Math.log10(0.05 / Math.SQRT2) + 1.2, 0.3, 'CSV sesiune LAeq,1s');
   // import invalid
-  const bad = path.join(TMP, 'bad.json'); fs.writeFileSync(bad, '{"format":"altceva"}'); await p.setInputFiles('#impIn', bad); assert.match(await p.textContent('#logMsg'), /nu este o copie/);
-  const other = path.join(TMP, 'other.json'); fs.writeFileSync(other, JSON.stringify({...j, app: 'orar'})); await p.setInputFiles('#impIn', other); assert.match(await p.textContent('#logMsg'), /nu este o copie/);
+  const bad = path.join(TMP, 'bad.json'); fs.writeFileSync(bad, '{"format":"altceva"}'); await p.setInputFiles('#impIn', bad); await p.waitForFunction(() => /nu este o copie/.test(document.getElementById('logMsg').textContent), null, {timeout: 5000}); assert.match(await p.textContent('#logMsg'), /nu este o copie/);
+  const other = path.join(TMP, 'other.json'); fs.writeFileSync(other, JSON.stringify({...j, app: 'orar'})); await p.setInputFiles('#impIn', other); await p.waitForFunction(() => /nu este o copie/.test(document.getElementById('logMsg').textContent), null, {timeout: 5000}); assert.match(await p.textContent('#logMsg'), /nu este o copie/);
   // șterge tot → import
   await p.click('#btnWipe'); await p.click('#dlgYes'); await p.waitForTimeout(100); assert.equal(await p.locator('#logTbl tbody tr').count(), 0);
   assert.equal(await p.evaluate(() => Object.keys(localStorage).filter(k => k.startsWith('fff.decibel.') && !/lang|theme/.test(k)).length), 0);
